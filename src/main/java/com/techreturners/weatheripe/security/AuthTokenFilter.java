@@ -1,6 +1,5 @@
 package com.techreturners.weatheripe.security;
 
-import com.techreturners.weatheripe.security.UserDetailsServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +24,8 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 
   @Value("${springdoc.swagger-ui.path}")
   private String SWAGGER_UI_PATH;
+
+  private String ACTUATOR_PATH = "/actuator";
 
   @Autowired
   private JwtUtils jwtUtils;
@@ -62,7 +63,9 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 
   @Override
   protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
-    return request.getMethod().equals(HTTP_GET_METHOD) && request.getServletPath().endsWith(SWAGGER_UI_PATH);
+    return request.getMethod().equals(HTTP_GET_METHOD)
+            && request.getServletPath().equalsIgnoreCase(SWAGGER_UI_PATH)
+            && request.getServletPath().equalsIgnoreCase(ACTUATOR_PATH);
   }
 
   private String parseJwt(HttpServletRequest request) {

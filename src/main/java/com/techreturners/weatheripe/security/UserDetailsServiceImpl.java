@@ -1,6 +1,6 @@
 package com.techreturners.weatheripe.security;
 
-import com.techreturners.weatheripe.models.UserAccount;
+import com.techreturners.weatheripe.model.UserAccount;
 import com.techreturners.weatheripe.repository.UserAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,7 +17,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
   @Override
   @Transactional
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-    UserAccount user = userAccountRepository.findByUsername(username)
+    UserAccount user = userAccountRepository.findByUserName(username)
         .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + username));
 
     return UserDetailsImpl.build(user);

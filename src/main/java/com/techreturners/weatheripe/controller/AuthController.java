@@ -1,15 +1,16 @@
 package com.techreturners.weatheripe.controller;
 
 
-
+import java.sql.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.techreturners.weatheripe.models.ERole;
-import com.techreturners.weatheripe.models.UserAccount;
+import com.techreturners.weatheripe.model.ERole;
+import com.techreturners.weatheripe.model.UserAccount;
 import com.techreturners.weatheripe.repository.UserAccountRepository;
 import com.techreturners.weatheripe.request.LoginRequest;
 import com.techreturners.weatheripe.request.SignupRequest;
+import com.techreturners.weatheripe.response.ErrorResponse;
 import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.techreturners.weatheripe.models.UserAccount;
 import com.techreturners.weatheripe.response.SuccessfulLoginResponse;
 import com.techreturners.weatheripe.response.MessageResponse;
 import com.techreturners.weatheripe.security.JwtUtils;
@@ -71,22 +71,27 @@ public class AuthController {
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
-        if (userAccountRepository.existsByUsername(signUpRequest.getUsername())) {
+        if (userAccountRepository.existsByUserName(signUpRequest.getUsername())) {
             return ResponseEntity
                     .badRequest()
-                    .body(new MessageResponse("Error: Username is already taken!"));
+                    .body(new ErrorResponse("Error: Username is already taken!","400"));
         }
 
         if (userAccountRepository.existsByEmail(signUpRequest.getEmail())) {
             return ResponseEntity
                     .badRequest()
-                    .body(new MessageResponse("Error: Email is already in use!"));
+                    .body(new ErrorResponse("Error: Email is already in use!", "400"));
         }
 
 
-        UserAccount user = new UserAccount(signUpRequest.getUsername(),
-                signUpRequest.getEmail(),
-                encoder.encode(signUpRequest.getPassword()));
+        UserAccount user = UserAccount.builder()
+                .userName(signUpRequest.getUsername())
+                .email(signUpRequest.getEmail())
+                .role(ERole.ROLE_USER)
+                .createdTimestamp(new Date(System.currentTimeMillis()))
+                .password(encoder.encode(signUpRequest.getPassword()))
+                .isActive(true).build();
+
 
         user.setRole(ERole.ROLE_USER);
         userAccountRepository.save(user);

@@ -66,6 +66,7 @@ public class WebSecurityConfiguration {
                 .requestMatchers("/swagger*/**").permitAll()
                 .requestMatchers("/webjars/**").permitAll()
                 .requestMatchers("/swagger-ui/**").permitAll()
+                .requestMatchers("/actuator/**").permitAll()
                 .anyRequest().authenticated();
 
         http.authenticationProvider(authenticationProvider());

@@ -1,7 +1,7 @@
 package com.techreturners.weatheripe.security;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.techreturners.weatheripe.models.UserAccount;
+import com.techreturners.weatheripe.model.UserAccount;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -38,7 +38,7 @@ public class UserDetailsImpl implements UserDetails {
 
     return new UserDetailsImpl(
         user.getId(), 
-        user.getUsername(), 
+        user.getUserName(),
         user.getEmail(),
         user.getPassword(),
         authority);

@@ -1,7 +1,7 @@
 package com.techreturners.weatheripe.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.techreturners.weatheripe.response.InvalidJwtResponse;
+import com.techreturners.weatheripe.response.ErrorResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
@@ -13,8 +13,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 @Component
 public class AuthEntryPointJwt implements AuthenticationEntryPoint {
@@ -29,7 +27,7 @@ public class AuthEntryPointJwt implements AuthenticationEntryPoint {
     response.setContentType(MediaType.APPLICATION_JSON_VALUE);
     response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 
-    InvalidJwtResponse errorObj = new InvalidJwtResponse(authException.getMessage());
+    ErrorResponse errorObj = new ErrorResponse(authException.getMessage(), "401");
 
     final ObjectMapper mapper = new ObjectMapper();
     mapper.writeValue(response.getOutputStream(), errorObj);
