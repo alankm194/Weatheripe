@@ -1,6 +1,9 @@
 package com.techreturners.weatheripe.weather;
 
 import com.techreturners.weatheripe.external.dto.ResponseDTO;
+import com.techreturners.weatheripe.model.DishType;
+import com.techreturners.weatheripe.model.FoodForWeather;
+import com.techreturners.weatheripe.recipe.service.RecipeService;
 import com.techreturners.weatheripe.weather.service.WeatherService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +21,24 @@ public class RecipeController {
     @Autowired
     private WeatherService weatherService;
 
+
+    @Autowired
+    private RecipeService recipeService;
+
     @GetMapping({"/{location}"})
     public ResponseEntity<ResponseDTO> getWeatherByLocation(@PathVariable String location) {
 //        weatherService.getWeatherByTemp(10);
         return new ResponseEntity<>(weatherService.getWeatherByLocation(location), HttpStatus.OK);
+    }
+
+
+    @GetMapping({"/recipe"})
+    public ResponseEntity<ResponseDTO> getRecipe() {
+DishType dishType = new DishType();
+        dishType.setId(1L);
+        dishType.setDishTypeLabel("soup");
+        FoodForWeather foodForWeather = new FoodForWeather();
+        foodForWeather.setDishType(dishType);
+         return new ResponseEntity<>(recipeService.getRecipeByWeatherCondition(foodForWeather), HttpStatus.OK);
     }
 }
