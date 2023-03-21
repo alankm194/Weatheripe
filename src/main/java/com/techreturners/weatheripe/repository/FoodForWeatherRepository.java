@@ -1,10 +1,11 @@
 package com.techreturners.weatheripe.repository;
 
 import com.techreturners.weatheripe.model.FoodForWeather;
+import com.techreturners.weatheripe.model.Weather;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
-@Repository
+import java.util.List;
+
 public interface FoodForWeatherRepository extends JpaRepository<FoodForWeather, Long> {
-
+    List<FoodForWeather> findByWeatherIdIn(List<Weather> weatherId);
 }

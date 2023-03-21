@@ -27,8 +27,8 @@ public class RecipeController {
 
     @GetMapping({"/{location}"})
     public ResponseEntity<ResponseDTO> getWeatherByLocation(@PathVariable String location) {
-//        weatherService.getWeatherByTemp(10);
-        return new ResponseEntity<>(weatherService.getWeatherByLocation(location), HttpStatus.OK);
+
+        return new ResponseEntity<>(weatherService.getRecipeByLocation(location), HttpStatus.OK);
     }
 
 

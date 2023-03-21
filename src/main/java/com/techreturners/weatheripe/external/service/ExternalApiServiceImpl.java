@@ -14,17 +14,12 @@ public class ExternalApiServiceImpl implements ExternalApiService {
     private WebClient.Builder webClientBuilder;
 
     public ResponseDTO getResourcesByUri(ExternalRequestDto dto){
-//        String uri = buildUri(dto);
-//        String uri = MessageFormat.format(WEATHER_API_URL,WEATHER_API_KEY, location);
-
         ResponseDTO responseDTO = webClientBuilder.build()
                 .get()
                 .uri(dto.getUrl())
                 .retrieve()
                 .bodyToMono(dto.getResponseDTO().getClass())
                 .block();
-
-
         return responseDTO;
     }
 }
