@@ -32,13 +32,13 @@ public class RecipeController {
     }
 
 
-    @GetMapping({"/recipe"})
-    public ResponseEntity<ResponseDTO> getRecipe() {
-DishType dishType = new DishType();
-        dishType.setId(1L);
-        dishType.setDishTypeLabel("soup");
-        FoodForWeather foodForWeather = new FoodForWeather();
-        foodForWeather.setDishType(dishType);
-         return new ResponseEntity<>(recipeService.getRecipeByWeatherCondition(foodForWeather), HttpStatus.OK);
-    }
+//    @GetMapping({"/recipe"})
+//    public ResponseEntity<ResponseDTO> getRecipe() {
+//        DishType dishType = new DishType();
+//        dishType.setId(1L);
+//        dishType.setDishTypeLabel("soup");
+//        FoodForWeather foodForWeather = new FoodForWeather();
+//        foodForWeather.setDishType(dishType);
+//         return new ResponseEntity<>(recipeService.getRecipeByWeatherCondition(foodForWeather), HttpStatus.OK);
+//    }
 }
