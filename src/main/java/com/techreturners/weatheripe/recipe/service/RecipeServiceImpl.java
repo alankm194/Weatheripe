@@ -18,6 +18,8 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Autowired
     private ExternalApiService externalApiService;
+//    @Autowired
+//    private JwtScretConfiguration externalApiService;
 
     @Value("${recipe.api.url}")
     private String RECIPE_API_URL;

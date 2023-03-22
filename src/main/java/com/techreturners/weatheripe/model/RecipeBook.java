@@ -1,4 +1,5 @@
 package com.techreturners.weatheripe.model;
+
 import jakarta.persistence.*;
 
 import lombok.AllArgsConstructor;
@@ -6,7 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 
 
 @Entity
@@ -42,9 +43,11 @@ public class RecipeBook {
     @JoinColumn(name = "meal_Type", referencedColumnName = "id")
     MealType mealType;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "dish_Type", referencedColumnName = "id")
-    DishType dishType;
+    //    @OneToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "dish_Type", referencedColumnName = "id")
+//    DishType dishType;
+    @Column
+    String dishType;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cuisine_Type", referencedColumnName = "id")
@@ -57,7 +60,7 @@ public class RecipeBook {
     Boolean is_favourite;
 
     @Column
-    Date timestamp;
+    LocalDateTime timestamp;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
