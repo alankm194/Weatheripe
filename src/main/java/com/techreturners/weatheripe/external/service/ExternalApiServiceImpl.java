@@ -11,10 +11,10 @@ import org.springframework.web.reactive.function.client.WebClient;
 @Service
 public class ExternalApiServiceImpl implements ExternalApiService {
     @Autowired
-    private WebClient.Builder webClientBuilder;
+    private WebClient webClient;
 
     public ResponseDTO getResourcesByUri(ExternalRequestDto dto){
-        ResponseDTO responseDTO = webClientBuilder.build()
+        ResponseDTO responseDTO = webClient
                 .get()
                 .uri(dto.getUrl())
                 .retrieve()
