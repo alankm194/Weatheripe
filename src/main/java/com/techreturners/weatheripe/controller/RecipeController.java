@@ -2,6 +2,7 @@ package com.techreturners.weatheripe.controller;
 
 import com.techreturners.weatheripe.external.dto.ResponseDTO;
 import com.techreturners.weatheripe.recipe.service.RecipeService;
+import com.techreturners.weatheripe.weather.dto.RecipeQueryDTO;
 import com.techreturners.weatheripe.weather.dto.WeatherApiDTO;
 import com.techreturners.weatheripe.weather.service.WeatherService;
 import lombok.extern.slf4j.Slf4j;
@@ -35,11 +36,7 @@ public class RecipeController {
 
 //    @GetMapping({"/recipe"})
 //    public ResponseEntity<ResponseDTO> getRecipe() {
-//        DishType dishType = new DishType();
-//        dishType.setId(1L);
-//        dishType.setDishTypeLabel("soup");
-//        FoodForWeather foodForWeather = new FoodForWeather();
-//        foodForWeather.setDishType(dishType);
-//         return new ResponseEntity<>(recipeService.getRecipeByWeatherCondition(foodForWeather), HttpStatus.OK);
+//        RecipeQueryDTO weatherResponseDTO = new RecipeQueryDTO("https://api.edamam.com/api/recipes/v2?dishType=pancake&dishType=pasta&dishType=maincourse");
+//         return new ResponseEntity<>(recipeService.getRecipeByWeatherCondition(weatherResponseDTO), HttpStatus.OK);
 //    }
 }

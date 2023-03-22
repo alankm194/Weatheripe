@@ -12,8 +12,8 @@ public class WeathipeApplication {
 		SpringApplication.run(WeathipeApplication.class, args);
 	}
 
-	@Bean
-	public WebClient.Builder getWebClientBuilder(){
-		return WebClient.builder();
-	}
+//	@Bean
+//	public WebClient.Builder getWebClientBuilder(){
+//		return WebClient.builder();
+//	}
 }

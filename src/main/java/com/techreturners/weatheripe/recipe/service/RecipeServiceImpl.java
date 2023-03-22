@@ -29,14 +29,20 @@ public class RecipeServiceImpl implements RecipeService {
     private String API_TYPE;
 
     @Value("${recipe.app.id}")
-    private String RECIPE_APP_id;
+    private String RECIPE_APP_ID;
 
     @Override
     public ResponseDTO getRecipeByWeatherCondition(ResponseDTO weatherResponseDTO) throws NoMatchingCriteriaException {
 
-        RecipeQueryDTO recipeQueryDTO = (RecipeQueryDTO)weatherResponseDTO;
 
-        ExternalRequestDto externalRequestDto = new ExternalRequestDto(recipeQueryDTO.getQuery(), new RecipeResponseDTO());
+        RecipeQueryDTO recipeQueryDTO = (RecipeQueryDTO)weatherResponseDTO;
+        log.info(recipeQueryDTO.getQuery());
+        StringBuilder query = new StringBuilder(recipeQueryDTO.getQuery());
+        query.append("&app_key=").append(RECIPE_APP_KEY);
+        query.append("&app_id=").append(RECIPE_APP_ID);
+        query.append("&type=").append(API_TYPE);
+
+        ExternalRequestDto externalRequestDto = new ExternalRequestDto(query.toString(), new RecipeResponseDTO());
         RecipeResponseDTO recipeResponseDTO = (RecipeResponseDTO) externalApiService.getResourcesByUri(externalRequestDto);
 
         if(recipeResponseDTO == null || recipeResponseDTO.getHits() == null || recipeResponseDTO.getHits().length == 0 ){
