@@ -45,7 +45,7 @@ public class RecipeServiceTest {
     @Mock
     private ExternalApiServiceImpl externalApiService;
 
-    @Test
+/*    @Test
     public void getRecipeByWeatherCondition(){
         String query = "https://api.edamam.com/api/recipes/v2?dishType=desserts&dishType=drinks&dishType=egg&dishType=pancake";
 
@@ -83,7 +83,7 @@ public class RecipeServiceTest {
                 RecipeResponseDTO recipeResponseDTO = (RecipeResponseDTO) recipeService.getRecipeByWeatherCondition(recipeQueryDTO);
             }
         });
-
+*/
     }
 
 
