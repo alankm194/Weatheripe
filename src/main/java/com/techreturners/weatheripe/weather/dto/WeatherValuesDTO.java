@@ -1,9 +1,9 @@
-package com.techreturners.weatheripe.weather.api;
+package com.techreturners.weatheripe.weather.dto;
 
 import lombok.Data;
 
 @Data
-public class WeatherValues {
+public class WeatherValuesDTO {
     private double cloudBase;
     private double cloudCeiling;
     private int cloudCover;

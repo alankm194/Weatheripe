@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DishTypeRepository extends JpaRepository<DishType, Long> {
 
-//    List<DishType> findDishTypesByWeathers(long weatherId);
+    DishType findDishTypeById(long id);
 }

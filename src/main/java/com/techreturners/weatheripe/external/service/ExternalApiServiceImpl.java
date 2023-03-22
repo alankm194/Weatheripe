@@ -11,20 +11,15 @@ import org.springframework.web.reactive.function.client.WebClient;
 @Service
 public class ExternalApiServiceImpl implements ExternalApiService {
     @Autowired
-    private WebClient.Builder webClientBuilder;
+    private WebClient webClient;
 
     public ResponseDTO getResourcesByUri(ExternalRequestDto dto){
-//        String uri = buildUri(dto);
-//        String uri = MessageFormat.format(WEATHER_API_URL,WEATHER_API_KEY, location);
-
-        ResponseDTO responseDTO = webClientBuilder.build()
+        ResponseDTO responseDTO = webClient
                 .get()
                 .uri(dto.getUrl())
                 .retrieve()
                 .bodyToMono(dto.getResponseDTO().getClass())
                 .block();
-
-
         return responseDTO;
     }
 }
