@@ -39,4 +39,15 @@ public class RecipeController {
 //        RecipeQueryDTO weatherResponseDTO = new RecipeQueryDTO("https://api.edamam.com/api/recipes/v2?dishType=pancake&dishType=pasta&dishType=maincourse");
 //         return new ResponseEntity<>(recipeService.getRecipeByWeatherCondition(weatherResponseDTO), HttpStatus.OK);
 //    }
+
+
+    @GetMapping({"/user/{location}"})
+    public ResponseEntity<ResponseDTO> getWeatherByLocationFor(@PathVariable String location) {
+        WeatherApiDTO weatherApiDTO = (WeatherApiDTO) weatherService.getWeatherByLocation(location);
+        ResponseDTO recipeQueryDTO = weatherService.buildExternalRecipeAPIQuery(weatherApiDTO);
+        ResponseDTO recipeDTO = recipeService.getRecipeByWeatherCondition(recipeQueryDTO);
+        return new ResponseEntity<>(recipeDTO, HttpStatus.OK);
+    }
+
+
 }

@@ -33,19 +33,17 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public ResponseDTO getRecipeByWeatherCondition(ResponseDTO weatherResponseDTO) throws NoMatchingCriteriaException {
+        RecipeQueryDTO recipeQueryDTO = (RecipeQueryDTO) weatherResponseDTO;
 
-
-        RecipeQueryDTO recipeQueryDTO = (RecipeQueryDTO)weatherResponseDTO;
-        log.info(recipeQueryDTO.getQuery());
         StringBuilder query = new StringBuilder(recipeQueryDTO.getQuery());
         query.append("&app_key=").append(RECIPE_APP_KEY);
         query.append("&app_id=").append(RECIPE_APP_ID);
         query.append("&type=").append(API_TYPE);
-
+        log.info(query.toString());
         ExternalRequestDto externalRequestDto = new ExternalRequestDto(query.toString(), new RecipeResponseDTO());
         RecipeResponseDTO recipeResponseDTO = (RecipeResponseDTO) externalApiService.getResourcesByUri(externalRequestDto);
 
-        if(recipeResponseDTO == null || recipeResponseDTO.getHits() == null || recipeResponseDTO.getHits().length == 0 ){
+        if (recipeResponseDTO == null || recipeResponseDTO.getHits() == null || recipeResponseDTO.getHits().length == 0) {
             throw new NoMatchingCriteriaException(ExceptionMessages.NO_MATCHING_RECIPES_FOOD_CRITERIA);
         }
 
