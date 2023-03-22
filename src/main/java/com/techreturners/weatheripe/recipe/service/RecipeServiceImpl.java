@@ -2,18 +2,15 @@ package com.techreturners.weatheripe.recipe.service;
 
 import com.techreturners.weatheripe.exception.ExceptionMessages;
 import com.techreturners.weatheripe.exception.NoMatchingCriteriaException;
-import com.techreturners.weatheripe.external.dto.DummyReceipeQueryDTO;
+import com.techreturners.weatheripe.weather.dto.RecipeQueryDTO;
 import com.techreturners.weatheripe.external.dto.ExternalRequestDto;
 import com.techreturners.weatheripe.external.dto.ResponseDTO;
 import com.techreturners.weatheripe.external.service.ExternalApiService;
-import com.techreturners.weatheripe.model.FoodForWeather;
 import com.techreturners.weatheripe.recipe.dto.RecipeResponseDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Slf4j
 @Service
@@ -37,9 +34,9 @@ public class RecipeServiceImpl implements RecipeService {
     @Override
     public ResponseDTO getRecipeByWeatherCondition(ResponseDTO weatherResponseDTO) throws NoMatchingCriteriaException {
 
-        DummyReceipeQueryDTO dummyReceipeQueryDTO = (DummyReceipeQueryDTO)weatherResponseDTO;
+        RecipeQueryDTO recipeQueryDTO = (RecipeQueryDTO)weatherResponseDTO;
 
-        ExternalRequestDto externalRequestDto = new ExternalRequestDto(dummyReceipeQueryDTO.getQuery(), new RecipeResponseDTO());
+        ExternalRequestDto externalRequestDto = new ExternalRequestDto(recipeQueryDTO.getQuery(), new RecipeResponseDTO());
         RecipeResponseDTO recipeResponseDTO = (RecipeResponseDTO) externalApiService.getResourcesByUri(externalRequestDto);
 
         if(recipeResponseDTO == null || recipeResponseDTO.getHits() == null || recipeResponseDTO.getHits().length == 0 ){

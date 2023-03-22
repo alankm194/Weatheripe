@@ -2,12 +2,13 @@ package com.techreturners.weatheripe.service;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.techreturners.weatheripe.weather.dto.RecipeQueryDTO;
 import com.techreturners.weatheripe.model.DishType;
 import com.techreturners.weatheripe.model.FoodForWeather;
 import com.techreturners.weatheripe.model.Weather;
 import com.techreturners.weatheripe.repository.FoodForWeatherRepository;
 import com.techreturners.weatheripe.repository.WeatherRepository;
-import com.techreturners.weatheripe.weather.api.WeatherApiObj;
+import com.techreturners.weatheripe.weather.dto.WeatherApiDTO;
 import com.techreturners.weatheripe.weather.service.WeatherServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -37,42 +38,46 @@ public class WeatherServiceTests {
     private WeatherServiceImpl weatherServiceImpl;
 
 
-
     @Test
     public void testBuildExternalRecipeAPIQueryReturnQueryString() throws Exception {
         ReflectionTestUtils.setField(weatherServiceImpl,
                 "RECIPE_API_URL", "https://api.edamam.com/api/recipes/v2?app_key={0}&app_id=ba324f9b&type=any");
         ReflectionTestUtils.setField(weatherServiceImpl,
-                "RECIPE_API_KEY", "76a805351dc3865a68e48961ac856f19");
+                "RECIPE_API_KEY", "dummykey");
 
-        String query = "https://api.edamam.com/api/recipes/v2?app_key=76a805351dc3865a68e48961ac856f19&app_id=ba324f9b&type=any&dishType=salad";
+        String query = "https://api.edamam.com/api/recipes/v2?app_key=dummykey&app_id=ba324f9b&type=any&dishType=salad";
 
         // To read the json file to form the weatherApiObj
-        WeatherApiObj weatherApiObj;
         Resource resource = new ClassPathResource("/good_weather_response.json");
 
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        weatherApiObj = objectMapper.readValue(resource.getInputStream(), WeatherApiObj.class);
+        WeatherApiDTO weatherApiObj = objectMapper.readValue(resource.getInputStream(), WeatherApiDTO.class);
 
 
         List<Weather> weathers = new ArrayList<>();
-        Weather weather1 = new Weather(1L,-5, 15, 0,0,0,0,0,0,0,0,0,0,0,0);
-        Weather weather2 = new Weather(2L,10, 15, 0,0,0,0,0,0,0,0,0,0,0,0);
+        Weather weather1 = new Weather(1L, -5, 15, 0,
+                0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0);
+        Weather weather2 = new Weather(2L, 10, 15, 0,
+                0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0);
         weathers.add(weather1);
         weathers.add(weather2);
-
-        when(mockWeatherRepository.findByTemperatureBetweenTemperatureHighLow(weatherApiObj.getCurrentTemp())).thenReturn(weathers);
+        when(mockWeatherRepository.findByTemperatureBetweenTemperatureHighLow(weatherApiObj.getCurrentTemp()))
+                .thenReturn(weathers);
 
         List<FoodForWeather> foodForWeathers = new ArrayList<>();
-        foodForWeathers.add(new FoodForWeather(1L, weather1, null, null, null, new DishType(1L, "salad"), null));
+        foodForWeathers.add(new FoodForWeather(1L, weather1, null, null,
+                null, new DishType(1L, "salad"), null));
         when(mockFoodForWeatherRepository.findByWeatherIdIn(weathers)).thenReturn(foodForWeathers);
 
-        String actualResult = weatherServiceImpl.buildExternalRecipeAPIQuery(weatherApiObj);
+        RecipeQueryDTO recipeQueryDTO = (RecipeQueryDTO) weatherServiceImpl.buildExternalRecipeAPIQuery(weatherApiObj);
 
-        assertEquals(query, actualResult);
+        assertEquals(query, recipeQueryDTO.getQuery());
 
-        verify(mockWeatherRepository, times(1)).findByTemperatureBetweenTemperatureHighLow(weatherApiObj.getCurrentTemp());
+        verify(mockWeatherRepository, times(1))
+                .findByTemperatureBetweenTemperatureHighLow(weatherApiObj.getCurrentTemp());
         verify(mockFoodForWeatherRepository, times(1)).findByWeatherIdIn(weathers);
     }
 }

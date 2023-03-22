@@ -2,9 +2,11 @@ package com.techreturners.weatheripe.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.techreturners.weatheripe.exception.ExceptionHandlerController;
-import com.techreturners.weatheripe.external.dto.DummyReceipeQueryDTO;
 import com.techreturners.weatheripe.external.dto.ResponseDTO;
-import com.techreturners.weatheripe.weather.RecipeController;
+import com.techreturners.weatheripe.recipe.dto.RecipeResponseDTO;
+import com.techreturners.weatheripe.recipe.service.RecipeServiceImpl;
+import com.techreturners.weatheripe.weather.dto.RecipeQueryDTO;
+import com.techreturners.weatheripe.weather.dto.WeatherApiDTO;
 import com.techreturners.weatheripe.weather.service.WeatherServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,6 +29,9 @@ public class RecipeControllerTests {
     @Mock
     private WeatherServiceImpl mockWeatherServiceImpl;
 
+    @Mock
+    private RecipeServiceImpl mockRecipeServiceImpl;
+
     @InjectMocks
     private RecipeController recipeController;
 
@@ -46,9 +51,13 @@ public class RecipeControllerTests {
     public void testGetRecipeByLocationReturnsRecipes() throws Exception {
         String location = "London";
 
-        ResponseDTO recipeApiObj = new DummyReceipeQueryDTO("");
+        WeatherApiDTO weatherApiDTO = new WeatherApiDTO();
+        ResponseDTO recipeQueryDTO = new RecipeQueryDTO("");
+        ResponseDTO recipeResponseDTO = new RecipeResponseDTO();
 
-        when(mockWeatherServiceImpl.getRecipeByLocation(location)).thenReturn(recipeApiObj);
+        when(mockWeatherServiceImpl.getWeatherByLocation(location)).thenReturn(weatherApiDTO);
+        when(mockWeatherServiceImpl.buildExternalRecipeAPIQuery(weatherApiDTO)).thenReturn(recipeQueryDTO);
+        when(mockRecipeServiceImpl.getRecipeByWeatherCondition(recipeQueryDTO)).thenReturn(recipeResponseDTO);
 
         this.mockMvcController.perform(
                         MockMvcRequestBuilders.get("/api/v1/recipe/"+location))
