@@ -2,399 +2,19 @@
   "hits": [
     {
       "recipe": {
-        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_31bdf37dbaa2cd9d1637fb0bb54dbbfc",
-        "label": "Kelp Stock from 'Hiroko's American Kitchen'",
-        "calories": "0.48761179775",
-        "totalWeight": "1612.733980925",
-        "healthLabels": [
-          "Sugar-Conscious",
-          "Low Potassium",
-          "Kidney-Friendly",
-          "Keto-Friendly",
-          "Vegan",
-          "Vegetarian",
-          "Pescatarian",
-          "Paleo",
-          "Mediterranean",
-          "Dairy-Free",
-          "Gluten-Free",
-          "Wheat-Free",
-          "Egg-Free",
-          "Peanut-Free",
-          "Tree-Nut-Free",
-          "Soy-Free",
-          "Fish-Free",
-          "Shellfish-Free",
-          "Pork-Free",
-          "Red-Meat-Free",
-          "Crustacean-Free",
-          "Celery-Free",
-          "Mustard-Free",
-          "Sesame-Free",
-          "Lupine-Free",
-          "Mollusk-Free",
-          "Alcohol-Free",
-          "No oil added",
-          "Sulfite-Free",
-          "FODMAP-Free",
-          "Kosher",
-          "Immuno-Supportive"
-        ],
-        "cuisineType": [
-          "american"
-        ],
-        "mealType": [
-          "breakfast"
-        ],
-        "dishType": [
-          "soup"
-        ]
-      }
-    },
-    {
-      "recipe": {
-        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_49864e04de41a2512ee21919e26f482c",
-        "label": "Ultimate Chickpea Noodle Soup recipes",
-        "calories": "2788.28734183962",
-        "totalWeight": "1558.7490957971008",
-        "healthLabels": [
-          "Vegan",
-          "Vegetarian",
-          "Pescatarian",
-          "Mediterranean",
-          "Dairy-Free",
-          "Egg-Free",
-          "Peanut-Free",
-          "Tree-Nut-Free",
-          "Soy-Free",
-          "Fish-Free",
-          "Shellfish-Free",
-          "Pork-Free",
-          "Red-Meat-Free",
-          "Crustacean-Free",
-          "Celery-Free",
-          "Mustard-Free",
-          "Sesame-Free",
-          "Lupine-Free",
-          "Mollusk-Free",
-          "Alcohol-Free",
-          "Sulfite-Free",
-          "Kosher"
-        ],
-        "cuisineType": [
-          "asian"
-        ],
-        "mealType": [
-          "lunch/dinner"
-        ],
-        "dishType": [
-          "soup"
-        ]
-      }
-    },
-    {
-      "recipe": {
-        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_354bedb0232793460ef60656354adc0d",
-        "label": "Asari Miso Soup",
-        "calories": "229.16944444444445",
-        "totalWeight": "722.3888888888889",
-        "healthLabels": [
-          "Sugar-Conscious",
-          "Low Potassium",
-          "Keto-Friendly",
-          "Pescatarian",
-          "Mediterranean",
-          "Dairy-Free",
-          "Gluten-Free",
-          "Wheat-Free",
-          "Egg-Free",
-          "Peanut-Free",
-          "Tree-Nut-Free",
-          "Fish-Free",
-          "Pork-Free",
-          "Red-Meat-Free",
-          "Crustacean-Free",
-          "Celery-Free",
-          "Mustard-Free",
-          "Sesame-Free",
-          "Lupine-Free",
-          "Alcohol-Free",
-          "No oil added",
-          "Sulfite-Free"
-        ],
-        "cuisineType": [
-          "japanese"
-        ],
-        "mealType": [
-          "lunch/dinner"
-        ],
-        "dishType": [
-          "soup"
-        ]
-      }
-    },
-    {
-      "recipe": {
-        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_1e14ebf11be3cb9644421f50de31a96d",
-        "label": "Roasted Veal Stock",
-        "calories": "45.929291936",
-        "totalWeight": "1202.2519331",
-        "healthLabels": [
-          "Sugar-Conscious",
-          "Low Potassium",
-          "Kidney-Friendly",
-          "Keto-Friendly",
-          "Paleo",
-          "Dairy-Free",
-          "Gluten-Free",
-          "Wheat-Free",
-          "Egg-Free",
-          "Peanut-Free",
-          "Tree-Nut-Free",
-          "Soy-Free",
-          "Fish-Free",
-          "Shellfish-Free",
-          "Pork-Free",
-          "Crustacean-Free",
-          "Celery-Free",
-          "Mustard-Free",
-          "Sesame-Free",
-          "Lupine-Free",
-          "Mollusk-Free",
-          "Alcohol-Free",
-          "No oil added",
-          "Sulfite-Free",
-          "Kosher"
-        ],
-        "cuisineType": [
-          "italian"
-        ],
-        "mealType": [
-          "lunch/dinner"
-        ],
-        "dishType": [
-          "soup"
-        ]
-      }
-    },
-    {
-      "recipe": {
-        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_3abdd02ba713bf50b49a97309040d58b",
-        "label": "Perfect, Uncluttered Chicken Stock",
-        "calories": "106.54217120400001",
-        "totalWeight": "2473.9910966999996",
-        "healthLabels": [
-          "Sugar-Conscious",
-          "Low Potassium",
-          "Kidney-Friendly",
-          "Keto-Friendly",
-          "Paleo",
-          "Mediterranean",
-          "Dairy-Free",
-          "Gluten-Free",
-          "Wheat-Free",
-          "Egg-Free",
-          "Peanut-Free",
-          "Tree-Nut-Free",
-          "Soy-Free",
-          "Fish-Free",
-          "Shellfish-Free",
-          "Pork-Free",
-          "Red-Meat-Free",
-          "Crustacean-Free",
-          "Celery-Free",
-          "Mustard-Free",
-          "Sesame-Free",
-          "Lupine-Free",
-          "Mollusk-Free",
-          "Alcohol-Free",
-          "No oil added",
-          "Sulfite-Free",
-          "Kosher"
-        ],
-        "cuisineType": [
-          "american"
-        ],
-        "mealType": [
-          "snack"
-        ],
-        "dishType": [
-          "soup"
-        ]
-      }
-    },
-    {
-      "recipe": {
-        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_53946110f02e2485eb4a59c795ccf4ef",
-        "label": "Pickled Turnips",
-        "calories": "341.01325009209233",
-        "totalWeight": "1989.8685125906327",
-        "healthLabels": [
-          "Vegan",
-          "Vegetarian",
-          "Pescatarian",
-          "Paleo",
-          "Mediterranean",
-          "Dairy-Free",
-          "Gluten-Free",
-          "Wheat-Free",
-          "Egg-Free",
-          "Peanut-Free",
-          "Tree-Nut-Free",
-          "Soy-Free",
-          "Fish-Free",
-          "Shellfish-Free",
-          "Pork-Free",
-          "Red-Meat-Free",
-          "Crustacean-Free",
-          "Celery-Free",
-          "Mustard-Free",
-          "Sesame-Free",
-          "Lupine-Free",
-          "Mollusk-Free",
-          "Alcohol-Free",
-          "No oil added",
-          "Sulfite-Free",
-          "Kosher"
-        ],
-        "cuisineType": [
-          "french"
-        ],
-        "mealType": [
-          "lunch/dinner"
-        ],
-        "dishType": [
-          "soup"
-        ]
-      }
-    },
-    {
-      "recipe": {
-        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_e7891d0440b8f1d1c38fd5cb720c59fd",
-        "label": "Roasted Asparagus Soup",
-        "calories": "1256.2542278794333",
-        "totalWeight": "1163.7521985196915",
-        "healthLabels": [
-          "Gluten-Free",
-          "Wheat-Free",
-          "Egg-Free",
-          "Peanut-Free",
-          "Tree-Nut-Free",
-          "Soy-Free",
-          "Fish-Free",
-          "Shellfish-Free",
-          "Pork-Free",
-          "Red-Meat-Free",
-          "Crustacean-Free",
-          "Celery-Free",
-          "Mustard-Free",
-          "Sesame-Free",
-          "Lupine-Free",
-          "Mollusk-Free",
-          "Alcohol-Free",
-          "Sulfite-Free"
-        ],
-        "cuisineType": [
-          "french"
-        ],
-        "mealType": [
-          "lunch/dinner"
-        ],
-        "dishType": [
-          "soup"
-        ]
-      }
-    },
-    {
-      "recipe": {
-        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_22f0ef21cf66e94196c3726f0e2f4ec3",
-        "label": "Roasted Vegetable Soup",
-        "calories": "872.5954585000001",
-        "totalWeight": "1576.6780614820227",
-        "healthLabels": [
-          "Mediterranean",
-          "Dairy-Free",
-          "Egg-Free",
-          "Peanut-Free",
-          "Soy-Free",
-          "Fish-Free",
-          "Shellfish-Free",
-          "Pork-Free",
-          "Red-Meat-Free",
-          "Crustacean-Free",
-          "Celery-Free",
-          "Mustard-Free",
-          "Sesame-Free",
-          "Lupine-Free",
-          "Mollusk-Free",
-          "Alcohol-Free",
-          "Sulfite-Free",
-          "Kosher"
-        ],
-        "cuisineType": [
-          "italian"
-        ],
-        "mealType": [
-          "lunch/dinner"
-        ],
-        "dishType": [
-          "soup"
-        ]
-      }
-    },
-    {
-      "recipe": {
-        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_a0c87b05bd55adc0fb6bce40fa7d46ed",
-        "label": "Hot Yogurt & Barley Soup",
-        "calories": "1832.6863379674649",
-        "totalWeight": "2870.0207597568233",
-        "healthLabels": [
-          "Vegetarian",
-          "Pescatarian",
-          "Wheat-Free",
-          "Peanut-Free",
-          "Tree-Nut-Free",
-          "Soy-Free",
-          "Fish-Free",
-          "Shellfish-Free",
-          "Pork-Free",
-          "Red-Meat-Free",
-          "Crustacean-Free",
-          "Celery-Free",
-          "Mustard-Free",
-          "Sesame-Free",
-          "Lupine-Free",
-          "Mollusk-Free",
-          "Alcohol-Free",
-          "Sulfite-Free",
-          "Kosher"
-        ],
-        "cuisineType": [
-          "american"
-        ],
-        "mealType": [
-          "lunch/dinner"
-        ],
-        "dishType": [
-          "soup"
-        ]
-      }
-    },
-    {
-      "recipe": {
-        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_fe4af81200a431bf1a69740d874b443a",
-        "label": "Anchovy Stock",
-        "calories": "0.84",
-        "totalWeight": "806.1999999999999",
+        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_4bb99424e1bbc40d3cd1d891883d6745",
+        "label": "Frothy Iced Matcha Green Tea Recipe",
+        "calories": "0.06",
+        "totalWeight": "232.796185",
         "healthLabels": [
           "Sugar-Conscious",
           "Low Sugar",
           "Low Potassium",
           "Kidney-Friendly",
           "Keto-Friendly",
+          "Vegan",
+          "Vegetarian",
           "Pescatarian",
-          "Paleo",
-          "Mediterranean",
           "Dairy-Free",
           "Gluten-Free",
           "Wheat-Free",
@@ -402,6 +22,89 @@
           "Peanut-Free",
           "Tree-Nut-Free",
           "Soy-Free",
+          "Fish-Free",
+          "Shellfish-Free",
+          "Pork-Free",
+          "Red-Meat-Free",
+          "Crustacean-Free",
+          "Celery-Free",
+          "Mustard-Free",
+          "Sesame-Free",
+          "Lupine-Free",
+          "Mollusk-Free",
+          "Alcohol-Free",
+          "No oil added",
+          "Kosher"
+        ],
+        "cuisineType": [
+          "american"
+        ],
+        "mealType": [
+          "lunch/dinner"
+        ],
+        "dishType": [
+          "drinks"
+        ]
+      }
+    },
+    {
+      "recipe": {
+        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_067f0b7be628ae847366e4f3e614b319",
+        "label": "Maple Banana Frozen Yogurt",
+        "calories": "494.7333457000001",
+        "totalWeight": "689.1923700000001",
+        "healthLabels": [
+          "Vegetarian",
+          "Pescatarian",
+          "Mediterranean",
+          "Gluten-Free",
+          "Wheat-Free",
+          "Egg-Free",
+          "Peanut-Free",
+          "Tree-Nut-Free",
+          "Soy-Free",
+          "Fish-Free",
+          "Shellfish-Free",
+          "Pork-Free",
+          "Red-Meat-Free",
+          "Crustacean-Free",
+          "Celery-Free",
+          "Mustard-Free",
+          "Sesame-Free",
+          "Lupine-Free",
+          "Mollusk-Free",
+          "Alcohol-Free",
+          "No oil added",
+          "Sulfite-Free",
+          "Kosher"
+        ],
+        "cuisineType": [
+          "american"
+        ],
+        "mealType": [
+          "lunch/dinner"
+        ],
+        "dishType": [
+          "desserts"
+        ]
+      }
+    },
+    {
+      "recipe": {
+        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_845a9adf81bb22f3b76ead2981a872a0",
+        "label": "Vanilla Ice Cream With Grilled Corn And Lime",
+        "calories": "332.16",
+        "totalWeight": "337.0",
+        "healthLabels": [
+          "Vegetarian",
+          "Pescatarian",
+          "Gluten-Free",
+          "Wheat-Free",
+          "Egg-Free",
+          "Peanut-Free",
+          "Tree-Nut-Free",
+          "Soy-Free",
+          "Fish-Free",
           "Shellfish-Free",
           "Pork-Free",
           "Red-Meat-Free",
@@ -413,9 +116,7 @@
           "Mollusk-Free",
           "Alcohol-Free",
           "Sulfite-Free",
-          "FODMAP-Free",
-          "Kosher",
-          "Immuno-Supportive"
+          "Kosher"
         ],
         "cuisineType": [
           "american"
@@ -424,21 +125,58 @@
           "lunch/dinner"
         ],
         "dishType": [
-          "soup"
+          "desserts"
         ]
       }
     },
     {
       "recipe": {
-        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_19033696777e6f102b371169455b1078",
-        "label": "Butterscotch Calypso Bean Soup recipes",
-        "calories": "987.8320000000001",
-        "totalWeight": "122.1",
+        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_4082e36f0b72523c7e0eada4390d37f1",
+        "label": "Grapefruit-Campari Sorbet",
+        "calories": "1016.1604602359425",
+        "totalWeight": "989.4077530562259",
         "healthLabels": [
-          "Sugar-Conscious",
-          "Low Potassium",
-          "Kidney-Friendly",
-          "Keto-Friendly",
+          "Vegan",
+          "Vegetarian",
+          "Pescatarian",
+          "Dairy-Free",
+          "Gluten-Free",
+          "Wheat-Free",
+          "Egg-Free",
+          "Peanut-Free",
+          "Tree-Nut-Free",
+          "Soy-Free",
+          "Fish-Free",
+          "Shellfish-Free",
+          "Pork-Free",
+          "Red-Meat-Free",
+          "Crustacean-Free",
+          "Celery-Free",
+          "Mustard-Free",
+          "Sesame-Free",
+          "Lupine-Free",
+          "Mollusk-Free",
+          "No oil added",
+          "Kosher"
+        ],
+        "cuisineType": [
+          "american"
+        ],
+        "mealType": [
+          "lunch/dinner"
+        ],
+        "dishType": [
+          "desserts"
+        ]
+      }
+    },
+    {
+      "recipe": {
+        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_85d56d96bca95fd1b2523d8ea8757624",
+        "label": "Watermelon And Peach Fresh Fruit Cake",
+        "calories": "1250.2475",
+        "totalWeight": "3919.416666666667",
+        "healthLabels": [
           "Vegan",
           "Vegetarian",
           "Pescatarian",
@@ -463,6 +201,7 @@
           "Lupine-Free",
           "Mollusk-Free",
           "Alcohol-Free",
+          "No oil added",
           "Sulfite-Free",
           "Kosher",
           "Immuno-Supportive"
@@ -474,21 +213,22 @@
           "lunch/dinner"
         ],
         "dishType": [
-          "soup"
+          "desserts"
         ]
       }
     },
     {
       "recipe": {
-        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_37b6f298818e8827d6eb0880ec8ea627",
-        "label": "Ham Stock",
-        "calories": "67.6904",
-        "totalWeight": "2057.06",
+        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_c625098a0a0f1e9729bab2475ee1b792",
+        "label": "Cranberry Syrup (And An Intensely Almond Cake)",
+        "calories": "295.95",
+        "totalWeight": "267.66666666666663",
         "healthLabels": [
-          "Sugar-Conscious",
           "Low Potassium",
           "Kidney-Friendly",
-          "Keto-Friendly",
+          "Vegan",
+          "Vegetarian",
+          "Pescatarian",
           "Dairy-Free",
           "Gluten-Free",
           "Wheat-Free",
@@ -498,6 +238,8 @@
           "Soy-Free",
           "Fish-Free",
           "Shellfish-Free",
+          "Pork-Free",
+          "Red-Meat-Free",
           "Crustacean-Free",
           "Celery-Free",
           "Mustard-Free",
@@ -505,7 +247,9 @@
           "Lupine-Free",
           "Mollusk-Free",
           "Alcohol-Free",
-          "Sulfite-Free"
+          "No oil added",
+          "FODMAP-Free",
+          "Kosher"
         ],
         "cuisineType": [
           "american"
@@ -514,22 +258,440 @@
           "lunch/dinner"
         ],
         "dishType": [
-          "soup"
+          "desserts"
         ]
       }
     },
     {
       "recipe": {
-        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_17b2a2916b8401f31b19ce2392497966",
-        "label": "Veal Stock And Guinness Bread",
-        "calories": "2644.5138986",
-        "totalWeight": "1087.5043906657866",
+        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_fc39484a6eb3f14aefe6db632cac9ecc",
+        "label": "Frothy Indian Coffee",
+        "calories": "187.23599999928382",
+        "totalWeight": "262.04999999979714",
+        "healthLabels": [
+          "Kidney-Friendly",
+          "Vegetarian",
+          "Pescatarian",
+          "Gluten-Free",
+          "Wheat-Free",
+          "Egg-Free",
+          "Peanut-Free",
+          "Tree-Nut-Free",
+          "Soy-Free",
+          "Fish-Free",
+          "Shellfish-Free",
+          "Pork-Free",
+          "Red-Meat-Free",
+          "Crustacean-Free",
+          "Celery-Free",
+          "Mustard-Free",
+          "Sesame-Free",
+          "Lupine-Free",
+          "Mollusk-Free",
+          "Alcohol-Free",
+          "No oil added",
+          "Kosher"
+        ],
+        "cuisineType": [
+          "indian"
+        ],
+        "mealType": [
+          "teatime"
+        ],
+        "dishType": [
+          "drinks"
+        ]
+      }
+    },
+    {
+      "recipe": {
+        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_29c69a7229c6b0cd8f803e4152388050",
+        "label": "POMEGRANATE SORBET recipes",
+        "calories": "1805.1874999998583",
+        "totalWeight": "1198.1249999993554",
+        "healthLabels": [
+          "Vegan",
+          "Vegetarian",
+          "Pescatarian",
+          "Dairy-Free",
+          "Gluten-Free",
+          "Wheat-Free",
+          "Egg-Free",
+          "Peanut-Free",
+          "Soy-Free",
+          "Fish-Free",
+          "Shellfish-Free",
+          "Pork-Free",
+          "Red-Meat-Free",
+          "Crustacean-Free",
+          "Celery-Free",
+          "Mustard-Free",
+          "Sesame-Free",
+          "Lupine-Free",
+          "Mollusk-Free",
+          "Alcohol-Free",
+          "No oil added",
+          "Kosher"
+        ],
+        "cuisineType": [
+          "french"
+        ],
+        "mealType": [
+          "lunch/dinner"
+        ],
+        "dishType": [
+          "desserts"
+        ]
+      }
+    },
+    {
+      "recipe": {
+        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_7b86f008487dddb703520cbd2c9e83e5",
+        "label": "Apple Jellies",
+        "calories": "1885.4240972",
+        "totalWeight": "1955.77711",
+        "healthLabels": [
+          "Vegan",
+          "Vegetarian",
+          "Pescatarian",
+          "Dairy-Free",
+          "Gluten-Free",
+          "Wheat-Free",
+          "Egg-Free",
+          "Peanut-Free",
+          "Tree-Nut-Free",
+          "Soy-Free",
+          "Fish-Free",
+          "Shellfish-Free",
+          "Pork-Free",
+          "Red-Meat-Free",
+          "Crustacean-Free",
+          "Celery-Free",
+          "Mustard-Free",
+          "Sesame-Free",
+          "Lupine-Free",
+          "Mollusk-Free",
+          "Alcohol-Free",
+          "No oil added",
+          "Kosher"
+        ],
+        "cuisineType": [
+          "american"
+        ],
+        "mealType": [
+          "lunch/dinner"
+        ],
+        "dishType": [
+          "desserts"
+        ]
+      }
+    },
+    {
+      "recipe": {
+        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_56b36f012b0ba3d866dd00c7b6c9bff1",
+        "label": "Watermelon Shiso Sorbet",
+        "calories": "930.1417110003392",
+        "totalWeight": "936.192370000771",
+        "healthLabels": [
+          "Kidney-Friendly",
+          "Vegan",
+          "Vegetarian",
+          "Pescatarian",
+          "Dairy-Free",
+          "Gluten-Free",
+          "Wheat-Free",
+          "Egg-Free",
+          "Peanut-Free",
+          "Tree-Nut-Free",
+          "Soy-Free",
+          "Fish-Free",
+          "Shellfish-Free",
+          "Pork-Free",
+          "Red-Meat-Free",
+          "Crustacean-Free",
+          "Celery-Free",
+          "Mustard-Free",
+          "Sesame-Free",
+          "Lupine-Free",
+          "Mollusk-Free",
+          "Alcohol-Free",
+          "No oil added",
+          "Kosher"
+        ],
+        "cuisineType": [
+          "american"
+        ],
+        "mealType": [
+          "lunch/dinner"
+        ],
+        "dishType": [
+          "desserts"
+        ]
+      }
+    },
+    {
+      "recipe": {
+        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_2e9b699be433fab7da069629e1699455",
+        "label": "Easy Mango-Blackberry Smoothie Recipe",
+        "calories": "274.59632724687503",
+        "totalWeight": "537.5728540625",
+        "healthLabels": [
+          "Vegetarian",
+          "Pescatarian",
+          "Mediterranean",
+          "Gluten-Free",
+          "Wheat-Free",
+          "Egg-Free",
+          "Peanut-Free",
+          "Tree-Nut-Free",
+          "Soy-Free",
+          "Fish-Free",
+          "Shellfish-Free",
+          "Pork-Free",
+          "Red-Meat-Free",
+          "Crustacean-Free",
+          "Celery-Free",
+          "Mustard-Free",
+          "Sesame-Free",
+          "Lupine-Free",
+          "Mollusk-Free",
+          "Alcohol-Free",
+          "No oil added",
+          "Sulfite-Free",
+          "Kosher",
+          "Immuno-Supportive"
+        ],
+        "cuisineType": [
+          "american"
+        ],
+        "mealType": [
+          "breakfast"
+        ],
+        "dishType": [
+          "drinks"
+        ]
+      }
+    },
+    {
+      "recipe": {
+        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_576a832404546af1fd9506e6bd2f7bd7",
+        "label": "Poached Pears",
+        "calories": "1537.1093333333333",
+        "totalWeight": "1968.3862793333333",
+        "healthLabels": [
+          "Kidney-Friendly",
+          "Vegan",
+          "Vegetarian",
+          "Pescatarian",
+          "Dairy-Free",
+          "Gluten-Free",
+          "Wheat-Free",
+          "Egg-Free",
+          "Peanut-Free",
+          "Tree-Nut-Free",
+          "Soy-Free",
+          "Fish-Free",
+          "Shellfish-Free",
+          "Pork-Free",
+          "Red-Meat-Free",
+          "Crustacean-Free",
+          "Celery-Free",
+          "Mustard-Free",
+          "Sesame-Free",
+          "Lupine-Free",
+          "Mollusk-Free",
+          "Alcohol-Free",
+          "No oil added",
+          "Kosher"
+        ],
+        "cuisineType": [
+          "french"
+        ],
+        "mealType": [
+          "lunch/dinner"
+        ],
+        "dishType": [
+          "desserts"
+        ]
+      }
+    },
+    {
+      "recipe": {
+        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_99224dca179579732ba3e301c7c2dc25",
+        "label": "Peach Butter",
+        "calories": "2272.4240972000002",
+        "totalWeight": "2509.3694800000003",
+        "healthLabels": [
+          "Vegan",
+          "Vegetarian",
+          "Pescatarian",
+          "Dairy-Free",
+          "Gluten-Free",
+          "Wheat-Free",
+          "Egg-Free",
+          "Peanut-Free",
+          "Tree-Nut-Free",
+          "Soy-Free",
+          "Fish-Free",
+          "Shellfish-Free",
+          "Pork-Free",
+          "Red-Meat-Free",
+          "Crustacean-Free",
+          "Celery-Free",
+          "Mustard-Free",
+          "Sesame-Free",
+          "Lupine-Free",
+          "Mollusk-Free",
+          "Alcohol-Free",
+          "No oil added",
+          "Kosher"
+        ],
+        "cuisineType": [
+          "american"
+        ],
+        "mealType": [
+          "breakfast"
+        ],
+        "dishType": [
+          "desserts"
+        ]
+      }
+    },
+    {
+      "recipe": {
+        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_e92e72709183ac1fd271320c8644b222",
+        "label": "Raspberry Coulis",
+        "calories": "252.47999999749013",
+        "totalWeight": "282.32352956110833",
+        "healthLabels": [
+          "Vegan",
+          "Vegetarian",
+          "Pescatarian",
+          "Dairy-Free",
+          "Gluten-Free",
+          "Wheat-Free",
+          "Egg-Free",
+          "Peanut-Free",
+          "Tree-Nut-Free",
+          "Soy-Free",
+          "Fish-Free",
+          "Shellfish-Free",
+          "Pork-Free",
+          "Red-Meat-Free",
+          "Crustacean-Free",
+          "Celery-Free",
+          "Mustard-Free",
+          "Sesame-Free",
+          "Lupine-Free",
+          "Mollusk-Free",
+          "Alcohol-Free",
+          "No oil added",
+          "FODMAP-Free",
+          "Kosher"
+        ],
+        "cuisineType": [
+          "french"
+        ],
+        "mealType": [
+          "lunch/dinner"
+        ],
+        "dishType": [
+          "desserts"
+        ]
+      }
+    },
+    {
+      "recipe": {
+        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_0714125698e2fad8ce47d858c60b22c7",
+        "label": "Cherry Frozen Yogurt",
+        "calories": "957.0581850003957",
+        "totalWeight": "848.7007033334708",
+        "healthLabels": [
+          "Vegetarian",
+          "Pescatarian",
+          "Gluten-Free",
+          "Wheat-Free",
+          "Egg-Free",
+          "Peanut-Free",
+          "Tree-Nut-Free",
+          "Soy-Free",
+          "Fish-Free",
+          "Shellfish-Free",
+          "Pork-Free",
+          "Red-Meat-Free",
+          "Crustacean-Free",
+          "Celery-Free",
+          "Mustard-Free",
+          "Sesame-Free",
+          "Lupine-Free",
+          "Mollusk-Free",
+          "Alcohol-Free",
+          "No oil added",
+          "Kosher"
+        ],
+        "cuisineType": [
+          "american"
+        ],
+        "mealType": [
+          "lunch/dinner"
+        ],
+        "dishType": [
+          "desserts"
+        ]
+      }
+    },
+    {
+      "recipe": {
+        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_4257d55367f55e4021acbeb6d6820923",
+        "label": "Mixed Berry Ricotta Fool",
+        "calories": "126.2644999991878",
+        "totalWeight": "111.51458333273274",
+        "healthLabels": [
+          "Low Potassium",
+          "Kidney-Friendly",
+          "Vegetarian",
+          "Pescatarian",
+          "Gluten-Free",
+          "Wheat-Free",
+          "Egg-Free",
+          "Peanut-Free",
+          "Tree-Nut-Free",
+          "Soy-Free",
+          "Fish-Free",
+          "Shellfish-Free",
+          "Pork-Free",
+          "Red-Meat-Free",
+          "Crustacean-Free",
+          "Celery-Free",
+          "Mustard-Free",
+          "Sesame-Free",
+          "Lupine-Free",
+          "Mollusk-Free",
+          "Alcohol-Free",
+          "No oil added",
+          "Kosher"
+        ],
+        "cuisineType": [
+          "american"
+        ],
+        "mealType": [
+          "lunch/dinner"
+        ],
+        "dishType": [
+          "desserts"
+        ]
+      }
+    },
+    {
+      "recipe": {
+        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_6c12ab2f1c225dc7414fc88c81809964",
+        "label": "Marlene’s Yorkshire Pudding",
+        "calories": "1246.3074731086865",
+        "totalWeight": "652.8319231034463",
         "healthLabels": [
           "Sugar-Conscious",
           "Low Potassium",
           "Kidney-Friendly",
-          "Dairy-Free",
-          "Egg-Free",
           "Peanut-Free",
           "Tree-Nut-Free",
           "Soy-Free",
@@ -538,11 +700,11 @@
           "Pork-Free",
           "Crustacean-Free",
           "Celery-Free",
-          "Mustard-Free",
           "Sesame-Free",
           "Lupine-Free",
           "Mollusk-Free",
-          "No oil added",
+          "Alcohol-Free",
+          "Sulfite-Free",
           "Kosher"
         ],
         "cuisineType": [
@@ -552,22 +714,323 @@
           "lunch/dinner"
         ],
         "dishType": [
-          "soup"
+          "desserts"
         ]
       }
     },
     {
       "recipe": {
-        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_ebc1d2cfe4ec651db26c4900762bfd46",
-        "label": "Spicy Tomato Gazpacho",
-        "calories": "212.22629420762502",
-        "totalWeight": "1045.9377965453104",
+        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_80f9e9d70e7a31d7127c3a292770b896",
+        "label": "Wooly's Ice's Sea Salt Leche from 'New York a la Cart'",
+        "calories": "1024.4699999992863",
+        "totalWeight": "338.436166726335",
+        "healthLabels": [
+          "Kidney-Friendly",
+          "Vegetarian",
+          "Pescatarian",
+          "Mediterranean",
+          "Gluten-Free",
+          "Wheat-Free",
+          "Egg-Free",
+          "Peanut-Free",
+          "Tree-Nut-Free",
+          "Soy-Free",
+          "Fish-Free",
+          "Shellfish-Free",
+          "Pork-Free",
+          "Red-Meat-Free",
+          "Crustacean-Free",
+          "Celery-Free",
+          "Mustard-Free",
+          "Sesame-Free",
+          "Lupine-Free",
+          "Mollusk-Free",
+          "Alcohol-Free",
+          "No oil added",
+          "Sulfite-Free",
+          "Kosher"
+        ],
+        "cuisineType": [
+          "american"
+        ],
+        "mealType": [
+          "lunch/dinner"
+        ],
+        "dishType": [
+          "desserts"
+        ]
+      }
+    },
+    {
+      "recipe": {
+        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_86598c62185f733704f736c99df25fdf",
+        "label": "Peach Leaf Wine",
+        "calories": "3458.804320481382",
+        "totalWeight": "7001.76586723988",
+        "healthLabels": [
+          "Vegan",
+          "Vegetarian",
+          "Pescatarian",
+          "Dairy-Free",
+          "Gluten-Free",
+          "Wheat-Free",
+          "Egg-Free",
+          "Peanut-Free",
+          "Tree-Nut-Free",
+          "Soy-Free",
+          "Fish-Free",
+          "Shellfish-Free",
+          "Pork-Free",
+          "Red-Meat-Free",
+          "Crustacean-Free",
+          "Celery-Free",
+          "Mustard-Free",
+          "Sesame-Free",
+          "Lupine-Free",
+          "Mollusk-Free",
+          "No oil added",
+          "Kosher"
+        ],
+        "cuisineType": [
+          "french"
+        ],
+        "mealType": [
+          "lunch/dinner"
+        ],
+        "dishType": [
+          "drinks"
+        ]
+      }
+    },
+    {
+      "recipe": {
+        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_e6e3864e56de36a2ccf93251cf98feee",
+        "label": "Strawberry Sorbet",
+        "calories": "1880.3491168",
+        "totalWeight": "1452.1847400000001",
+        "healthLabels": [
+          "Vegan",
+          "Vegetarian",
+          "Pescatarian",
+          "Dairy-Free",
+          "Gluten-Free",
+          "Wheat-Free",
+          "Egg-Free",
+          "Peanut-Free",
+          "Tree-Nut-Free",
+          "Soy-Free",
+          "Fish-Free",
+          "Shellfish-Free",
+          "Pork-Free",
+          "Red-Meat-Free",
+          "Crustacean-Free",
+          "Celery-Free",
+          "Mustard-Free",
+          "Sesame-Free",
+          "Lupine-Free",
+          "Mollusk-Free",
+          "Alcohol-Free",
+          "No oil added",
+          "FODMAP-Free",
+          "Kosher"
+        ],
+        "cuisineType": [
+          "american"
+        ],
+        "mealType": [
+          "lunch/dinner"
+        ],
+        "dishType": [
+          "desserts"
+        ]
+      }
+    }
+  ]
+}{
+  "hits": [
+    {
+      "recipe": {
+        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_4bb99424e1bbc40d3cd1d891883d6745",
+        "label": "Frothy Iced Matcha Green Tea Recipe",
+        "calories": "0.06",
+        "totalWeight": "232.796185",
+        "healthLabels": [
+          "Sugar-Conscious",
+          "Low Sugar",
+          "Low Potassium",
+          "Kidney-Friendly",
+          "Keto-Friendly",
+          "Vegan",
+          "Vegetarian",
+          "Pescatarian",
+          "Dairy-Free",
+          "Gluten-Free",
+          "Wheat-Free",
+          "Egg-Free",
+          "Peanut-Free",
+          "Tree-Nut-Free",
+          "Soy-Free",
+          "Fish-Free",
+          "Shellfish-Free",
+          "Pork-Free",
+          "Red-Meat-Free",
+          "Crustacean-Free",
+          "Celery-Free",
+          "Mustard-Free",
+          "Sesame-Free",
+          "Lupine-Free",
+          "Mollusk-Free",
+          "Alcohol-Free",
+          "No oil added",
+          "Kosher"
+        ],
+        "cuisineType": [
+          "american"
+        ],
+        "mealType": [
+          "lunch/dinner"
+        ],
+        "dishType": [
+          "drinks"
+        ]
+      }
+    },
+    {
+      "recipe": {
+        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_067f0b7be628ae847366e4f3e614b319",
+        "label": "Maple Banana Frozen Yogurt",
+        "calories": "494.7333457000001",
+        "totalWeight": "689.1923700000001",
+        "healthLabels": [
+          "Vegetarian",
+          "Pescatarian",
+          "Mediterranean",
+          "Gluten-Free",
+          "Wheat-Free",
+          "Egg-Free",
+          "Peanut-Free",
+          "Tree-Nut-Free",
+          "Soy-Free",
+          "Fish-Free",
+          "Shellfish-Free",
+          "Pork-Free",
+          "Red-Meat-Free",
+          "Crustacean-Free",
+          "Celery-Free",
+          "Mustard-Free",
+          "Sesame-Free",
+          "Lupine-Free",
+          "Mollusk-Free",
+          "Alcohol-Free",
+          "No oil added",
+          "Sulfite-Free",
+          "Kosher"
+        ],
+        "cuisineType": [
+          "american"
+        ],
+        "mealType": [
+          "lunch/dinner"
+        ],
+        "dishType": [
+          "desserts"
+        ]
+      }
+    },
+    {
+      "recipe": {
+        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_845a9adf81bb22f3b76ead2981a872a0",
+        "label": "Vanilla Ice Cream With Grilled Corn And Lime",
+        "calories": "332.16",
+        "totalWeight": "337.0",
+        "healthLabels": [
+          "Vegetarian",
+          "Pescatarian",
+          "Gluten-Free",
+          "Wheat-Free",
+          "Egg-Free",
+          "Peanut-Free",
+          "Tree-Nut-Free",
+          "Soy-Free",
+          "Fish-Free",
+          "Shellfish-Free",
+          "Pork-Free",
+          "Red-Meat-Free",
+          "Crustacean-Free",
+          "Celery-Free",
+          "Mustard-Free",
+          "Sesame-Free",
+          "Lupine-Free",
+          "Mollusk-Free",
+          "Alcohol-Free",
+          "Sulfite-Free",
+          "Kosher"
+        ],
+        "cuisineType": [
+          "american"
+        ],
+        "mealType": [
+          "lunch/dinner"
+        ],
+        "dishType": [
+          "desserts"
+        ]
+      }
+    },
+    {
+      "recipe": {
+        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_4082e36f0b72523c7e0eada4390d37f1",
+        "label": "Grapefruit-Campari Sorbet",
+        "calories": "1016.1604602359425",
+        "totalWeight": "989.4077530562259",
+        "healthLabels": [
+          "Vegan",
+          "Vegetarian",
+          "Pescatarian",
+          "Dairy-Free",
+          "Gluten-Free",
+          "Wheat-Free",
+          "Egg-Free",
+          "Peanut-Free",
+          "Tree-Nut-Free",
+          "Soy-Free",
+          "Fish-Free",
+          "Shellfish-Free",
+          "Pork-Free",
+          "Red-Meat-Free",
+          "Crustacean-Free",
+          "Celery-Free",
+          "Mustard-Free",
+          "Sesame-Free",
+          "Lupine-Free",
+          "Mollusk-Free",
+          "No oil added",
+          "Kosher"
+        ],
+        "cuisineType": [
+          "american"
+        ],
+        "mealType": [
+          "lunch/dinner"
+        ],
+        "dishType": [
+          "desserts"
+        ]
+      }
+    },
+    {
+      "recipe": {
+        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_85d56d96bca95fd1b2523d8ea8757624",
+        "label": "Watermelon And Peach Fresh Fruit Cake",
+        "calories": "1250.2475",
+        "totalWeight": "3919.416666666667",
         "healthLabels": [
           "Vegan",
           "Vegetarian",
           "Pescatarian",
           "Paleo",
           "Mediterranean",
+          "DASH",
           "Dairy-Free",
           "Gluten-Free",
           "Wheat-Free",
@@ -580,245 +1043,13 @@
           "Pork-Free",
           "Red-Meat-Free",
           "Crustacean-Free",
+          "Celery-Free",
           "Mustard-Free",
           "Sesame-Free",
           "Lupine-Free",
           "Mollusk-Free",
           "Alcohol-Free",
           "No oil added",
-          "Sulfite-Free",
-          "Kosher"
-        ],
-        "cuisineType": [
-          "mediterranean"
-        ],
-        "mealType": [
-          "lunch/dinner"
-        ],
-        "dishType": [
-          "soup"
-        ]
-      }
-    },
-    {
-      "recipe": {
-        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_2a2b8ab2e4ffaf52eb9273c77a376e78",
-        "label": "Roasted Tomato Soup with Broiled Cheddar recipes",
-        "calories": "2890.4038798",
-        "totalWeight": "3051.52711",
-        "healthLabels": [
-          "Mediterranean",
-          "Egg-Free",
-          "Peanut-Free",
-          "Tree-Nut-Free",
-          "Soy-Free",
-          "Fish-Free",
-          "Shellfish-Free",
-          "Pork-Free",
-          "Red-Meat-Free",
-          "Crustacean-Free",
-          "Celery-Free",
-          "Mustard-Free",
-          "Sesame-Free",
-          "Lupine-Free",
-          "Mollusk-Free",
-          "Alcohol-Free",
-          "Sulfite-Free"
-        ],
-        "cuisineType": [
-          "italian"
-        ],
-        "mealType": [
-          "lunch/dinner"
-        ],
-        "dishType": [
-          "soup"
-        ]
-      }
-    },
-    {
-      "recipe": {
-        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_4f4837d9e994b5bd61d5a710740ed037",
-        "label": "Celery Root Soup",
-        "calories": "1398.6101362000002",
-        "totalWeight": "3045.748065060279",
-        "healthLabels": [
-          "Gluten-Free",
-          "Wheat-Free",
-          "Egg-Free",
-          "Peanut-Free",
-          "Tree-Nut-Free",
-          "Soy-Free",
-          "Fish-Free",
-          "Shellfish-Free",
-          "Pork-Free",
-          "Red-Meat-Free",
-          "Crustacean-Free",
-          "Mustard-Free",
-          "Sesame-Free",
-          "Lupine-Free",
-          "Mollusk-Free",
-          "Alcohol-Free",
-          "Sulfite-Free"
-        ],
-        "cuisineType": [
-          "american"
-        ],
-        "mealType": [
-          "lunch/dinner"
-        ],
-        "dishType": [
-          "soup"
-        ]
-      }
-    },
-    {
-      "recipe": {
-        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_b3877cddabcb700f2a87d0350a255a93",
-        "label": "Dinner Tonight: Pumpkin and Leek Soup Recipe",
-        "calories": "524.23958743698",
-        "totalWeight": "896.0592504972948",
-        "healthLabels": [
-          "Vegetarian",
-          "Pescatarian",
-          "Mediterranean",
-          "Gluten-Free",
-          "Wheat-Free",
-          "Egg-Free",
-          "Peanut-Free",
-          "Tree-Nut-Free",
-          "Soy-Free",
-          "Fish-Free",
-          "Shellfish-Free",
-          "Pork-Free",
-          "Red-Meat-Free",
-          "Crustacean-Free",
-          "Celery-Free",
-          "Mustard-Free",
-          "Sesame-Free",
-          "Lupine-Free",
-          "Mollusk-Free",
-          "Alcohol-Free",
-          "Sulfite-Free",
-          "Kosher"
-        ],
-        "cuisineType": [
-          "american"
-        ],
-        "mealType": [
-          "lunch/dinner"
-        ],
-        "dishType": [
-          "soup"
-        ]
-      }
-    },
-    {
-      "recipe": {
-        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_e6b6b30aba35a7cc3f20db78656b60c2",
-        "label": "Ten Minute Couscous Soup recipes",
-        "calories": "1117.9229280882328",
-        "totalWeight": "2160.5255213890414",
-        "healthLabels": [
-          "Sugar-Conscious",
-          "Vegetarian",
-          "Pescatarian",
-          "Mediterranean",
-          "Egg-Free",
-          "Peanut-Free",
-          "Tree-Nut-Free",
-          "Soy-Free",
-          "Fish-Free",
-          "Shellfish-Free",
-          "Pork-Free",
-          "Red-Meat-Free",
-          "Crustacean-Free",
-          "Celery-Free",
-          "Mustard-Free",
-          "Sesame-Free",
-          "Lupine-Free",
-          "Mollusk-Free",
-          "Alcohol-Free",
-          "Sulfite-Free",
-          "Kosher"
-        ],
-        "cuisineType": [
-          "italian"
-        ],
-        "mealType": [
-          "lunch/dinner"
-        ],
-        "dishType": [
-          "soup"
-        ]
-      }
-    },
-    {
-      "recipe": {
-        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_6fea0aa1eacab4eab257d8dd8dc416e3",
-        "label": "Easy Turkey Stock",
-        "calories": "88.5829276",
-        "totalWeight": "79.09896000000002",
-        "healthLabels": [
-          "Sugar-Conscious",
-          "Low Potassium",
-          "Kidney-Friendly",
-          "Keto-Friendly",
-          "Dairy-Free",
-          "Gluten-Free",
-          "Wheat-Free",
-          "Egg-Free",
-          "Peanut-Free",
-          "Tree-Nut-Free",
-          "Soy-Free",
-          "Fish-Free",
-          "Shellfish-Free",
-          "Crustacean-Free",
-          "Mustard-Free",
-          "Sesame-Free",
-          "Lupine-Free",
-          "Mollusk-Free",
-          "Alcohol-Free",
-          "No oil added",
-          "Sulfite-Free",
-          "Kosher"
-        ],
-        "cuisineType": [
-          "american"
-        ],
-        "mealType": [
-          "lunch/dinner"
-        ],
-        "dishType": [
-          "soup"
-        ]
-      }
-    },
-    {
-      "recipe": {
-        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_2de856d717538a47d130c9feaf27d77e",
-        "label": "Semolina Dumpling Soup recipes",
-        "calories": "627.3650312493841",
-        "totalWeight": "511.18827402476654",
-        "healthLabels": [
-          "Sugar-Conscious",
-          "Kidney-Friendly",
-          "Vegetarian",
-          "Pescatarian",
-          "Peanut-Free",
-          "Tree-Nut-Free",
-          "Soy-Free",
-          "Fish-Free",
-          "Shellfish-Free",
-          "Pork-Free",
-          "Red-Meat-Free",
-          "Crustacean-Free",
-          "Celery-Free",
-          "Mustard-Free",
-          "Sesame-Free",
-          "Lupine-Free",
-          "Mollusk-Free",
-          "Alcohol-Free",
           "Sulfite-Free",
           "Kosher",
           "Immuno-Supportive"
@@ -830,7 +1061,635 @@
           "lunch/dinner"
         ],
         "dishType": [
-          "soup"
+          "desserts"
+        ]
+      }
+    },
+    {
+      "recipe": {
+        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_c625098a0a0f1e9729bab2475ee1b792",
+        "label": "Cranberry Syrup (And An Intensely Almond Cake)",
+        "calories": "295.95",
+        "totalWeight": "267.66666666666663",
+        "healthLabels": [
+          "Low Potassium",
+          "Kidney-Friendly",
+          "Vegan",
+          "Vegetarian",
+          "Pescatarian",
+          "Dairy-Free",
+          "Gluten-Free",
+          "Wheat-Free",
+          "Egg-Free",
+          "Peanut-Free",
+          "Tree-Nut-Free",
+          "Soy-Free",
+          "Fish-Free",
+          "Shellfish-Free",
+          "Pork-Free",
+          "Red-Meat-Free",
+          "Crustacean-Free",
+          "Celery-Free",
+          "Mustard-Free",
+          "Sesame-Free",
+          "Lupine-Free",
+          "Mollusk-Free",
+          "Alcohol-Free",
+          "No oil added",
+          "FODMAP-Free",
+          "Kosher"
+        ],
+        "cuisineType": [
+          "american"
+        ],
+        "mealType": [
+          "lunch/dinner"
+        ],
+        "dishType": [
+          "desserts"
+        ]
+      }
+    },
+    {
+      "recipe": {
+        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_fc39484a6eb3f14aefe6db632cac9ecc",
+        "label": "Frothy Indian Coffee",
+        "calories": "187.23599999928382",
+        "totalWeight": "262.04999999979714",
+        "healthLabels": [
+          "Kidney-Friendly",
+          "Vegetarian",
+          "Pescatarian",
+          "Gluten-Free",
+          "Wheat-Free",
+          "Egg-Free",
+          "Peanut-Free",
+          "Tree-Nut-Free",
+          "Soy-Free",
+          "Fish-Free",
+          "Shellfish-Free",
+          "Pork-Free",
+          "Red-Meat-Free",
+          "Crustacean-Free",
+          "Celery-Free",
+          "Mustard-Free",
+          "Sesame-Free",
+          "Lupine-Free",
+          "Mollusk-Free",
+          "Alcohol-Free",
+          "No oil added",
+          "Kosher"
+        ],
+        "cuisineType": [
+          "indian"
+        ],
+        "mealType": [
+          "teatime"
+        ],
+        "dishType": [
+          "drinks"
+        ]
+      }
+    },
+    {
+      "recipe": {
+        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_29c69a7229c6b0cd8f803e4152388050",
+        "label": "POMEGRANATE SORBET recipes",
+        "calories": "1805.1874999998583",
+        "totalWeight": "1198.1249999993554",
+        "healthLabels": [
+          "Vegan",
+          "Vegetarian",
+          "Pescatarian",
+          "Dairy-Free",
+          "Gluten-Free",
+          "Wheat-Free",
+          "Egg-Free",
+          "Peanut-Free",
+          "Soy-Free",
+          "Fish-Free",
+          "Shellfish-Free",
+          "Pork-Free",
+          "Red-Meat-Free",
+          "Crustacean-Free",
+          "Celery-Free",
+          "Mustard-Free",
+          "Sesame-Free",
+          "Lupine-Free",
+          "Mollusk-Free",
+          "Alcohol-Free",
+          "No oil added",
+          "Kosher"
+        ],
+        "cuisineType": [
+          "french"
+        ],
+        "mealType": [
+          "lunch/dinner"
+        ],
+        "dishType": [
+          "desserts"
+        ]
+      }
+    },
+    {
+      "recipe": {
+        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_7b86f008487dddb703520cbd2c9e83e5",
+        "label": "Apple Jellies",
+        "calories": "1885.4240972",
+        "totalWeight": "1955.77711",
+        "healthLabels": [
+          "Vegan",
+          "Vegetarian",
+          "Pescatarian",
+          "Dairy-Free",
+          "Gluten-Free",
+          "Wheat-Free",
+          "Egg-Free",
+          "Peanut-Free",
+          "Tree-Nut-Free",
+          "Soy-Free",
+          "Fish-Free",
+          "Shellfish-Free",
+          "Pork-Free",
+          "Red-Meat-Free",
+          "Crustacean-Free",
+          "Celery-Free",
+          "Mustard-Free",
+          "Sesame-Free",
+          "Lupine-Free",
+          "Mollusk-Free",
+          "Alcohol-Free",
+          "No oil added",
+          "Kosher"
+        ],
+        "cuisineType": [
+          "american"
+        ],
+        "mealType": [
+          "lunch/dinner"
+        ],
+        "dishType": [
+          "desserts"
+        ]
+      }
+    },
+    {
+      "recipe": {
+        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_56b36f012b0ba3d866dd00c7b6c9bff1",
+        "label": "Watermelon Shiso Sorbet",
+        "calories": "930.1417110003392",
+        "totalWeight": "936.192370000771",
+        "healthLabels": [
+          "Kidney-Friendly",
+          "Vegan",
+          "Vegetarian",
+          "Pescatarian",
+          "Dairy-Free",
+          "Gluten-Free",
+          "Wheat-Free",
+          "Egg-Free",
+          "Peanut-Free",
+          "Tree-Nut-Free",
+          "Soy-Free",
+          "Fish-Free",
+          "Shellfish-Free",
+          "Pork-Free",
+          "Red-Meat-Free",
+          "Crustacean-Free",
+          "Celery-Free",
+          "Mustard-Free",
+          "Sesame-Free",
+          "Lupine-Free",
+          "Mollusk-Free",
+          "Alcohol-Free",
+          "No oil added",
+          "Kosher"
+        ],
+        "cuisineType": [
+          "american"
+        ],
+        "mealType": [
+          "lunch/dinner"
+        ],
+        "dishType": [
+          "desserts"
+        ]
+      }
+    },
+    {
+      "recipe": {
+        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_2e9b699be433fab7da069629e1699455",
+        "label": "Easy Mango-Blackberry Smoothie Recipe",
+        "calories": "274.59632724687503",
+        "totalWeight": "537.5728540625",
+        "healthLabels": [
+          "Vegetarian",
+          "Pescatarian",
+          "Mediterranean",
+          "Gluten-Free",
+          "Wheat-Free",
+          "Egg-Free",
+          "Peanut-Free",
+          "Tree-Nut-Free",
+          "Soy-Free",
+          "Fish-Free",
+          "Shellfish-Free",
+          "Pork-Free",
+          "Red-Meat-Free",
+          "Crustacean-Free",
+          "Celery-Free",
+          "Mustard-Free",
+          "Sesame-Free",
+          "Lupine-Free",
+          "Mollusk-Free",
+          "Alcohol-Free",
+          "No oil added",
+          "Sulfite-Free",
+          "Kosher",
+          "Immuno-Supportive"
+        ],
+        "cuisineType": [
+          "american"
+        ],
+        "mealType": [
+          "breakfast"
+        ],
+        "dishType": [
+          "drinks"
+        ]
+      }
+    },
+    {
+      "recipe": {
+        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_576a832404546af1fd9506e6bd2f7bd7",
+        "label": "Poached Pears",
+        "calories": "1537.1093333333333",
+        "totalWeight": "1968.3862793333333",
+        "healthLabels": [
+          "Kidney-Friendly",
+          "Vegan",
+          "Vegetarian",
+          "Pescatarian",
+          "Dairy-Free",
+          "Gluten-Free",
+          "Wheat-Free",
+          "Egg-Free",
+          "Peanut-Free",
+          "Tree-Nut-Free",
+          "Soy-Free",
+          "Fish-Free",
+          "Shellfish-Free",
+          "Pork-Free",
+          "Red-Meat-Free",
+          "Crustacean-Free",
+          "Celery-Free",
+          "Mustard-Free",
+          "Sesame-Free",
+          "Lupine-Free",
+          "Mollusk-Free",
+          "Alcohol-Free",
+          "No oil added",
+          "Kosher"
+        ],
+        "cuisineType": [
+          "french"
+        ],
+        "mealType": [
+          "lunch/dinner"
+        ],
+        "dishType": [
+          "desserts"
+        ]
+      }
+    },
+    {
+      "recipe": {
+        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_99224dca179579732ba3e301c7c2dc25",
+        "label": "Peach Butter",
+        "calories": "2272.4240972000002",
+        "totalWeight": "2509.3694800000003",
+        "healthLabels": [
+          "Vegan",
+          "Vegetarian",
+          "Pescatarian",
+          "Dairy-Free",
+          "Gluten-Free",
+          "Wheat-Free",
+          "Egg-Free",
+          "Peanut-Free",
+          "Tree-Nut-Free",
+          "Soy-Free",
+          "Fish-Free",
+          "Shellfish-Free",
+          "Pork-Free",
+          "Red-Meat-Free",
+          "Crustacean-Free",
+          "Celery-Free",
+          "Mustard-Free",
+          "Sesame-Free",
+          "Lupine-Free",
+          "Mollusk-Free",
+          "Alcohol-Free",
+          "No oil added",
+          "Kosher"
+        ],
+        "cuisineType": [
+          "american"
+        ],
+        "mealType": [
+          "breakfast"
+        ],
+        "dishType": [
+          "desserts"
+        ]
+      }
+    },
+    {
+      "recipe": {
+        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_e92e72709183ac1fd271320c8644b222",
+        "label": "Raspberry Coulis",
+        "calories": "252.47999999749013",
+        "totalWeight": "282.32352956110833",
+        "healthLabels": [
+          "Vegan",
+          "Vegetarian",
+          "Pescatarian",
+          "Dairy-Free",
+          "Gluten-Free",
+          "Wheat-Free",
+          "Egg-Free",
+          "Peanut-Free",
+          "Tree-Nut-Free",
+          "Soy-Free",
+          "Fish-Free",
+          "Shellfish-Free",
+          "Pork-Free",
+          "Red-Meat-Free",
+          "Crustacean-Free",
+          "Celery-Free",
+          "Mustard-Free",
+          "Sesame-Free",
+          "Lupine-Free",
+          "Mollusk-Free",
+          "Alcohol-Free",
+          "No oil added",
+          "FODMAP-Free",
+          "Kosher"
+        ],
+        "cuisineType": [
+          "french"
+        ],
+        "mealType": [
+          "lunch/dinner"
+        ],
+        "dishType": [
+          "desserts"
+        ]
+      }
+    },
+    {
+      "recipe": {
+        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_0714125698e2fad8ce47d858c60b22c7",
+        "label": "Cherry Frozen Yogurt",
+        "calories": "957.0581850003957",
+        "totalWeight": "848.7007033334708",
+        "healthLabels": [
+          "Vegetarian",
+          "Pescatarian",
+          "Gluten-Free",
+          "Wheat-Free",
+          "Egg-Free",
+          "Peanut-Free",
+          "Tree-Nut-Free",
+          "Soy-Free",
+          "Fish-Free",
+          "Shellfish-Free",
+          "Pork-Free",
+          "Red-Meat-Free",
+          "Crustacean-Free",
+          "Celery-Free",
+          "Mustard-Free",
+          "Sesame-Free",
+          "Lupine-Free",
+          "Mollusk-Free",
+          "Alcohol-Free",
+          "No oil added",
+          "Kosher"
+        ],
+        "cuisineType": [
+          "american"
+        ],
+        "mealType": [
+          "lunch/dinner"
+        ],
+        "dishType": [
+          "desserts"
+        ]
+      }
+    },
+    {
+      "recipe": {
+        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_4257d55367f55e4021acbeb6d6820923",
+        "label": "Mixed Berry Ricotta Fool",
+        "calories": "126.2644999991878",
+        "totalWeight": "111.51458333273274",
+        "healthLabels": [
+          "Low Potassium",
+          "Kidney-Friendly",
+          "Vegetarian",
+          "Pescatarian",
+          "Gluten-Free",
+          "Wheat-Free",
+          "Egg-Free",
+          "Peanut-Free",
+          "Tree-Nut-Free",
+          "Soy-Free",
+          "Fish-Free",
+          "Shellfish-Free",
+          "Pork-Free",
+          "Red-Meat-Free",
+          "Crustacean-Free",
+          "Celery-Free",
+          "Mustard-Free",
+          "Sesame-Free",
+          "Lupine-Free",
+          "Mollusk-Free",
+          "Alcohol-Free",
+          "No oil added",
+          "Kosher"
+        ],
+        "cuisineType": [
+          "american"
+        ],
+        "mealType": [
+          "lunch/dinner"
+        ],
+        "dishType": [
+          "desserts"
+        ]
+      }
+    },
+    {
+      "recipe": {
+        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_6c12ab2f1c225dc7414fc88c81809964",
+        "label": "Marlene’s Yorkshire Pudding",
+        "calories": "1246.3074731086865",
+        "totalWeight": "652.8319231034463",
+        "healthLabels": [
+          "Sugar-Conscious",
+          "Low Potassium",
+          "Kidney-Friendly",
+          "Peanut-Free",
+          "Tree-Nut-Free",
+          "Soy-Free",
+          "Fish-Free",
+          "Shellfish-Free",
+          "Pork-Free",
+          "Crustacean-Free",
+          "Celery-Free",
+          "Sesame-Free",
+          "Lupine-Free",
+          "Mollusk-Free",
+          "Alcohol-Free",
+          "Sulfite-Free",
+          "Kosher"
+        ],
+        "cuisineType": [
+          "british"
+        ],
+        "mealType": [
+          "lunch/dinner"
+        ],
+        "dishType": [
+          "desserts"
+        ]
+      }
+    },
+    {
+      "recipe": {
+        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_80f9e9d70e7a31d7127c3a292770b896",
+        "label": "Wooly's Ice's Sea Salt Leche from 'New York a la Cart'",
+        "calories": "1024.4699999992863",
+        "totalWeight": "338.436166726335",
+        "healthLabels": [
+          "Kidney-Friendly",
+          "Vegetarian",
+          "Pescatarian",
+          "Mediterranean",
+          "Gluten-Free",
+          "Wheat-Free",
+          "Egg-Free",
+          "Peanut-Free",
+          "Tree-Nut-Free",
+          "Soy-Free",
+          "Fish-Free",
+          "Shellfish-Free",
+          "Pork-Free",
+          "Red-Meat-Free",
+          "Crustacean-Free",
+          "Celery-Free",
+          "Mustard-Free",
+          "Sesame-Free",
+          "Lupine-Free",
+          "Mollusk-Free",
+          "Alcohol-Free",
+          "No oil added",
+          "Sulfite-Free",
+          "Kosher"
+        ],
+        "cuisineType": [
+          "american"
+        ],
+        "mealType": [
+          "lunch/dinner"
+        ],
+        "dishType": [
+          "desserts"
+        ]
+      }
+    },
+    {
+      "recipe": {
+        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_86598c62185f733704f736c99df25fdf",
+        "label": "Peach Leaf Wine",
+        "calories": "3458.804320481382",
+        "totalWeight": "7001.76586723988",
+        "healthLabels": [
+          "Vegan",
+          "Vegetarian",
+          "Pescatarian",
+          "Dairy-Free",
+          "Gluten-Free",
+          "Wheat-Free",
+          "Egg-Free",
+          "Peanut-Free",
+          "Tree-Nut-Free",
+          "Soy-Free",
+          "Fish-Free",
+          "Shellfish-Free",
+          "Pork-Free",
+          "Red-Meat-Free",
+          "Crustacean-Free",
+          "Celery-Free",
+          "Mustard-Free",
+          "Sesame-Free",
+          "Lupine-Free",
+          "Mollusk-Free",
+          "No oil added",
+          "Kosher"
+        ],
+        "cuisineType": [
+          "french"
+        ],
+        "mealType": [
+          "lunch/dinner"
+        ],
+        "dishType": [
+          "drinks"
+        ]
+      }
+    },
+    {
+      "recipe": {
+        "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_e6e3864e56de36a2ccf93251cf98feee",
+        "label": "Strawberry Sorbet",
+        "calories": "1880.3491168",
+        "totalWeight": "1452.1847400000001",
+        "healthLabels": [
+          "Vegan",
+          "Vegetarian",
+          "Pescatarian",
+          "Dairy-Free",
+          "Gluten-Free",
+          "Wheat-Free",
+          "Egg-Free",
+          "Peanut-Free",
+          "Tree-Nut-Free",
+          "Soy-Free",
+          "Fish-Free",
+          "Shellfish-Free",
+          "Pork-Free",
+          "Red-Meat-Free",
+          "Crustacean-Free",
+          "Celery-Free",
+          "Mustard-Free",
+          "Sesame-Free",
+          "Lupine-Free",
+          "Mollusk-Free",
+          "Alcohol-Free",
+          "No oil added",
+          "FODMAP-Free",
+          "Kosher"
+        ],
+        "cuisineType": [
+          "american"
+        ],
+        "mealType": [
+          "lunch/dinner"
+        ],
+        "dishType": [
+          "desserts"
         ]
       }
     }

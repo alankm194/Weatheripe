@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.test.util.ReflectionTestUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -41,29 +42,33 @@ public class RecipeServiceTest {
     @Mock
     private ExternalApiServiceImpl externalApiService;
 
-    @Mock
-    private FoodForWeatherRepository mockFoodForWeatherRepository;
-    @Mock
-    private WeatherRepository WeatherRepository;
+    @Test
+    public void getRecipeByWeatherCondition() throws IOException {
+        String query = "https://api.edamam.com/api/recipes/v2?app_key=dummykey&app_id=ba324f9b&type=any&dishType=salad";
+
+        ReflectionTestUtils.setField(recipeService,
+                "RECIPE_API_URL", "https://api.edamam.com/api/recipes/v2?&dishType=desserts&dishType=drinks&dishType=egg&dishType=pancake");
+        ReflectionTestUtils.setField(recipeService,
+                "RECIPE_APP_KEY", "67cafd22003829f89f36cf1800d9f7ca");
+        ReflectionTestUtils.setField(recipeService,
+                "API_TYPE", "public");
+        ReflectionTestUtils.setField(recipeService,
+                "RECIPE_APP_ID", "8a3753d7");
 
 
-//    @Test
-//    public void getRecipeByWeatherCondition() throws IOException {
-//        String query = "https://api.edamam.com/api/recipes/v2?app_key=dummykey&app_id=ba324f9b&type=any&dishType=salad";
-//
-//        // To read the json file to form the weatherApiObj
-//        Resource resource = new ClassPathResource("/good_recipe_response.json");
-//
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-//        RecipeResponseDTO mockRecipeResponseDTO = objectMapper.readValue(resource.getInputStream(), RecipeResponseDTO.class);
-//
-//
-//        RecipeQueryDTO recipeQueryDTO = new RecipeQueryDTO(query);
-//
-//        RecipeResponseDTO recipeResponseDTO = (RecipeResponseDTO) recipeService.getRecipeByWeatherCondition(recipeQueryDTO);
-//        assertThat(recipeResponseDTO).isNull();
-//    }
+        // To read the json file to form the recipe API
+        Resource resource = new ClassPathResource("/good_recipe_response.json");
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        RecipeResponseDTO mockRecipeResponseDTO = objectMapper.readValue(resource.getInputStream(), RecipeResponseDTO.class);
+
+
+        RecipeQueryDTO recipeQueryDTO = new RecipeQueryDTO(query);
+
+        RecipeResponseDTO recipeResponseDTO = (RecipeResponseDTO) recipeService.getRecipeByWeatherCondition(recipeQueryDTO);
+        assertThat(recipeResponseDTO).isNull();
+    }
 
 
 
