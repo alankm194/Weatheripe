@@ -54,7 +54,7 @@ public class RecipeController {
             throw new RuntimeException(e);
         }
 
-        return new ResponseEntity<>(responseDTO, HttpStatus.OK);
+        return new ResponseEntity<>(responseDTO, HttpStatus.CREATED);
     }
 
 

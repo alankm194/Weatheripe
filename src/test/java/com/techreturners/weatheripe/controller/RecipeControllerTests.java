@@ -82,7 +82,7 @@ public class RecipeControllerTests {
         when(mockWeatherServiceImpl.getRecipeByLocationForUser(location,"")).thenReturn(userRecipeBookResponseDTO);
         this.mockMvcController.perform(
                         MockMvcRequestBuilders.get("/api/v1/recipe/user/"+location))
-                .andExpect(MockMvcResultMatchers.status().isOk());
+                .andExpect(MockMvcResultMatchers.status().isCreated());
 
     }
 

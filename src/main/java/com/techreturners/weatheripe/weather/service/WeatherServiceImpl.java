@@ -90,7 +90,12 @@ public class WeatherServiceImpl implements WeatherService {
         log.info("***foodForWeathers.size():" + foodForWeathers.size());
 
         for (FoodForWeather foodForWeather : foodForWeathers) {
-            stringBuilder.append("&dishType=");
+            if (stringBuilder.toString().endsWith("?")) {
+                stringBuilder.append("dishType=");
+            } else {
+                stringBuilder.append("&dishType=");
+            }
+
             stringBuilder.append(foodForWeather.getDishType().getDishTypeLabel());
         }
         log.info("*******final URI:" + stringBuilder);
@@ -114,7 +119,7 @@ public class WeatherServiceImpl implements WeatherService {
         Arrays.stream(recipeResponseDTO.getHits())
                 .map(hit ->
                         RecipeBook.builder()
-                                .recipeURL(hit.getRecipe().getUri())
+                                .recipeURL(hit.getRecipe().getUrl())
                                 .recipeName(hit.getRecipe().getLabel())
                                 .calories(Double.parseDouble(hit.getRecipe().getCalories()))
                                 .dishType(StringUtils.join(hit.getRecipe().getDishType(), ","))
