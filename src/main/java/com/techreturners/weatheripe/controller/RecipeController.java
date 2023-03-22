@@ -1,8 +1,9 @@
 package com.techreturners.weatheripe.controller;
 
+import com.techreturners.weatheripe.exception.UserSessionNotFoundException;
 import com.techreturners.weatheripe.external.dto.ResponseDTO;
 import com.techreturners.weatheripe.recipe.service.RecipeService;
-import com.techreturners.weatheripe.weather.dto.RecipeQueryDTO;
+import com.techreturners.weatheripe.user.dto.UserRecipeBookResponseDTO;
 import com.techreturners.weatheripe.weather.dto.WeatherApiDTO;
 import com.techreturners.weatheripe.weather.service.WeatherService;
 import lombok.extern.slf4j.Slf4j;
@@ -42,11 +43,18 @@ public class RecipeController {
 
 
     @GetMapping({"/user/{location}"})
-    public ResponseEntity<ResponseDTO> getWeatherByLocationFor(@PathVariable String location) {
-        WeatherApiDTO weatherApiDTO = (WeatherApiDTO) weatherService.getWeatherByLocation(location);
-        ResponseDTO recipeQueryDTO = weatherService.buildExternalRecipeAPIQuery(weatherApiDTO);
-        ResponseDTO recipeDTO = recipeService.getRecipeByWeatherCondition(recipeQueryDTO);
-        return new ResponseEntity<>(recipeDTO, HttpStatus.OK);
+    public ResponseEntity<ResponseDTO> getWeatherByLocationForUser(@PathVariable String location) {
+        String userToken ="";
+        ResponseDTO responseDTO = null;
+        try {
+
+            responseDTO = (UserRecipeBookResponseDTO) weatherService.getRecipeByLocationForUser(location,userToken);
+
+        } catch (UserSessionNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 
 
