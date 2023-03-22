@@ -1,4 +1,4 @@
-package com.techreturners.weatheripe.service;
+package com.techreturners.weatheripe.weather.service;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -9,7 +9,6 @@ import com.techreturners.weatheripe.model.Weather;
 import com.techreturners.weatheripe.repository.FoodForWeatherRepository;
 import com.techreturners.weatheripe.repository.WeatherRepository;
 import com.techreturners.weatheripe.weather.dto.WeatherApiDTO;
-import com.techreturners.weatheripe.weather.service.WeatherServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -41,11 +40,13 @@ public class WeatherServiceTests {
     @Test
     public void testBuildExternalRecipeAPIQueryReturnQueryString() throws Exception {
         ReflectionTestUtils.setField(weatherServiceImpl,
-                "RECIPE_API_URL", "https://api.edamam.com/api/recipes/v2?app_key={0}&app_id=ba324f9b&type=any");
+                "RECIPE_API_URL", "https://api.edamam.com/api/recipes/v2?app_key={0}&app_id={1}&type=any");
         ReflectionTestUtils.setField(weatherServiceImpl,
-                "RECIPE_API_KEY", "dummykey");
+                "RECIPE_APP_KEY", "dummyAppKey");
+        ReflectionTestUtils.setField(weatherServiceImpl,
+                "RECIPE_APP_ID", "dummyAppId");
 
-        String query = "https://api.edamam.com/api/recipes/v2?app_key=dummykey&app_id=ba324f9b&type=any&dishType=salad";
+        String query = "https://api.edamam.com/api/recipes/v2?app_key=dummyAppKey&app_id=dummyAppId&type=any&dishType=salad";
 
         // To read the json file to form the weatherApiObj
         Resource resource = new ClassPathResource("/good_weather_response.json");
@@ -73,7 +74,6 @@ public class WeatherServiceTests {
         when(mockFoodForWeatherRepository.findByWeatherIdIn(weathers)).thenReturn(foodForWeathers);
 
         RecipeQueryDTO recipeQueryDTO = (RecipeQueryDTO) weatherServiceImpl.buildExternalRecipeAPIQuery(weatherApiObj);
-
         assertEquals(query, recipeQueryDTO.getQuery());
 
         verify(mockWeatherRepository, times(1))
