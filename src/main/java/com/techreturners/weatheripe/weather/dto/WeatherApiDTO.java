@@ -1,4 +1,4 @@
-package com.techreturners.weatheripe.weather.api;
+package com.techreturners.weatheripe.weather.dto;
 
 import com.techreturners.weatheripe.external.dto.ResponseDTO;
 import lombok.Data;
@@ -6,11 +6,11 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class WeatherApiObj extends ResponseDTO {
-    private WeatherTimelines timelines;
+public class WeatherApiDTO extends ResponseDTO {
+    private WeatherTimelinesDTO timelines;
 
-    public WeatherValues getCurrentValues(){
-        List<WeatherMinutely> minutely = timelines.getMinutely();
+    public WeatherValuesDTO getCurrentValues(){
+        List<WeatherMinutelyDTO> minutely = timelines.getMinutely();
         return minutely.size()>0?minutely.get(0).getValues():null;
     }
 

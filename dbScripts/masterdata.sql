@@ -6,13 +6,13 @@ CREATE DATABASE Weathipe
     IS_TEMPLATE = False;
 
 
-INSERT INTO public.weather (id,temperature_high, temperature_low) VALUES (1,'-4'::double precision, '0'::double precision);
-INSERT INTO public.weather (id,temperature_high, temperature_low) VALUES (2,'0'::double precision, '4'::double precision);
-INSERT INTO public.weather (id,temperature_high, temperature_low) VALUES (3,'4'::double precision, '6'::double precision);
-INSERT INTO public.weather (id,temperature_high, temperature_low) VALUES (4,'6'::double precision, '10'::double precision);
-INSERT INTO public.weather (id,temperature_high, temperature_low) VALUES (5,'10'::double precision, '16'::double precision);
-INSERT INTO public.weather (id,temperature_high, temperature_low) VALUES (6,'16'::double precision, '24'::double precision);
-INSERT INTO public.weather (id,temperature_high, temperature_low) VALUES (7,'24'::double precision, '22'::double precision);
+INSERT INTO public.weather (id, cloud_base_high, cloud_base_low, cloud_cover_high, cloud_cover_low, dew_point_high, dew_point_low, humidity_high, humidity_low, rain_intensity_high, rain_intensity_low, snow_intensity_high, snow_intensity_low, temperature_high, temperature_low) VALUES (1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -4);
+INSERT INTO public.weather (id, cloud_base_high, cloud_base_low, cloud_cover_high, cloud_cover_low, dew_point_high, dew_point_low, humidity_high, humidity_low, rain_intensity_high, rain_intensity_low, snow_intensity_high, snow_intensity_low, temperature_high, temperature_low) VALUES (2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0);
+INSERT INTO public.weather (id, cloud_base_high, cloud_base_low, cloud_cover_high, cloud_cover_low, dew_point_high, dew_point_low, humidity_high, humidity_low, rain_intensity_high, rain_intensity_low, snow_intensity_high, snow_intensity_low, temperature_high, temperature_low) VALUES (3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 4);
+INSERT INTO public.weather (id, cloud_base_high, cloud_base_low, cloud_cover_high, cloud_cover_low, dew_point_high, dew_point_low, humidity_high, humidity_low, rain_intensity_high, rain_intensity_low, snow_intensity_high, snow_intensity_low, temperature_high, temperature_low) VALUES (4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 6);
+INSERT INTO public.weather (id, cloud_base_high, cloud_base_low, cloud_cover_high, cloud_cover_low, dew_point_high, dew_point_low, humidity_high, humidity_low, rain_intensity_high, rain_intensity_low, snow_intensity_high, snow_intensity_low, temperature_high, temperature_low) VALUES (5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16, 10);
+INSERT INTO public.weather (id, cloud_base_high, cloud_base_low, cloud_cover_high, cloud_cover_low, dew_point_high, dew_point_low, humidity_high, humidity_low, rain_intensity_high, rain_intensity_low, snow_intensity_high, snow_intensity_low, temperature_high, temperature_low) VALUES (6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 24, 16);
+INSERT INTO public.weather (id, cloud_base_high, cloud_base_low, cloud_cover_high, cloud_cover_low, dew_point_high, dew_point_low, humidity_high, humidity_low, rain_intensity_high, rain_intensity_low, snow_intensity_high, snow_intensity_low, temperature_high, temperature_low) VALUES (7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 24, 22);
 
 
 
