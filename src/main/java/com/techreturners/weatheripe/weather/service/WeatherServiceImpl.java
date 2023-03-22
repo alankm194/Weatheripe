@@ -49,7 +49,7 @@ public class WeatherServiceImpl implements WeatherService{
 
     public ResponseDTO getWeatherByLocation(String location){
         String uri = MessageFormat.format(WEATHER_API_URL,WEATHER_API_KEY, location);
-        log.info("*******URI:"+uri);
+        log.debug("*******URI:"+uri);
         ExternalRequestDto externalRequestDto = new ExternalRequestDto(uri,new WeatherApiObj());
         WeatherApiObj weatherApiObj = (WeatherApiObj)externalApiService.getResourcesByUri(externalRequestDto);
 
