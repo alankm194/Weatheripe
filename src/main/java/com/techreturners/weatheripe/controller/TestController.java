@@ -13,10 +13,16 @@ import java.security.Principal;
 @RequestMapping("/api/test")
 public class TestController {
 
+    //TODO REMOVE
     @GetMapping("/user")
     @RolesAllowed("ROLE_USER")
     public String userAccess(Principal principal) {
         System.out.println(principal.getName());
         return "User Content.";
+    }
+
+    @GetMapping("/user2")
+    public String userAccess2() {
+        return "User Content 2.";
     }
 }
