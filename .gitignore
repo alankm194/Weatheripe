@@ -19,8 +19,6 @@
 *.zip
 *.tar.gz
 *.rar
-.target/
-
 
 #other
 .idea/
