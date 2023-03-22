@@ -1,6 +1,6 @@
 package com.techreturners.weatheripe.controller;
 
-import org.springframework.security.access.prepost.PreAuthorize;
+import jakarta.annotation.security.RolesAllowed;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,13 +14,9 @@ import java.security.Principal;
 public class TestController {
 
     @GetMapping("/user")
-    @PreAuthorize("hasRole('USER')")
+    @RolesAllowed("ROLE_USER")
     public String userAccess(Principal principal) {
         System.out.println(principal.getName());
-
-
         return "User Content.";
     }
-
-
 }

@@ -2,45 +2,59 @@ package com.techreturners.weatheripe.service;
 
 import com.techreturners.weatheripe.request.LoginRequest;
 import com.techreturners.weatheripe.response.SuccessfulLoginResponse;
-import com.techreturners.weatheripe.security.JwtUtils;
 import com.techreturners.weatheripe.security.UserDetailsImpl;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.jwt.JwtClaimsSet;
+import org.springframework.security.oauth2.jwt.JwtEncoder;
+import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import java.time.Instant;
+
+
+import static java.lang.String.format;
+import static java.util.stream.Collectors.joining;
 
 @Service
+@RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
 
-    @Autowired
-    AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
+    private final PasswordEncoder encoder;
+    private final JwtEncoder jwtEncoder;
 
-    @Autowired
-    PasswordEncoder encoder;
+    public SuccessfulLoginResponse login(LoginRequest loginRequest) throws BadCredentialsException{
 
-    @Autowired
-    JwtUtils jwtUtils;
+            var authentication =
+                    authenticationManager.authenticate(
+                            new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
 
-    public SuccessfulLoginResponse login(LoginRequest loginRequest) {
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+            var user = (UserDetailsImpl) authentication.getPrincipal();
 
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        String jwt = jwtUtils.generateJwtToken(authentication);
+            var now = Instant.now();
+            var expiry = 36000L;
 
-        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+            var scope =
+                    authentication.getAuthorities().stream()
+                            .map(GrantedAuthority::getAuthority)
+                            .collect(joining(" "));
 
-        return SuccessfulLoginResponse.builder()
-                .token(jwt)
-                .username(userDetails.getUsername())
-                .build();
+            var claims =
+                    JwtClaimsSet.builder()
+                            .issuer("example.io")
+                            .issuedAt(now)
+                            .expiresAt(now.plusSeconds(expiry))
+                            .subject(format("%s,%s", user.getId(), user.getUsername()))
+                            .claim("roles", scope)
+                            .build();
 
+            var token = this.jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
+            return SuccessfulLoginResponse.builder().username(user.getUsername()).token(token).build();
     }
 }

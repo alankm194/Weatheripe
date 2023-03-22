@@ -8,6 +8,4 @@ public class UsernameAlreadyExistsException extends LoginResourceAlreadyExistsEx
         super( String.format(ERROR_MESSAGE_FORMAT, username));
     }
 
-
-
 }

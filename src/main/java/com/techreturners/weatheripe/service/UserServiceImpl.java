@@ -6,20 +6,18 @@ import com.techreturners.weatheripe.repository.UserAccountRepository;
 import com.techreturners.weatheripe.request.SignupRequest;
 import com.techreturners.weatheripe.response.exception.EmailAlreadyExistsException;
 import com.techreturners.weatheripe.response.exception.UsernameAlreadyExistsException;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
 
 @Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService{
-    @Autowired
-    private UserAccountRepository userAccountRepository;
+    private final UserAccountRepository userAccountRepository;
 
-    @Autowired
-    PasswordEncoder encoder;
-
+    private final PasswordEncoder encoder;
 
     public UserAccount create(SignupRequest userSignUp) {
         if (userAccountRepository.existsByUserName(userSignUp.getUsername())) {
