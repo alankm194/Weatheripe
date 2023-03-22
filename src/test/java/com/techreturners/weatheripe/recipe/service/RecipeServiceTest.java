@@ -45,22 +45,22 @@ public class RecipeServiceTest {
     @Mock
     private ExternalApiServiceImpl externalApiService;
 
-/*    @Test
-    public void getRecipeByWeatherCondition(){
-        String query = "https://api.edamam.com/api/recipes/v2?dishType=desserts&dishType=drinks&dishType=egg&dishType=pancake";
-
-        ReflectionTestUtils.setField(recipeService,
-                "RECIPE_APP_KEY", "67cafd22003829f89f36cf1800d9f7ca");
-        ReflectionTestUtils.setField(recipeService,
-                "API_TYPE", "public");
-        ReflectionTestUtils.setField(recipeService,
-                "RECIPE_APP_ID", "8a3753d7");
-
-        RecipeQueryDTO recipeQueryDTO = new RecipeQueryDTO(query);
-
-        RecipeResponseDTO recipeResponseDTO = (RecipeResponseDTO) recipeService.getRecipeByWeatherCondition(recipeQueryDTO);
-        assertThat(recipeResponseDTO.getHits().length).isEqualTo(20);
-    }
+//    @Test
+//    public void getRecipeByWeatherCondition(){
+//        String query = "https://api.edamam.com/api/recipes/v2?dishType=desserts&dishType=drinks&dishType=egg&dishType=pancake";
+//
+//        ReflectionTestUtils.setField(recipeService,
+//                "RECIPE_APP_KEY", "67cafd22003829f89f36cf1800d9f7ca");
+//        ReflectionTestUtils.setField(recipeService,
+//                "API_TYPE", "public");
+//        ReflectionTestUtils.setField(recipeService,
+//                "RECIPE_APP_ID", "8a3753d7");
+//
+//        RecipeQueryDTO recipeQueryDTO = new RecipeQueryDTO(query);
+//
+//        RecipeResponseDTO recipeResponseDTO = (RecipeResponseDTO) recipeService.getRecipeByWeatherCondition(recipeQueryDTO);
+//        assertThat(recipeResponseDTO.getHits().length).isEqualTo(20);
+//    }
 
 
     @Test
@@ -87,6 +87,6 @@ public class RecipeServiceTest {
     }
 
 
-*/
+
 
 }

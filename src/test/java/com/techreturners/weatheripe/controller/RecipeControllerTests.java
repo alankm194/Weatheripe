@@ -5,6 +5,9 @@ import com.techreturners.weatheripe.exception.ExceptionHandlerController;
 import com.techreturners.weatheripe.external.dto.ResponseDTO;
 import com.techreturners.weatheripe.recipe.dto.RecipeResponseDTO;
 import com.techreturners.weatheripe.recipe.service.RecipeServiceImpl;
+import com.techreturners.weatheripe.user.UserAccountService;
+import com.techreturners.weatheripe.user.UserAccountServiceImpl;
+import com.techreturners.weatheripe.user.dto.UserRecipeBookResponseDTO;
 import com.techreturners.weatheripe.weather.dto.RecipeQueryDTO;
 import com.techreturners.weatheripe.weather.dto.WeatherApiDTO;
 import com.techreturners.weatheripe.weather.service.WeatherServiceImpl;
@@ -28,6 +31,9 @@ import static org.mockito.Mockito.when;
 public class RecipeControllerTests {
     @Mock
     private WeatherServiceImpl mockWeatherServiceImpl;
+
+    @Mock
+    private UserAccountServiceImpl mockUserAccountServiceImpl;
 
     @Mock
     private RecipeServiceImpl mockRecipeServiceImpl;
@@ -66,4 +72,20 @@ public class RecipeControllerTests {
 //                .andExpect(MockMvcResultMatchers.jsonPath("$[0].id").value(1))
 //                .andExpect(MockMvcResultMatchers.jsonPath("$[0].title").value("Book One"));
     }
+
+
+    @Test
+    public void testGetWeatherByLocationForUser() throws Exception {
+        String location = "London";
+        UserRecipeBookResponseDTO  userRecipeBookResponseDTO = new UserRecipeBookResponseDTO();
+
+        when(mockWeatherServiceImpl.getRecipeByLocationForUser(location,"")).thenReturn(userRecipeBookResponseDTO);
+        this.mockMvcController.perform(
+                        MockMvcRequestBuilders.get("/api/v1/recipe/user/"+location))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+
+    }
+
+
+
 }
