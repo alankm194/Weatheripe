@@ -75,7 +75,6 @@ public class WeatherServiceTests {
         when(mockFoodForWeatherRepository.findByWeatherIdIn(weathers)).thenReturn(foodForWeathers);
 
         RecipeQueryDTO recipeQueryDTO = (RecipeQueryDTO) weatherServiceImpl.buildExternalRecipeAPIQuery(weatherApiObj);
-
         assertEquals(query, recipeQueryDTO.getQuery());
 
         verify(mockWeatherRepository, times(1))
