@@ -1,4 +1,4 @@
-package com.techreturners.weatheripe.service;
+package com.techreturners.weatheripe.weather.service.service;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -41,11 +41,13 @@ public class WeatherServiceTests {
     @Test
     public void testBuildExternalRecipeAPIQueryReturnQueryString() throws Exception {
         ReflectionTestUtils.setField(weatherServiceImpl,
-                "RECIPE_API_URL", "https://api.edamam.com/api/recipes/v2?app_key={0}&app_id=ba324f9b&type=any");
+                "RECIPE_API_URL", "https://api.edamam.com/api/recipes/v2?app_key={0}&app_id={1}&type=any");
         ReflectionTestUtils.setField(weatherServiceImpl,
-                "RECIPE_API_KEY", "dummykey");
+                "RECIPE_APP_KEY", "dummyAppKey");
+        ReflectionTestUtils.setField(weatherServiceImpl,
+                "RECIPE_APP_ID", "dummyAppId");
 
-        String query = "https://api.edamam.com/api/recipes/v2?app_key=dummykey&app_id=ba324f9b&type=any&dishType=salad";
+        String query = "https://api.edamam.com/api/recipes/v2?app_key=dummyAppKey&app_id=dummyAppId&type=any&dishType=salad";
 
         // To read the json file to form the weatherApiObj
         Resource resource = new ClassPathResource("/good_weather_response.json");
