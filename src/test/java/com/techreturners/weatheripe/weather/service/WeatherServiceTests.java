@@ -1,4 +1,4 @@
-package com.techreturners.weatheripe.weather.service.service;
+package com.techreturners.weatheripe.weather.service;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -9,7 +9,6 @@ import com.techreturners.weatheripe.model.Weather;
 import com.techreturners.weatheripe.repository.FoodForWeatherRepository;
 import com.techreturners.weatheripe.repository.WeatherRepository;
 import com.techreturners.weatheripe.weather.dto.WeatherApiDTO;
-import com.techreturners.weatheripe.weather.service.WeatherServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
