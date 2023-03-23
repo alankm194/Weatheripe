@@ -2,6 +2,7 @@ package com.techreturners.weatheripe.weather.service;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.techreturners.weatheripe.configuration.SecretConfiguration;
 import com.techreturners.weatheripe.exception.NoMatchingFoodException;
 import com.techreturners.weatheripe.exception.NoMatchingWeatherException;
 import com.techreturners.weatheripe.exception.WeatherNotFoundException;
@@ -38,24 +39,25 @@ public class WeatherServiceTests {
     @Mock
     private FoodForWeatherRepository mockFoodForWeatherRepository;
 
+    @Mock
+    private SecretConfiguration secretConfiguration;
     @InjectMocks
     private WeatherServiceImpl weatherServiceImpl;
 
     @BeforeEach
     public void init() {
+        when(secretConfiguration.recipeAppId()).thenReturn("dummyAppId");
+        when(secretConfiguration.recipeAppKey()).thenReturn("dummyAppKey");
         ReflectionTestUtils.setField(weatherServiceImpl,
                 "RECIPE_API_URL", "https://api.edamam.com/api/recipes/v2?app_key={0}&app_id={1}&type=any");
-        ReflectionTestUtils.setField(weatherServiceImpl,
-                "RECIPE_APP_KEY", "dummyAppKey");
-        ReflectionTestUtils.setField(weatherServiceImpl,
-                "RECIPE_APP_ID", "dummyAppId");
     }
 
 
     @Test
     public void testBuildExternalRecipeAPIQueryReturnQueryString() throws Exception {
 
-
+        when(secretConfiguration.recipeAppId()).thenReturn("dummyAppId");
+        when(secretConfiguration.recipeAppKey()).thenReturn("dummyAppKey");
         String query = "https://api.edamam.com/api/recipes/v2?app_key=dummyAppKey&app_id=dummyAppId&type=any&dishType=salad";
 
         // To read the json file to form the weatherApiObj

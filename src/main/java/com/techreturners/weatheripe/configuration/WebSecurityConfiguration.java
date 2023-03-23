@@ -47,7 +47,6 @@ public class WebSecurityConfiguration {
     UserDetailsServiceImpl userDetailsService;
     @Autowired
     private UserAccountRepository userAccountRepository;
-
     @Value("${jwt.public.key}")
     private RSAPublicKey rsaPublicKey;
 
@@ -134,7 +133,7 @@ public class WebSecurityConfiguration {
 
     @Bean
     public JwtEncoder jwtEncoder() {
-        var jwk = new RSAKey.Builder(this.rsaPublicKey).privateKey(this.rsaPrivateKey).build();
+        var jwk = new RSAKey.Builder(rsaPublicKey).privateKey(rsaPrivateKey).build();
         var jwks = new ImmutableJWKSet<>(new JWKSet(jwk));
         return new NimbusJwtEncoder(jwks);
     }
@@ -152,7 +151,7 @@ public class WebSecurityConfiguration {
 
     @Bean
     public JwtDecoder jwtDecoder() {
-        return NimbusJwtDecoder.withPublicKey(this.rsaPublicKey).build();
+        return NimbusJwtDecoder.withPublicKey(rsaPublicKey).build();
     }
 
 
