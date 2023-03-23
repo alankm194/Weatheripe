@@ -1,11 +1,11 @@
 package com.techreturners.weatheripe.controller;
 
-import com.techreturners.weatheripe.exception.UserSessionNotFoundException;
 import com.techreturners.weatheripe.external.dto.ResponseDTO;
 import com.techreturners.weatheripe.recipe.service.RecipeService;
 import com.techreturners.weatheripe.user.dto.UserRecipeBookResponseDTO;
 import com.techreturners.weatheripe.weather.dto.WeatherApiDTO;
 import com.techreturners.weatheripe.weather.service.WeatherService;
+import jakarta.annotation.security.RolesAllowed;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.security.Principal;
 
 @Slf4j
 @RestController
@@ -43,19 +45,9 @@ public class RecipeController {
 
 
     @GetMapping({"/user/{location}"})
-    public ResponseEntity<ResponseDTO> getWeatherByLocationForUser(@PathVariable String location) {
-        String userToken ="";
-        ResponseDTO responseDTO = null;
-        try {
-
-            responseDTO = (UserRecipeBookResponseDTO) weatherService.getRecipeByLocationForUser(location,userToken);
-
-        } catch (UserSessionNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-
+    @RolesAllowed("ROLE_USER")
+    public ResponseEntity<ResponseDTO> getWeatherByLocationForUser(@PathVariable String location, Principal principal) {
+        ResponseDTO responseDTO = (UserRecipeBookResponseDTO) weatherService.getRecipeByLocationForUser(location, principal.getName());
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
-
-
 }

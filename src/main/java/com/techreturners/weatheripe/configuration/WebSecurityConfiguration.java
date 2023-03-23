@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -38,6 +37,7 @@ import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 
 import static java.lang.String.format;
+import static org.springframework.boot.autoconfigure.security.servlet.PathRequest.toH2Console;
 
 @EnableWebSecurity
 @Configuration(enforceUniqueMethods = false)
@@ -91,6 +91,7 @@ public class WebSecurityConfiguration {
 
         // Set session management to stateless
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        http.headers().frameOptions().disable();
 
         // Set unauthorized requests exception handler
         http.exceptionHandling(
@@ -100,24 +101,27 @@ public class WebSecurityConfiguration {
                                 .accessDeniedHandler(new BearerTokenAccessDeniedHandler()));
 
         // Set permissions on endpoints
-        http.authorizeRequests()
-                // Swagger endpoints must be publicly accessible
+        http.authorizeHttpRequests()
+                // Swagger and actuator endpoints must be publicly accessible
                 .requestMatchers("/")
                 .permitAll()
                 .requestMatchers("/swagger-ui.html").permitAll()
-                .requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers("/v3/api-docs/**").permitAll()
                 .requestMatchers("configuration/**").permitAll()
                 .requestMatchers("/swagger*/**").permitAll()
                 .requestMatchers("/webjars/**").permitAll()
                 .requestMatchers("/swagger-ui/**").permitAll()
                 .requestMatchers("/actuator/**").permitAll()
+                .requestMatchers(toH2Console()).permitAll()
+
                 // Our public endpoints
-                .requestMatchers("/api/auth/**")
+                .requestMatchers("/api/v1/auth/**")
                 .permitAll()
-                .requestMatchers(HttpMethod.GET, "/api/test/**")
+                .requestMatchers("/api/v1/recipe/**")
                 .permitAll()
                 // Our private endpoints
+                .requestMatchers("/api/v1/recipe/user/**")
+                .authenticated()
                 .anyRequest()
                 .authenticated()
                 // Set up oauth2 resource server
@@ -150,5 +154,6 @@ public class WebSecurityConfiguration {
     public JwtDecoder jwtDecoder() {
         return NimbusJwtDecoder.withPublicKey(this.rsaPublicKey).build();
     }
+
 
 }

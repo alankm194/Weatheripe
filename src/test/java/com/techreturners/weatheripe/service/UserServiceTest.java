@@ -5,13 +5,13 @@ import com.techreturners.weatheripe.repository.UserAccountRepository;
 import com.techreturners.weatheripe.request.SignupRequest;
 import com.techreturners.weatheripe.response.exception.EmailAlreadyExistsException;
 import com.techreturners.weatheripe.response.exception.UsernameAlreadyExistsException;
+import com.techreturners.weatheripe.security.service.UserServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -66,9 +66,9 @@ public class UserServiceTest {
 
         when(userAccountRepository.existsByEmail(expectedUser.getEmail())).thenReturn(true);
 
-        EmailAlreadyExistsException thrown = Assertions.assertThrows(EmailAlreadyExistsException.class, () -> {
-            userService.create(newUserReq);
-        });
+        EmailAlreadyExistsException thrown = Assertions.assertThrows(EmailAlreadyExistsException.class, () ->
+            userService.create(newUserReq)
+        );
 
         assertEquals(String.format("email %s already exists", expectedUser.getEmail()),thrown.getMessage());
     }
@@ -77,9 +77,9 @@ public class UserServiceTest {
     @Test
     public void testUsernameAlreadyExists() {
         when(userAccountRepository.existsByUserName(expectedUser.getUserName())).thenReturn(true);
-        UsernameAlreadyExistsException thrown = Assertions.assertThrows(UsernameAlreadyExistsException.class, () -> {
-            userService.create(newUserReq);
-        });
+        UsernameAlreadyExistsException thrown = Assertions.assertThrows(UsernameAlreadyExistsException.class, () ->
+            userService.create(newUserReq)
+        );
         assertEquals(String.format("Username %s already exists.", expectedUser.getUserName()),thrown.getMessage());
     }
 

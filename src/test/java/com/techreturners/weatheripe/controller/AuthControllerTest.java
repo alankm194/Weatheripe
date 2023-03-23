@@ -41,7 +41,7 @@ public class AuthControllerTest {
 
         MvcResult registerResult = this.mockMvc
                 .perform(
-                        MockMvcRequestBuilders.post("/api/auth/signup")
+                        MockMvcRequestBuilders.post("/api/v1/auth/signup")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isOk())
@@ -55,7 +55,7 @@ public class AuthControllerTest {
 
         MvcResult loginResult = this.mockMvc
                 .perform(
-                        MockMvcRequestBuilders.post("/api/auth/signin")
+                        MockMvcRequestBuilders.post("/api/v1/auth/signin")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(objectMapper.writeValueAsString(loginRequest)))
                 .andExpect(status().isOk())

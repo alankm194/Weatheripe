@@ -2,8 +2,8 @@ package com.techreturners.weatheripe.controller;
 
 import com.techreturners.weatheripe.request.LoginRequest;
 import com.techreturners.weatheripe.request.SignupRequest;
-import com.techreturners.weatheripe.service.AuthService;
-import com.techreturners.weatheripe.service.UserService;
+import com.techreturners.weatheripe.security.service.AuthService;
+import com.techreturners.weatheripe.security.service.UserService;
 import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ import com.techreturners.weatheripe.response.MessageResponse;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/api/v1/auth")
 public class AuthController {
 
     @Autowired

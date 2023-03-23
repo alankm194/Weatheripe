@@ -5,7 +5,6 @@ import com.techreturners.weatheripe.exception.ExceptionHandlerController;
 import com.techreturners.weatheripe.external.dto.ResponseDTO;
 import com.techreturners.weatheripe.recipe.dto.RecipeResponseDTO;
 import com.techreturners.weatheripe.recipe.service.RecipeServiceImpl;
-import com.techreturners.weatheripe.user.UserAccountService;
 import com.techreturners.weatheripe.user.UserAccountServiceImpl;
 import com.techreturners.weatheripe.user.dto.UserRecipeBookResponseDTO;
 import com.techreturners.weatheripe.weather.dto.RecipeQueryDTO;
