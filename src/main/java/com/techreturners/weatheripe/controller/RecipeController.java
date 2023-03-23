@@ -10,12 +10,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.security.Principal;
 
 @Slf4j
 @RestController
@@ -46,8 +47,8 @@ public class RecipeController {
 
     @GetMapping({"/user/{location}"})
     @RolesAllowed("ROLE_USER")
-    public ResponseEntity<ResponseDTO> getWeatherByLocationForUser(@PathVariable String location, Principal principal) {
-        ResponseDTO responseDTO = (UserRecipeBookResponseDTO) weatherService.getRecipeByLocationForUser(location, principal.getName());
+    public ResponseEntity<ResponseDTO> getWeatherByLocationForUser(@PathVariable String location, @AuthenticationPrincipal Jwt jwt) {
+        ResponseDTO responseDTO = (UserRecipeBookResponseDTO) weatherService.getRecipeByLocationForUser(location, jwt.getClaim("sub"));
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 }
