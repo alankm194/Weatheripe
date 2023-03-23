@@ -80,4 +80,12 @@ public class ExceptionHandlerController {
                 HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler({UserNotFoundException.class})
+    public ResponseEntity<ErrorType> handleUserNotFoundException(
+            RuntimeException ex) {
+        return new ResponseEntity<>(
+                new ErrorType(ex.getMessage(), "W0009", "RECORD_NOT_FOUND", "DB"),
+                HttpStatus.NOT_FOUND);
+    }
+
 }

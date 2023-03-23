@@ -122,6 +122,8 @@ public class WebSecurityConfiguration {
                 // Our private endpoints
                 .requestMatchers("/api/v1/recipe/user/**")
                 .authenticated()
+                .requestMatchers("/api/v1/user/**")
+                .authenticated()
                 .anyRequest()
                 .authenticated()
                 // Set up oauth2 resource server

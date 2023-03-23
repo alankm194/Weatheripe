@@ -69,7 +69,7 @@ public class WeatherServiceImpl implements WeatherService {
 
     public ResponseDTO getWeatherByLocation(String location){
         String uri = MessageFormat.format(WEATHER_API_URL,WEATHER_API_KEY, location);
-        log.info("*******URI:"+uri);
+        log.debug("*******URI:"+uri);
         ExternalRequestDto externalRequestDto = new ExternalRequestDto(uri,new WeatherApiDTO());
         WeatherApiDTO weatherApiObj;
         try {
@@ -77,7 +77,7 @@ public class WeatherServiceImpl implements WeatherService {
         }catch (ResourceNotFoundException e){
             throw new WeatherNotFoundException(ExceptionMessages.WEATHER_NOT_FOUND);
         }
-        log.info("*******CurrentTemperature:"+weatherApiObj.getCurrentTemp());
+        log.debug("*******CurrentTemperature:"+weatherApiObj.getCurrentTemp());
         if (weatherApiObj == null || weatherApiObj.getCurrentValues()==null){
             throw new WeatherNotFoundException(ExceptionMessages.WEATHER_NOT_FOUND);
         }
@@ -90,15 +90,15 @@ public class WeatherServiceImpl implements WeatherService {
 
         String baseUrl = MessageFormat.format(RECIPE_API_URL,RECIPE_APP_KEY, RECIPE_APP_ID);
         StringBuilder stringBuilder = new StringBuilder(baseUrl);
-        log.info("*******CurrentTemperature:"+weatherApiObj.getCurrentTemp());
+        log.debug("*******CurrentTemperature:"+weatherApiObj.getCurrentTemp());
         List<Weather> weathers = weatherRepository
                 .findByTemperatureBetweenTemperatureHighLow(weatherApiObj.getCurrentTemp());
-        log.info("*******weathers.size():"+weathers.size());
+        log.debug("*******weathers.size():"+weathers.size());
         if (weathers.size() == 0)
             throw new NoMatchingWeatherException(ExceptionMessages.WEATHER_NOT_FOUND);
 
         List<FoodForWeather> foodForWeathers = foodForWeatherRepository.findByWeatherIdIn(weathers);
-        log.info("***foodForWeathers.size():"+foodForWeathers.size());
+        log.debug("***foodForWeathers.size():"+foodForWeathers.size());
         if (foodForWeathers.size() == 0)
             throw new NoMatchingFoodException(ExceptionMessages.WEATHER_NOT_FOUND);
 
@@ -112,7 +112,7 @@ public class WeatherServiceImpl implements WeatherService {
 
             stringBuilder.append(foodForWeather.getDishType().getDishTypeLabel());
         }
-        log.info("*******final URI:"+ stringBuilder);
+        log.debug("*******final URI:"+ stringBuilder);
         return new RecipeQueryDTO(stringBuilder.toString());
     }
 

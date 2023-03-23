@@ -1,9 +1,6 @@
 package com.techreturners.weatheripe.user;
 
-import com.techreturners.weatheripe.exception.ExceptionMessages;
-import com.techreturners.weatheripe.exception.NoRecipeBookFoundException;
-import com.techreturners.weatheripe.exception.NoRecipeFoundException;
-import com.techreturners.weatheripe.exception.UserSessionNotFoundException;
+import com.techreturners.weatheripe.exception.*;
 import com.techreturners.weatheripe.external.dto.ResponseDTO;
 import com.techreturners.weatheripe.model.RecipeBook;
 import com.techreturners.weatheripe.model.UserAccount;
@@ -104,5 +101,19 @@ public class UserAccountServiceImpl implements UserAccountService {
                                 .build())
                 .forEach(recipeBookDTOList::add);
         return new UserRecipeBookResponseDTO(recipeBookDTOList);
+    }
+
+    public void deleteUserById(Long id) {
+        if (!userAccountRepository.existsById(id))
+            throw new UserNotFoundException(ExceptionMessages.USER_ACCOUNT_NOT_FOUND);
+        userAccountRepository.deleteById(id);
+    }
+
+    public void deleteUserByUsername(String username){
+        log.debug("******deleteUserByUsername("+username+"):");
+
+        UserAccount userAccount = userAccountRepository.findByUserName(username)
+                .orElseThrow(() -> new UserNotFoundException(ExceptionMessages.USER_ACCOUNT_NOT_FOUND));
+        userAccountRepository.deleteById(userAccount.getId());
     }
 }

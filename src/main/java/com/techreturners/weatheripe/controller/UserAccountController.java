@@ -1,7 +1,8 @@
 package com.techreturners.weatheripe.controller;
 
-import com.techreturners.weatheripe.exception.NoRecipeBookFoundException;
 import com.techreturners.weatheripe.external.dto.ResponseDTO;
+import com.techreturners.weatheripe.response.MessageResponse;
+import com.techreturners.weatheripe.security.service.AuthService;
 import com.techreturners.weatheripe.user.UserAccountService;
 import com.techreturners.weatheripe.user.dto.RecipeBookRequestDTO;
 import jakarta.annotation.security.RolesAllowed;
@@ -18,10 +19,11 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/v1/user")
 public class UserAccountController {
-
-
     @Autowired
     UserAccountService userAccountService;
+
+    @Autowired
+    private AuthService authService;
 
 
     @RolesAllowed("ROLE_USER")
@@ -38,6 +40,21 @@ public class UserAccountController {
 
         ResponseDTO responseDTO = userAccountService.updateRecipeBook(recipeBookRequestDTO,jwt.getClaim("sub"));
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
+    }
+
+    @RolesAllowed("ROLE_USER")
+    @DeleteMapping("/unregister")
+    public ResponseEntity<MessageResponse> unregisterUser(@RequestHeader("Authorization") String jwt) {
+        String username = authService.extractUsernameFromToken(jwt);
+        userAccountService.deleteUserByUsername(username);
+        return ResponseEntity.ok(new MessageResponse("User unregistered successfully!"));
+    }
+
+    @RolesAllowed("ROLE_USER")
+    @DeleteMapping("/unregister/{userId}")
+    public ResponseEntity<MessageResponse> unregisterUser(@PathVariable Long userId) {
+        userAccountService.deleteUserById(userId);
+        return ResponseEntity.ok(new MessageResponse("User unregistered successfully!"));
     }
 
 }
