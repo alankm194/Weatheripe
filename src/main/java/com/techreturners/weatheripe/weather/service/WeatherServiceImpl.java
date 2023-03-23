@@ -117,7 +117,7 @@ public class WeatherServiceImpl implements WeatherService {
 
         RecipeResponseDTO recipeResponseDTO = (RecipeResponseDTO) recipeService.getRecipeByWeatherCondition(recipeQueryDTO);
         List<RecipeBook> recipeBooks = new ArrayList<>();
-        Optional<UserAccount> account = userAccountRepository.findById(1L);//TODO get this by user token
+        Optional<UserAccount> account = userAccountRepository.findByUserName(userToken);
 
         if (account.isEmpty()) {
             throw new UserSessionNotFoundException(ExceptionMessages.USER_SESSION_NOT_FOUND);

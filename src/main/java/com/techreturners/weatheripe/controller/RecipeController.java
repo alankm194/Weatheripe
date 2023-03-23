@@ -6,14 +6,18 @@ import com.techreturners.weatheripe.recipe.service.RecipeService;
 import com.techreturners.weatheripe.user.dto.UserRecipeBookResponseDTO;
 import com.techreturners.weatheripe.weather.dto.WeatherApiDTO;
 import com.techreturners.weatheripe.weather.service.WeatherService;
+import jakarta.annotation.security.RolesAllowed;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 
 @Slf4j
 @RestController
@@ -42,20 +46,17 @@ public class RecipeController {
 //    }
 
 
+    @RolesAllowed("ROLE_USER")
     @GetMapping({"/user/{location}"})
-    public ResponseEntity<ResponseDTO> getWeatherByLocationForUser(@PathVariable String location) {
-        String userToken ="";
+    public ResponseEntity<ResponseDTO> getWeatherByLocationForUser(@PathVariable String location, @AuthenticationPrincipal Jwt jwt) {
         ResponseDTO responseDTO = null;
         try {
-
-            responseDTO = (UserRecipeBookResponseDTO) weatherService.getRecipeByLocationForUser(location,userToken);
+            responseDTO = (UserRecipeBookResponseDTO) weatherService.getRecipeByLocationForUser(location,jwt.getClaim("sub"));
 
         } catch (UserSessionNotFoundException e) {
             throw new RuntimeException(e);
         }
-
         return new ResponseEntity<>(responseDTO, HttpStatus.CREATED);
+
     }
-
-
 }
