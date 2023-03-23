@@ -1,7 +1,6 @@
 package com.techreturners.weatheripe.recipe.service;
 
-import com.techreturners.weatheripe.exception.ExceptionMessages;
-import com.techreturners.weatheripe.exception.NoMatchingCriteriaException;
+import com.techreturners.weatheripe.exception.*;
 import com.techreturners.weatheripe.weather.dto.RecipeQueryDTO;
 import com.techreturners.weatheripe.external.dto.ExternalRequestDto;
 import com.techreturners.weatheripe.external.dto.ResponseDTO;
@@ -43,8 +42,13 @@ public class RecipeServiceImpl implements RecipeService {
         query.append("&type=").append(API_TYPE);
         log.info(query.toString());
         ExternalRequestDto externalRequestDto = new ExternalRequestDto(query.toString(), new RecipeResponseDTO());
-        RecipeResponseDTO recipeResponseDTO = (RecipeResponseDTO) externalApiService.getResourcesByUri(externalRequestDto);
+        RecipeResponseDTO recipeResponseDTO = null;
+        try {
+            recipeResponseDTO = (RecipeResponseDTO) externalApiService.getResourcesByUri(externalRequestDto);
 
+        } catch (ResourceNotFoundException e) {
+            throw new RecipeNotFoundException(ExceptionMessages.NO_MATCHING_FOOD_CRITERIA);
+        }
         if (recipeResponseDTO == null || recipeResponseDTO.getHits() == null || recipeResponseDTO.getHits().length == 0) {
             throw new NoMatchingCriteriaException(ExceptionMessages.NO_MATCHING_RECIPES_FOOD_CRITERIA);
         }
