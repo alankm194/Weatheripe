@@ -1,6 +1,7 @@
 package com.techreturners.weatheripe.user;
 
 import com.techreturners.weatheripe.exception.ExceptionMessages;
+import com.techreturners.weatheripe.exception.NoRecipeFoundException;
 import com.techreturners.weatheripe.exception.UserSessionNotFoundException;
 import com.techreturners.weatheripe.external.dto.ResponseDTO;
 import com.techreturners.weatheripe.model.RecipeBook;
@@ -45,12 +46,16 @@ public class UserAccountServiceImpl implements UserAccountService {
     }
 
     @Override
-    public ResponseDTO getUserRecipeBooks(String token) {
+    public ResponseDTO getUserRecipeBooks(String token) throws NoRecipeFoundException {
         Optional<UserAccount> account = userAccountRepository.findById(1L);//TODO get this by user token
         if (account.isEmpty()) {
             throw new UserSessionNotFoundException(ExceptionMessages.USER_SESSION_NOT_FOUND);
         }
         List<RecipeBook> recipeBooks = recipeBookRepository.findByUserId(account.get());
+
+        if(recipeBooks.isEmpty()){
+          throw new NoRecipeFoundException(ExceptionMessages.NO_RECIPE_FOUND);
+        }
 
         List<UserRecipeBookDTO> recipeBookDTOList = new ArrayList<>();
 
