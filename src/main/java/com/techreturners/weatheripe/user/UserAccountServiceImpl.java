@@ -103,6 +103,24 @@ public class UserAccountServiceImpl implements UserAccountService {
         return new UserRecipeBookResponseDTO(recipeBookDTOList);
     }
 
+    public void deleteRecipeBook(Long recipeBookId, String username){
+        UserAccount userAccount = userAccountRepository.findByUserName(username)
+                .orElseThrow(() -> new UserNotFoundException(ExceptionMessages.USER_SESSION_NOT_FOUND));
+
+        Optional<RecipeBook> recipeBookOptional = recipeBookRepository.findById(recipeBookId);
+
+        if (recipeBookOptional.isEmpty())
+            throw new NoRecipeBookFoundException(ExceptionMessages.NO_RECIPE_FOUND);
+
+        log.debug("******recipeBookOptional.get().getUserId():"+recipeBookOptional.get().getUserId());
+        log.debug("******userAccount.getId():"+userAccount.getId());
+        if (!recipeBookOptional.get().getUserId().getId().equals(userAccount.getId())){
+            throw new RecipeNotBelongToUserException(ExceptionMessages.RECIPE_NOT_BELONG_TO_USER);
+        }
+
+        recipeBookRepository.delete(recipeBookOptional.get());
+    }
+
     public void deleteUserById(Long id) {
         if (!userAccountRepository.existsById(id))
             throw new UserNotFoundException(ExceptionMessages.USER_ACCOUNT_NOT_FOUND);

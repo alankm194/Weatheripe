@@ -2,7 +2,6 @@ package com.techreturners.weatheripe.controller;
 
 import com.techreturners.weatheripe.external.dto.ResponseDTO;
 import com.techreturners.weatheripe.response.MessageResponse;
-import com.techreturners.weatheripe.security.service.AuthService;
 import com.techreturners.weatheripe.user.UserAccountService;
 import com.techreturners.weatheripe.user.dto.RecipeBookRequestDTO;
 import jakarta.annotation.security.RolesAllowed;
@@ -22,10 +21,6 @@ public class UserAccountController {
     @Autowired
     UserAccountService userAccountService;
 
-    @Autowired
-    private AuthService authService;
-
-
     @RolesAllowed("ROLE_USER")
     @GetMapping({"/recipeBook"})
     public ResponseEntity<ResponseDTO> getUserRecipeBooks(@AuthenticationPrincipal Jwt jwt) {
@@ -43,10 +38,17 @@ public class UserAccountController {
     }
 
     @RolesAllowed("ROLE_USER")
+    @DeleteMapping({"/deleteRecipeBook/{recipeBookId}"})
+    public ResponseEntity<MessageResponse> deleteRecipeBook(@Valid @PathVariable Long recipeBookId, @AuthenticationPrincipal Jwt jwt){
+
+        userAccountService.deleteRecipeBook(recipeBookId,jwt.getClaim("sub"));
+        return ResponseEntity.ok(new MessageResponse("User recipe deleted successfully!"));
+    }
+
+    @RolesAllowed("ROLE_USER")
     @DeleteMapping("/unregister")
-    public ResponseEntity<MessageResponse> unregisterUser(@RequestHeader("Authorization") String jwt) {
-        String username = authService.extractUsernameFromToken(jwt);
-        userAccountService.deleteUserByUsername(username);
+    public ResponseEntity<MessageResponse> unregisterUser(@AuthenticationPrincipal Jwt jwt) {
+        userAccountService.deleteUserByUsername(jwt.getClaim("sub"));
         return ResponseEntity.ok(new MessageResponse("User unregistered successfully!"));
     }
 

@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.LocalDateTime;
 
@@ -50,7 +52,7 @@ public class RecipeBook {
     @Column
     String dietType;
 
-    @Column
+    @Column(length = 1000)
     String healthType;
 
     @Column
@@ -77,6 +79,7 @@ public class RecipeBook {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     UserAccount userId;
 
 
