@@ -2,8 +2,7 @@
 # Compiled class file
 *.class
 
-# Log file
-*.log
+
 
 # BlueJ files
 *.ctxt
@@ -19,15 +18,27 @@
 *.zip
 *.tar.gz
 *.rar
+**/build/libs/*.jar
+target/
+
 
 #other
 .idea/
 .mvn/
-secret.properties
-**.key
+**/secret.yml
+**/secret.properties
+**/.key
+
+# OSX
+.DS_Store
+.AppleDouble
+.LSOverride
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
-# folders
-target/
+# Logging
+*.log
+*.log.gz
+*.log-*.gz
+logs/

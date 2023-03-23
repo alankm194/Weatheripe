@@ -1,5 +1,6 @@
 package com.techreturners.weatheripe.weather.service;
 
+import com.techreturners.weatheripe.configuration.SecretConfiguration;
 import com.techreturners.weatheripe.exception.*;
 import com.techreturners.weatheripe.model.RecipeBook;
 import com.techreturners.weatheripe.model.UserAccount;
@@ -34,6 +35,9 @@ public class WeatherServiceImpl implements WeatherService {
     private WebClient.Builder webClientBuilder;
 
     @Autowired
+    private SecretConfiguration secretConfiguration;
+
+    @Autowired
     private WeatherRepository weatherRepository;
 
     @Autowired
@@ -54,22 +58,13 @@ public class WeatherServiceImpl implements WeatherService {
     @Value("${weather.api.url}")
     private String WEATHER_API_URL;
 
-    @Value("${weather.api.key}")
-    private String WEATHER_API_KEY;
-
     @Value("${recipe.api.url}")
     private String RECIPE_API_URL;
 
-    @Value("${recipe.app.key}")
-    private String RECIPE_APP_KEY;
-
-    @Value("${recipe.app.id}")
-    private String RECIPE_APP_ID;
-
 
     public ResponseDTO getWeatherByLocation(String location){
-        String uri = MessageFormat.format(WEATHER_API_URL,WEATHER_API_KEY, location);
-        log.debug("*******URI:"+uri);
+        String uri = MessageFormat.format(WEATHER_API_URL, secretConfiguration.weatherApiKey(), location);
+        log.info("*******URI:"+uri);
         ExternalRequestDto externalRequestDto = new ExternalRequestDto(uri,new WeatherApiDTO());
         WeatherApiDTO weatherApiObj;
         try {
@@ -77,7 +72,7 @@ public class WeatherServiceImpl implements WeatherService {
         }catch (ResourceNotFoundException e){
             throw new WeatherNotFoundException(ExceptionMessages.WEATHER_NOT_FOUND);
         }
-        log.debug("*******CurrentTemperature:"+weatherApiObj.getCurrentTemp());
+        log.info("*******CurrentTemperature:"+weatherApiObj.getCurrentTemp());
         if (weatherApiObj == null || weatherApiObj.getCurrentValues()==null){
             throw new WeatherNotFoundException(ExceptionMessages.WEATHER_NOT_FOUND);
         }
@@ -88,31 +83,25 @@ public class WeatherServiceImpl implements WeatherService {
         if (weatherApiObj == null || weatherApiObj.getCurrentValues()==null)
             throw new WeatherNotFoundException(ExceptionMessages.WEATHER_NOT_FOUND);
 
-        String baseUrl = MessageFormat.format(RECIPE_API_URL,RECIPE_APP_KEY, RECIPE_APP_ID);
+        String baseUrl = MessageFormat.format(RECIPE_API_URL, secretConfiguration.recipeAppKey(), secretConfiguration.recipeAppId());
         StringBuilder stringBuilder = new StringBuilder(baseUrl);
-        log.debug("*******CurrentTemperature:"+weatherApiObj.getCurrentTemp());
+        log.info("*******CurrentTemperature:"+weatherApiObj.getCurrentTemp());
         List<Weather> weathers = weatherRepository
                 .findByTemperatureBetweenTemperatureHighLow(weatherApiObj.getCurrentTemp());
-        log.debug("*******weathers.size():"+weathers.size());
+        log.info("*******weathers.size():"+weathers.size());
         if (weathers.size() == 0)
             throw new NoMatchingWeatherException(ExceptionMessages.WEATHER_NOT_FOUND);
 
         List<FoodForWeather> foodForWeathers = foodForWeatherRepository.findByWeatherIdIn(weathers);
-        log.debug("***foodForWeathers.size():"+foodForWeathers.size());
+        log.info("***foodForWeathers.size():"+foodForWeathers.size());
         if (foodForWeathers.size() == 0)
             throw new NoMatchingFoodException(ExceptionMessages.WEATHER_NOT_FOUND);
 
         for (FoodForWeather foodForWeather : foodForWeathers) {
-            if(stringBuilder.toString().endsWith("?")){
-                stringBuilder.append("dishType=");
-            }else {
-                stringBuilder.append("&dishType=");
-            }
-
-
+            stringBuilder.append("&dishType=");
             stringBuilder.append(foodForWeather.getDishType().getDishTypeLabel());
         }
-        log.debug("*******final URI:"+ stringBuilder);
+        log.info("*******final URI:"+ stringBuilder);
         return new RecipeQueryDTO(stringBuilder.toString());
     }
 
@@ -137,10 +126,6 @@ public class WeatherServiceImpl implements WeatherService {
                                 .recipeName(hit.getRecipe().getLabel())
                                 .calories(Double.parseDouble(hit.getRecipe().getCalories()))
                                 .dishType(StringUtils.join(hit.getRecipe().getDishType(), ","))
-                                .mealType(StringUtils.join(hit.getRecipe().getMealType(), ","))
-                                .cuisineType(StringUtils.join(hit.getRecipe().getCuisineType(), ","))
-                                .healthType(StringUtils.join(hit.getRecipe().getHealthLabels(), ","))
-                                .dietType(StringUtils.join(hit.getRecipe().getDietLabels(), ","))
                                 .userId(account.get())
                                 .timestamp(java.time.LocalDateTime.now())
                                 .build()
