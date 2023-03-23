@@ -1,7 +1,6 @@
 package com.techreturners.weatheripe.weather.service;
 
-import com.techreturners.weatheripe.exception.ExceptionMessages;
-import com.techreturners.weatheripe.exception.UserSessionNotFoundException;
+import com.techreturners.weatheripe.exception.*;
 import com.techreturners.weatheripe.model.RecipeBook;
 import com.techreturners.weatheripe.model.UserAccount;
 import com.techreturners.weatheripe.recipe.dto.RecipeResponseDTO;
@@ -68,32 +67,46 @@ public class WeatherServiceImpl implements WeatherService {
     private String RECIPE_APP_ID;
 
 
-    public ResponseDTO getWeatherByLocation(String location) {
-        String uri = MessageFormat.format(WEATHER_API_URL, WEATHER_API_KEY, location);
-        log.debug("*******URI:" + uri);
-        ExternalRequestDto externalRequestDto = new ExternalRequestDto(uri, new WeatherApiDTO());
-        WeatherApiDTO weatherApiObj = (WeatherApiDTO) externalApiService.getResourcesByUri(externalRequestDto);
-
+    public ResponseDTO getWeatherByLocation(String location){
+        String uri = MessageFormat.format(WEATHER_API_URL,WEATHER_API_KEY, location);
+        log.info("*******URI:"+uri);
+        ExternalRequestDto externalRequestDto = new ExternalRequestDto(uri,new WeatherApiDTO());
+        WeatherApiDTO weatherApiObj;
+        try {
+            weatherApiObj = (WeatherApiDTO) externalApiService.getResourcesByUri(externalRequestDto);
+        }catch (ResourceNotFoundException e){
+            throw new WeatherNotFoundException(ExceptionMessages.WEATHER_NOT_FOUND);
+        }
+        log.info("*******CurrentTemperature:"+weatherApiObj.getCurrentTemp());
+        if (weatherApiObj == null || weatherApiObj.getCurrentValues()==null){
+            throw new WeatherNotFoundException(ExceptionMessages.WEATHER_NOT_FOUND);
+        }
         return weatherApiObj;
     }
 
-    public ResponseDTO buildExternalRecipeAPIQuery(WeatherApiDTO weatherApiObj) {
-        String baseUrl = MessageFormat.format(RECIPE_API_URL, RECIPE_APP_KEY, RECIPE_APP_ID);
+    public ResponseDTO buildExternalRecipeAPIQuery(WeatherApiDTO weatherApiObj){
+        if (weatherApiObj == null || weatherApiObj.getCurrentValues()==null)
+            throw new WeatherNotFoundException(ExceptionMessages.WEATHER_NOT_FOUND);
+
+        String baseUrl = MessageFormat.format(RECIPE_API_URL,RECIPE_APP_KEY, RECIPE_APP_ID);
         StringBuilder stringBuilder = new StringBuilder(baseUrl);
-        log.info("*******CurrentTemperature:" + weatherApiObj.getCurrentTemp());
+        log.info("*******CurrentTemperature:"+weatherApiObj.getCurrentTemp());
         List<Weather> weathers = weatherRepository
                 .findByTemperatureBetweenTemperatureHighLow(weatherApiObj.getCurrentTemp());
-
-        log.info("*******weathers.size():" + weathers.size());
+        log.info("*******weathers.size():"+weathers.size());
+        if (weathers.size() == 0)
+            throw new NoMatchingWeatherException(ExceptionMessages.WEATHER_NOT_FOUND);
 
         List<FoodForWeather> foodForWeathers = foodForWeatherRepository.findByWeatherIdIn(weathers);
-        log.info("***foodForWeathers.size():" + foodForWeathers.size());
+        log.info("***foodForWeathers.size():"+foodForWeathers.size());
+        if (foodForWeathers.size() == 0)
+            throw new NoMatchingFoodException(ExceptionMessages.WEATHER_NOT_FOUND);
 
         for (FoodForWeather foodForWeather : foodForWeathers) {
             stringBuilder.append("&dishType=");
             stringBuilder.append(foodForWeather.getDishType().getDishTypeLabel());
         }
-        log.info("*******final URI:" + stringBuilder);
+        log.info("*******final URI:"+ stringBuilder);
         return new RecipeQueryDTO(stringBuilder.toString());
     }
 
@@ -114,7 +127,7 @@ public class WeatherServiceImpl implements WeatherService {
         Arrays.stream(recipeResponseDTO.getHits())
                 .map(hit ->
                         RecipeBook.builder()
-                                .recipeURL(hit.getRecipe().getUri())
+                                .recipeURL(hit.getRecipe().getUrl())
                                 .recipeName(hit.getRecipe().getLabel())
                                 .calories(Double.parseDouble(hit.getRecipe().getCalories()))
                                 .dishType(StringUtils.join(hit.getRecipe().getDishType(), ","))

@@ -1,0 +1,5 @@
+{
+  "code": 400001,
+  "type": "Invalid Query Parameters",
+  "message": "The entries provided as query parameters were not valid for the request. Fix parameters and try again: 'location' - failed to query by the term 'Tokyo', try a different term"
+}

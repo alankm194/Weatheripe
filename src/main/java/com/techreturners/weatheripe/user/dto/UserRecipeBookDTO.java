@@ -10,9 +10,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserRecipeBookDTO  {
+public class UserRecipeBookDTO {
 
     Long recipeBookId;
     String recipe;
     String url;
+    String dishType;
 }

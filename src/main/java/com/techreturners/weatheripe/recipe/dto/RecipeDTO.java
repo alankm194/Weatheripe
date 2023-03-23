@@ -7,6 +7,7 @@ import lombok.Data;
 @Data
 public class RecipeDTO {
 
+    String url;
     String uri;
     String label;
     String calories;

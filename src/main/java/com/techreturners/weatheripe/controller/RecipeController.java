@@ -1,5 +1,6 @@
 package com.techreturners.weatheripe.controller;
 
+import com.techreturners.weatheripe.exception.UserSessionNotFoundException;
 import com.techreturners.weatheripe.external.dto.ResponseDTO;
 import com.techreturners.weatheripe.recipe.service.RecipeService;
 import com.techreturners.weatheripe.user.dto.UserRecipeBookResponseDTO;
@@ -45,10 +46,17 @@ public class RecipeController {
 //    }
 
 
-    @GetMapping({"/user/{location}"})
     @RolesAllowed("ROLE_USER")
+    @GetMapping({"/user/{location}"})
     public ResponseEntity<ResponseDTO> getWeatherByLocationForUser(@PathVariable String location, @AuthenticationPrincipal Jwt jwt) {
-        ResponseDTO responseDTO = (UserRecipeBookResponseDTO) weatherService.getRecipeByLocationForUser(location, jwt.getClaim("sub"));
-        return new ResponseEntity<>(responseDTO, HttpStatus.OK);
+        ResponseDTO responseDTO = null;
+        try {
+            responseDTO = (UserRecipeBookResponseDTO) weatherService.getRecipeByLocationForUser(location,jwt.getClaim("sub"));
+
+        } catch (UserSessionNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return new ResponseEntity<>(responseDTO, HttpStatus.CREATED);
+
     }
 }
