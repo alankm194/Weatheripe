@@ -31,27 +31,40 @@ public class RecipeBook {
     @Column
     double calories;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "diet_Type", referencedColumnName = "id")
-    DietType dietType;
+//    @OneToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "diet_Type", referencedColumnName = "id")
+//    DietType dietType;
+//
+//    @OneToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "health_Type", referencedColumnName = "id")
+//    HealthType healthType;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "health_Type", referencedColumnName = "id")
-    HealthType healthType;
+//    @OneToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "meal_Type", referencedColumnName = "id")
+//    MealType mealType;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "meal_Type", referencedColumnName = "id")
-    MealType mealType;
-
-    //    @OneToOne(fetch = FetchType.LAZY)
+//    @OneToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "dish_Type", referencedColumnName = "id")
 //    DishType dishType;
+
+    @Column
+    String dietType;
+
+    @Column
+    String healthType;
+
+    @Column
+    String mealType;
+
     @Column
     String dishType;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cuisine_Type", referencedColumnName = "id")
-    CuisineType cuisineType;
+    @Column
+    String cuisineType;
+
+//    @OneToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "cuisine_Type", referencedColumnName = "id")
+//    CuisineType cuisineType;
 
     @Column
     double rating;

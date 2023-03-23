@@ -39,6 +39,13 @@ public class UserAccountServiceImpl implements UserAccountService {
                                 .recipeBookId(recipeBook.getRecipeId())
                                 .recipe(recipeBook.getRecipeName())
                                 .url(recipeBook.getRecipeURL())
+                                .dishType(recipeBook.getDishType())
+                                .cuisineType(recipeBook.getCuisineType())
+                                .healthType(recipeBook.getHealthType())
+                                .mealType(recipeBook.getMealType())
+                                .rating(recipeBook.getRating())
+                                .dietType(recipeBook.getDietType())
+                                .calories(recipeBook.getCalories())
                                 .build())
                 .forEach(userRecipeBookDTOS::add);
 
@@ -46,8 +53,8 @@ public class UserAccountServiceImpl implements UserAccountService {
     }
 
     @Override
-    public ResponseDTO getUserRecipeBooks(String token) throws NoRecipeFoundException {
-        Optional<UserAccount> account = userAccountRepository.findById(1L);//TODO get this by user token
+    public ResponseDTO getUserRecipeBooks(String userToken) throws NoRecipeFoundException {
+        Optional<UserAccount> account = userAccountRepository.findByUserName(userToken);
         if (account.isEmpty()) {
             throw new UserSessionNotFoundException(ExceptionMessages.USER_SESSION_NOT_FOUND);
         }
@@ -67,6 +74,12 @@ public class UserAccountServiceImpl implements UserAccountService {
                                 .recipe(recipeBook.getRecipeName())
                                 .url(recipeBook.getRecipeURL())
                                 .dishType(recipeBook.getDishType())
+                                .cuisineType(recipeBook.getCuisineType())
+                                .healthType(recipeBook.getHealthType())
+                                .mealType(recipeBook.getMealType())
+                                .rating(recipeBook.getRating())
+                                .dietType(recipeBook.getDietType())
+                                .calories(recipeBook.getCalories())
                                 .build())
                 .forEach(recipeBookDTOList::add);
         return  new UserRecipeBookResponseDTO(recipeBookDTOList);
