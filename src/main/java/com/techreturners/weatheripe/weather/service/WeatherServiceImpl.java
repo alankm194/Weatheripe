@@ -100,6 +100,8 @@ public class WeatherServiceImpl implements WeatherService {
         for (FoodForWeather foodForWeather : foodForWeathers) {
             stringBuilder.append("&dishType=");
             stringBuilder.append(foodForWeather.getDishType().getDishTypeLabel());
+            stringBuilder.append("&cuisineType=");
+            stringBuilder.append(foodForWeather.getCuisineType().getCuisineTypeLabel());
         }
         log.info("*******final URI:"+ stringBuilder);
         return new RecipeQueryDTO(stringBuilder.toString());
