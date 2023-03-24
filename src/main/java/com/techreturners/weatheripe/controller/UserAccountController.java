@@ -16,6 +16,8 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+
 @Slf4j
 @RestController
 @RequestMapping(value = "/api/v1/user", consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -39,22 +41,22 @@ public class UserAccountController {
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 
-    @RolesAllowed("ROLE_USER")
+    @PreAuthorize("hasRole('ROLE_USER')")
     @DeleteMapping({"/deleteRecipeBook/{recipeBookId}"})
-    public ResponseEntity<MessageResponse> deleteRecipeBook(@Valid @PathVariable Long recipeBookId, @AuthenticationPrincipal Jwt jwt){
+    public ResponseEntity<MessageResponse> deleteRecipeBook(@PathVariable Long recipeBookId, Principal principal){
 
-        userAccountService.deleteRecipeBook(recipeBookId,jwt.getClaim("sub"));
+        userAccountService.deleteRecipeBook(recipeBookId,principal.getName());
         return ResponseEntity.ok(new MessageResponse("User recipe deleted successfully!"));
     }
 
-    @RolesAllowed("ROLE_USER")
+    @PreAuthorize("hasRole('ROLE_USER')")
     @DeleteMapping("/unregister")
-    public ResponseEntity<MessageResponse> unregisterUser(@AuthenticationPrincipal Jwt jwt) {
-        userAccountService.deleteUserByUsername(jwt.getClaim("sub"));
+    public ResponseEntity<MessageResponse> unregisterUser(Principal principal) {
+        userAccountService.deleteUserByUsername(principal.getName());
         return ResponseEntity.ok(new MessageResponse("User unregistered successfully!"));
     }
 
-    @RolesAllowed("ROLE_USER")
+    @PreAuthorize("hasRole('ROLE_USER')")
     @DeleteMapping("/unregister/{userId}")
     public ResponseEntity<MessageResponse> unregisterUser(@PathVariable Long userId) {
         userAccountService.deleteUserById(userId);
