@@ -16,6 +16,8 @@ Java 17, Spring Boot 3.0.2
 
 ## Key Features
 
+Weatheripe utilize the tomorrow.io APIs to get the weather of the specified location, eg. London and then based on internal data processing to decide which food type are suitable for the weather and pass it to Edamam API to get the recipe result to recommend to our user. 
+
 ### Public functions:
 1. Recommend recipe by the temperature of the location input
 2. View the Dish Type from our DB
@@ -50,3 +52,10 @@ mvn compile exec:java -Dexec.mainClass="com.techreturners.weatheripe.WeathipeApp
 ## Approaches:
 
 ## Future thoughts:
+
+## Reference:
+
+1. https://www.tomorrow.io/
+2. https://www.edamam.com/
+
+
