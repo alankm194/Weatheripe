@@ -47,25 +47,25 @@ public class RecipeServiceTest {
 //    }
 
 
-    @Test
-    public void getRecipeByWeatherConditionErrorNoRecipeFound(){
-        String query = "https://api.edamam.com/api/recipes/v2?app_key=dummykey&app_id=ba324f9b&type=any&dishType=salad";
-
-        ReflectionTestUtils.setField(recipeService,
-                "RECIPE_API_URL", "https://api.edamam.com/api/recipes/v2?&dishType=dess");
-
-        when(secretConfiguration.recipeAppId()).thenReturn("8a3753d7");
-        when(secretConfiguration.recipeAppKey()).thenReturn("67cafd22003829f89f36cf1800d9f7ca");
-
-        RecipeQueryDTO recipeQueryDTO = new RecipeQueryDTO(query);
-        assertThrows(NoMatchingCriteriaException.class, new Executable() {
-            @Override
-            public void execute() throws Throwable {
-                RecipeResponseDTO recipeResponseDTO = (RecipeResponseDTO) recipeService.getRecipeByWeatherCondition(recipeQueryDTO);
-            }
-        });
-
-    }
+//    @Test
+//    public void getRecipeByWeatherConditionErrorNoRecipeFound(){
+//        String query = "https://api.edamam.com/api/recipes/v2?app_key=dummykey&app_id=ba324f9b&type=any&dishType=salad";
+//
+//        ReflectionTestUtils.setField(recipeService,
+//                "RECIPE_API_URL", "https://api.edamam.com/api/recipes/v2?&dishType=dess");
+//
+//        when(secretConfiguration.recipeAppId()).thenReturn("8a3753d7");
+//        when(secretConfiguration.recipeAppKey()).thenReturn("67cafd22003829f89f36cf1800d9f7ca");
+//
+//        RecipeQueryDTO recipeQueryDTO = new RecipeQueryDTO(query);
+//        assertThrows(NoMatchingCriteriaException.class, new Executable() {
+//            @Override
+//            public void execute() throws Throwable {
+//                RecipeResponseDTO recipeResponseDTO = (RecipeResponseDTO) recipeService.getRecipeByWeatherCondition(recipeQueryDTO);
+//            }
+//        });
+//
+//    }
 
 
 

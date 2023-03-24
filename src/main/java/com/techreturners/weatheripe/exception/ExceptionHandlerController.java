@@ -40,4 +40,60 @@ public class ExceptionHandlerController {
                 new ErrorType(ex.getMessage(), "W0003", "RECORD_NOT_FOUND", "DB"),
                 HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler({UserSessionNotFoundException.class})
+    public ResponseEntity<ErrorType> handleUserSessionNotFoundException(
+            RuntimeException ex) {
+        return new ResponseEntity<>(
+                new ErrorType(ex.getMessage(), "W0004", "USER_SESSION_NOT_FOUND", "SESSION"),
+                HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler({NoRecipeFoundException.class})
+    public ResponseEntity<ErrorType> handleNoRecipeFoundException(
+            RuntimeException ex) {
+        return new ResponseEntity<>(
+                new ErrorType(ex.getMessage(), "W0005", "RECORD_NOT_FOUND", "EXT"),
+                HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler({RecipeNotFoundException.class})
+    public ResponseEntity<ErrorType> handleRecipeNotFoundException(
+            RuntimeException ex) {
+        return new ResponseEntity<>(
+                new ErrorType(ex.getMessage(), "W0006", "RECORD_NOT_FOUND", "EXT"),
+                HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler({NoMatchingCriteriaException.class})
+    public ResponseEntity<ErrorType> handleNoMatchingCriteriaException(
+            RuntimeException ex) {
+        return new ResponseEntity<>(
+                new ErrorType(ex.getMessage(), "W0007", "RECORD_NOT_FOUND", "EXT"),
+                HttpStatus.NOT_FOUND);
+    }
+    @ExceptionHandler({NoRecipeBookFoundException.class})
+    public ResponseEntity<ErrorType> handleNoRecipeBookFoundException(
+            RuntimeException ex) {
+        return new ResponseEntity<>(
+                new ErrorType(ex.getMessage(), "W0008", "RECORD_NOT_FOUND", "DB"),
+                HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler({UserNotFoundException.class})
+    public ResponseEntity<ErrorType> handleUserNotFoundException(
+            RuntimeException ex) {
+        return new ResponseEntity<>(
+                new ErrorType(ex.getMessage(), "W0009", "RECORD_NOT_FOUND", "DB"),
+                HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler({RecipeNotBelongToUserException.class})
+    public ResponseEntity<ErrorType> handleRecipeNotBelongToUserException(
+            RuntimeException ex) {
+        return new ResponseEntity<>(
+                new ErrorType(ex.getMessage(), "W0010", "RECORD_NOT_BELONG_TO_USER", "DB"),
+                HttpStatus.NOT_FOUND);
+    }
+
 }
