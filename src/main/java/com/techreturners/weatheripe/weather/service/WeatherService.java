@@ -1,6 +1,6 @@
 package com.techreturners.weatheripe.weather.service;
 
-import com.techreturners.weatheripe.exception.UserSessionNotFoundException;
+import com.techreturners.weatheripe.exception.userauthentication.UserSessionNotFoundException;
 import com.techreturners.weatheripe.external.dto.ResponseDTO;
 import com.techreturners.weatheripe.weather.dto.WeatherApiDTO;
 
