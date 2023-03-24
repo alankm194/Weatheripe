@@ -6,6 +6,9 @@ import com.techreturners.weatheripe.external.dto.ResponseDTO;
 import com.techreturners.weatheripe.recipe.dto.RecipeResponseDTO;
 import com.techreturners.weatheripe.recipe.service.RecipeServiceImpl;
 import com.techreturners.weatheripe.user.UserAccountServiceImpl;
+import com.techreturners.weatheripe.user.dto.RecipeBookDTO;
+import com.techreturners.weatheripe.user.dto.RecipeBookRequestDTO;
+import com.techreturners.weatheripe.user.dto.UserRecipeBookResponseDTO;
 import com.techreturners.weatheripe.weather.dto.RecipeQueryDTO;
 import com.techreturners.weatheripe.weather.dto.WeatherApiDTO;
 import com.techreturners.weatheripe.weather.service.WeatherServiceImpl;
@@ -16,12 +19,18 @@ import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @AutoConfigureMockMvc
 @SpringBootTest
@@ -75,17 +84,18 @@ public class RecipeControllerTests {
 //TODO Fix Test
 
 
-//    @Test
-//    public void testGetWeatherByLocationForUser() throws Exception {
+    @Test
+    public void testGetWeatherByLocationForUser() throws Exception {
 //        String location = "London";
 //        UserRecipeBookResponseDTO  userRecipeBookResponseDTO = new UserRecipeBookResponseDTO();
 //
-//        when(mockWeatherServiceImpl.getRecipeByLocationForUser(location,"")).thenReturn(userRecipeBookResponseDTO);
+//        when(mockWeatherServiceImpl.getRecipeByLocationForUser(location,"YourUserName")).thenReturn(userRecipeBookResponseDTO);
 //        this.mockMvcController.perform(
 //                        MockMvcRequestBuilders.get("/api/v1/recipe/user/"+location))
 //                .andExpect(MockMvcResultMatchers.status().isCreated());
-//
-//    }
+//TODO Fix Test add jwt token
+    }
+
 
 
 
