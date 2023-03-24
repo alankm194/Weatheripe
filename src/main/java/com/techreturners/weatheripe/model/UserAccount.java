@@ -49,6 +49,6 @@ public class UserAccount {
 
     @NotNull
     @Enumerated(EnumType.STRING)
-    private ERole role;
+    private PermissionRole role;
 
 }

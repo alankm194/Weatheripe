@@ -9,50 +9,54 @@ import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+
 @Slf4j
 @RestController
-@RequestMapping("/api/v1/user")
+@RequestMapping(value = "/api/v1/user" )
 public class UserAccountController {
     @Autowired
     UserAccountService userAccountService;
 
     @RolesAllowed("ROLE_USER")
     @GetMapping({"/recipeBook"})
-    public ResponseEntity<ResponseDTO> getUserRecipeBooks(@AuthenticationPrincipal Jwt jwt) {
+    public ResponseEntity<ResponseDTO> getUserRecipeBooks(Principal principal) {
 
-        ResponseDTO responseDTO = userAccountService.getUserRecipeBooks(jwt.getClaim("sub"));
+        ResponseDTO responseDTO = userAccountService.getUserRecipeBooks(principal.getName());
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 
-    @RolesAllowed("ROLE_USER")
+    @PreAuthorize("hasRole('ROLE_USER')")
     @PatchMapping({"/updateRecipeBook"})
-    public ResponseEntity<ResponseDTO> updateRecipeBook(@Valid @RequestBody RecipeBookRequestDTO recipeBookRequestDTO, @AuthenticationPrincipal Jwt jwt){
+    public ResponseEntity<ResponseDTO> updateRecipeBook(@Valid @RequestBody RecipeBookRequestDTO recipeBookRequestDTO,Principal principal){
 
-        ResponseDTO responseDTO = userAccountService.updateRecipeBook(recipeBookRequestDTO,jwt.getClaim("sub"));
+        ResponseDTO responseDTO = userAccountService.updateRecipeBook(recipeBookRequestDTO,principal.getName());
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 
-    @RolesAllowed("ROLE_USER")
+    @PreAuthorize("hasRole('ROLE_USER')")
     @DeleteMapping({"/deleteRecipeBook/{recipeBookId}"})
-    public ResponseEntity<MessageResponse> deleteRecipeBook(@Valid @PathVariable Long recipeBookId, @AuthenticationPrincipal Jwt jwt){
+    public ResponseEntity<MessageResponse> deleteRecipeBook(@PathVariable Long recipeBookId,Principal principal){
 
-        userAccountService.deleteRecipeBook(recipeBookId,jwt.getClaim("sub"));
+        userAccountService.deleteRecipeBook(recipeBookId,principal.getName());
         return ResponseEntity.ok(new MessageResponse("User recipe deleted successfully!"));
     }
 
-    @RolesAllowed("ROLE_USER")
+    @PreAuthorize("hasRole('ROLE_USER')")
     @DeleteMapping("/unregister")
-    public ResponseEntity<MessageResponse> unregisterUser(@AuthenticationPrincipal Jwt jwt) {
-        userAccountService.deleteUserByUsername(jwt.getClaim("sub"));
+    public ResponseEntity<MessageResponse> unregisterUser(Principal principal) {
+        userAccountService.deleteUserByUsername(principal.getName());
         return ResponseEntity.ok(new MessageResponse("User unregistered successfully!"));
     }
 
-    @RolesAllowed("ROLE_USER")
+    @PreAuthorize("hasRole('ROLE_USER')")
     @DeleteMapping("/unregister/{userId}")
     public ResponseEntity<MessageResponse> unregisterUser(@PathVariable Long userId) {
         userAccountService.deleteUserById(userId);
