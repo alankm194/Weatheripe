@@ -140,7 +140,7 @@ public class UserAccountServiceTest {
 
         Long recipeBookId = 1L;
 
-        doThrow(new UserNotFoundException(ExceptionMessages.USER_SESSION_NOT_FOUND))
+        doThrow(new UserNotFoundException(ExceptionMessages.USER_ACCOUNT_NOT_FOUND))
                 .when(userAccountRepository).findByUserName(username);
 
         RecipeBook recipeBook = RecipeBook.builder()
@@ -152,7 +152,7 @@ public class UserAccountServiceTest {
                 () -> userAccountService.deleteRecipeBook(recipeBookId, username));
 
         String actualMessage = exception.getMessage();
-        assertEquals(actualMessage, "User Session not found !");
+        assertEquals(actualMessage, "User not found. Please check and try again.");
 
 
         verify(userAccountRepository, times(1))

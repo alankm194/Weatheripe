@@ -108,7 +108,7 @@ public class UserAccountServiceImpl implements UserAccountService {
 
     public void deleteRecipeBook(Long recipeBookId, String username){
         UserAccount userAccount = userAccountRepository.findByUserName(username)
-                .orElseThrow(() -> new UserNotFoundException(ExceptionMessages.USER_SESSION_NOT_FOUND));
+                .orElseThrow(() -> new UserNotFoundException(ExceptionMessages.USER_ACCOUNT_NOT_FOUND));
 
         Optional<RecipeBook> recipeBookOptional = recipeBookRepository.findById(recipeBookId);
 
