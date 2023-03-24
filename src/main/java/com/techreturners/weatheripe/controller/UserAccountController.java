@@ -27,9 +27,9 @@ public class UserAccountController {
 
     @RolesAllowed("ROLE_USER")
     @GetMapping({"/recipeBook"})
-    public ResponseEntity<ResponseDTO> getUserRecipeBooks(@AuthenticationPrincipal Jwt jwt) {
+    public ResponseEntity<ResponseDTO> getUserRecipeBooks(Principal principal) {
 
-        ResponseDTO responseDTO = userAccountService.getUserRecipeBooks(jwt.getClaim("sub"));
+        ResponseDTO responseDTO = userAccountService.getUserRecipeBooks(principal.getName());
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 
@@ -43,7 +43,7 @@ public class UserAccountController {
 
     @PreAuthorize("hasRole('ROLE_USER')")
     @DeleteMapping({"/deleteRecipeBook/{recipeBookId}"})
-    public ResponseEntity<MessageResponse> deleteRecipeBook(@PathVariable Long recipeBookId, Principal principal){
+    public ResponseEntity<MessageResponse> deleteRecipeBook(@PathVariable Long recipeBookId,Principal principal){
 
         userAccountService.deleteRecipeBook(recipeBookId,principal.getName());
         return ResponseEntity.ok(new MessageResponse("User recipe deleted successfully!"));
