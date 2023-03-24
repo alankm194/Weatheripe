@@ -4,13 +4,14 @@ import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
 import com.techreturners.weatheripe.repository.UserAccountRepository;
-import com.techreturners.weatheripe.security.UserDetailsImpl;
+import com.techreturners.weatheripe.security.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.ObjectPostProcessor;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -29,9 +30,8 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtAut
 import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 import org.springframework.security.oauth2.server.resource.web.BearerTokenAuthenticationEntryPoint;
 import org.springframework.security.oauth2.server.resource.web.access.BearerTokenAccessDeniedHandler;
+import org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter;
 import org.springframework.security.web.SecurityFilterChain;
-
-import com.techreturners.weatheripe.security.UserDetailsServiceImpl;
 
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
@@ -98,7 +98,6 @@ public class WebSecurityConfiguration {
                         exceptions
                                 .authenticationEntryPoint(new BearerTokenAuthenticationEntryPoint())
                                 .accessDeniedHandler(new BearerTokenAccessDeniedHandler()));
-
         // Set permissions on endpoints
         http.authorizeHttpRequests()
                 // Swagger and actuator endpoints must be publicly accessible
@@ -119,6 +118,7 @@ public class WebSecurityConfiguration {
                 .requestMatchers("/api/v1/recipe/**")
                 .permitAll()
                 // Our private endpoints
+
                 .requestMatchers("/api/v1/recipe/user/**")
                 .authenticated()
                 .requestMatchers("/api/v1/user/**")
@@ -128,7 +128,14 @@ public class WebSecurityConfiguration {
                 // Set up oauth2 resource server
                 .and()
                 .httpBasic(Customizer.withDefaults())
-                .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt);
+                .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
+                .oauth2ResourceServer()
+                .withObjectPostProcessor(new ObjectPostProcessor<BearerTokenAuthenticationFilter>() {
+                    @Override
+                    public <O extends BearerTokenAuthenticationFilter> O postProcess(O object) {
+                        object.setAuthenticationFailureHandler(new CustomBearerTokenAuthenticationFailureHandler());
+                        return object;
+                    }});
 
         return http.build();
     }

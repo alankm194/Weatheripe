@@ -2,6 +2,8 @@ package com.techreturners.weatheripe.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -9,13 +11,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice(annotations = RestController.class)
 public class ExceptionHandlerController {
 
-    @ExceptionHandler({ResourceNotFoundException.class})
-    public ResponseEntity<ErrorType> handleResourceNotFoundException(
-            RuntimeException ex) {
-        return new ResponseEntity<>(
-                new ErrorType(ex.getMessage(), "RECORD_NOT_FOUND", "EXTERNAL DATA NOT FOUND", "DATA"),
-                HttpStatus.NOT_FOUND);
-    }
 
     @ExceptionHandler({WeatherNotFoundException.class})
     public ResponseEntity<ErrorType> handleWeatherNotFoundException(
@@ -93,6 +88,21 @@ public class ExceptionHandlerController {
             RuntimeException ex) {
         return new ResponseEntity<>(
                 new ErrorType(ex.getMessage(), "W0010", "RECORD_NOT_BELONG_TO_USER", "DB"),
+                HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler({AccessDeniedException.class, AuthenticationException.class})
+    public ResponseEntity<ErrorType> handleInvalidJWTBearerToken(
+            RuntimeException  ex) {
+        return new ResponseEntity<>(
+                new ErrorType(ex.getMessage(), "W0011", "INVALID_ACCESS_TOKEN", "SC"),
+                HttpStatus.UNAUTHORIZED);
+    }
+    @ExceptionHandler({ResourceNotFoundException.class})
+    public ResponseEntity<ErrorType> handleResourceNotFoundException(
+            RuntimeException ex) {
+        return new ResponseEntity<>(
+                new ErrorType(ex.getMessage(), "W0012", "EXTERNAL_DATA_NOT_FOUND", "DATA"),
                 HttpStatus.NOT_FOUND);
     }
 
