@@ -1,6 +1,9 @@
 package com.techreturners.weatheripe.service;
 
+import com.techreturners.weatheripe.exception.ExceptionMessages;
 import com.techreturners.weatheripe.exception.NoRecipeBookFoundException;
+import com.techreturners.weatheripe.exception.RecipeNotBelongToUserException;
+import com.techreturners.weatheripe.exception.UserNotFoundException;
 import com.techreturners.weatheripe.model.RecipeBook;
 import com.techreturners.weatheripe.model.UserAccount;
 import com.techreturners.weatheripe.repository.RecipeBookRepository;
@@ -14,13 +17,14 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -32,7 +36,10 @@ public class UserAccountServiceTest {
     RecipeBookRepository recipeBookRepository;
 
     @InjectMocks
-    UserAccountServiceImpl userAccountService ;
+    UserAccountServiceImpl userAccountService;
+
+    @Mock
+    UserAccountRepository userAccountRepository;
 
 
     @Test
@@ -90,5 +97,237 @@ public class UserAccountServiceTest {
         assertEquals(bookDTO1.getRating(), recipeBook.getRating());
 
     }
+
+    @Test
+    public void testDeleteRecipeBookReturnSuccess() throws Exception {
+        String username = "";
+        UserAccount userAccount = UserAccount.builder()
+                .id(1L)
+                .userName(username)
+                .password("12345678")
+                .email("1234@gmail.com")
+                .build();
+
+        Long recipeBookId = 1L;
+        when(userAccountRepository.findByUserName(username))
+                .thenReturn(Optional.of(userAccount));
+
+        RecipeBook recipeBook = RecipeBook.builder()
+                .userId(userAccount)
+                .recipeId(recipeBookId)
+                .build();
+        when(recipeBookRepository.findById(recipeBookId)).thenReturn(Optional.of(recipeBook));
+
+        doNothing().when(recipeBookRepository).delete(recipeBook);
+
+        userAccountService.deleteRecipeBook(recipeBookId, username);
+
+        verify(userAccountRepository, times(1))
+                .findByUserName(username);
+        verify(recipeBookRepository, times(1)).findById(recipeBookId);
+        verify(recipeBookRepository, times(1)).delete(recipeBook);
+    }
+
+    @Test
+    public void testDeleteRecipeBookReturnFailOnUserNotFound() throws Exception {
+        String username = "";
+        UserAccount userAccount = UserAccount.builder()
+                .id(1L)
+                .userName(username)
+                .password("12345678")
+                .email("1234@gmail.com")
+                .build();
+
+        Long recipeBookId = 1L;
+
+        doThrow(new UserNotFoundException(ExceptionMessages.USER_SESSION_NOT_FOUND))
+                .when(userAccountRepository).findByUserName(username);
+
+        RecipeBook recipeBook = RecipeBook.builder()
+                .userId(userAccount)
+                .recipeId(recipeBookId)
+                .build();
+
+        Exception exception = assertThrows(UserNotFoundException.class,
+                () -> userAccountService.deleteRecipeBook(recipeBookId, username));
+
+        String actualMessage = exception.getMessage();
+        assertEquals(actualMessage, "User Session not found !");
+
+
+        verify(userAccountRepository, times(1))
+                .findByUserName(username);
+        verify(recipeBookRepository, times(0)).findById(recipeBookId);
+        verify(recipeBookRepository, times(0)).delete(recipeBook);
+    }
+
+    @Test
+    public void testDeleteRecipeBookReturnFailOnRecipeBookNotFound() throws Exception {
+        String username = "";
+        UserAccount userAccount = UserAccount.builder()
+                .id(1L)
+                .userName(username)
+                .password("12345678")
+                .email("1234@gmail.com")
+                .build();
+
+        Long recipeBookId = 1L;
+        when(userAccountRepository.findByUserName(username))
+                .thenReturn(Optional.of(userAccount));
+
+        RecipeBook recipeBook = RecipeBook.builder()
+                .userId(userAccount)
+                .recipeId(recipeBookId)
+                .build();
+
+        doThrow(new NoRecipeBookFoundException(ExceptionMessages.NO_RECIPE_FOUND))
+                .when(recipeBookRepository).findById(recipeBookId);
+
+        Exception exception = assertThrows(NoRecipeBookFoundException.class,
+                () -> userAccountService.deleteRecipeBook(recipeBookId, username));
+
+        String actualMessage = exception.getMessage();
+        assertEquals(actualMessage, "There are no recipes saved ");
+
+
+        verify(userAccountRepository, times(1))
+                .findByUserName(username);
+        verify(recipeBookRepository, times(1)).findById(recipeBookId);
+        verify(recipeBookRepository, times(0)).delete(recipeBook);
+    }
+
+    @Test
+    public void testDeleteRecipeBookReturnFailOnRecipeNotBelongToUser() throws Exception {
+        String username = "user1";
+        String username2 = "user2";
+        UserAccount userAccount = UserAccount.builder()
+                .id(1L)
+                .userName(username)
+                .password("12345678")
+                .email("user1@gmail.com")
+                .build();
+
+        UserAccount userAccount2 = UserAccount.builder()
+                .id(2L)
+                .userName(username2)
+                .password("12345699")
+                .email("user2@gmail.com")
+                .build();
+
+        Long recipeBookId = 1L;
+        when(userAccountRepository.findByUserName(username))
+                .thenReturn(Optional.of(userAccount));
+
+        RecipeBook recipeBook = RecipeBook.builder()
+                .userId(userAccount2)
+                .recipeId(recipeBookId)
+                .build();
+        when(recipeBookRepository.findById(recipeBookId)).thenReturn(Optional.of(recipeBook));
+
+        doNothing().when(recipeBookRepository).delete(recipeBook);
+
+        Exception exception = assertThrows(RecipeNotBelongToUserException.class,
+                () -> userAccountService.deleteRecipeBook(recipeBookId, username));
+
+        String actualMessage = exception.getMessage();
+        assertEquals(actualMessage, "Recipe not belong to user. Please check and try again.");
+
+        verify(userAccountRepository, times(1))
+                .findByUserName(username);
+        verify(recipeBookRepository, times(1)).findById(recipeBookId);
+        verify(recipeBookRepository, times(0)).delete(recipeBook);
+    }
+
+    @Test
+    public void testDeleteUserByUsernameReturnSuccess() throws Exception {
+        String username = "";
+        UserAccount userAccount = UserAccount.builder()
+                .id(1L)
+                .userName(username)
+                .password("12345678")
+                .email("1234@gmail.com")
+                .build();
+
+        when(userAccountRepository.findByUserName(username)).thenReturn(Optional.of(userAccount));
+        doNothing().when(userAccountRepository).deleteById(userAccount.getId());
+
+        userAccountService.deleteUserByUsername(username);
+
+        verify(userAccountRepository, times(1))
+                .findByUserName(username);
+        verify(userAccountRepository, times(1)).deleteById(userAccount.getId());
+    }
+
+    @Test
+    public void testDeleteUserByUsernameReturnFailOnUserAccountNotFound() throws Exception {
+        String username = "";
+        UserAccount userAccount = UserAccount.builder()
+                .id(1L)
+                .userName(username)
+                .password("12345678")
+                .email("1234@gmail.com")
+                .build();
+
+        doThrow(new UserNotFoundException(ExceptionMessages.USER_ACCOUNT_NOT_FOUND))
+                .when(userAccountRepository).findByUserName(username);
+
+        Exception exception = assertThrows(UserNotFoundException.class,
+                () -> userAccountService.deleteUserByUsername(username));
+
+        String actualMessage = exception.getMessage();
+        assertEquals(actualMessage, "User not found. Please check and try again.");
+
+        verify(userAccountRepository, times(1))
+                .findByUserName(username);
+        verify(userAccountRepository, times(0)).deleteById(userAccount.getId());
+    }
+
+
+    @Test
+    public void testDeleteUserByIdReturnSuccess() throws Exception {
+        String username = "";
+        Long userId = 1L;
+        UserAccount userAccount = UserAccount.builder()
+                .id(userId)
+                .userName(username)
+                .password("12345678")
+                .email("1234@gmail.com")
+                .build();
+
+        when(userAccountRepository.existsById(userId)).thenReturn(true);
+        doNothing().when(userAccountRepository).deleteById(userAccount.getId());
+
+        userAccountService.deleteUserById(userId);
+
+        verify(userAccountRepository, times(1))
+                .existsById(userId);
+        verify(userAccountRepository, times(1)).deleteById(userAccount.getId());
+    }
+
+    @Test
+    public void testDeleteUserByIdReturnFailOnUserAccountNotFound() throws Exception {
+        String username = "";
+        Long userId = 1L;
+        UserAccount userAccount = UserAccount.builder()
+                .id(userId)
+                .userName(username)
+                .password("12345678")
+                .email("1234@gmail.com")
+                .build();
+
+        when(userAccountRepository.existsById(userId)).thenReturn(false);
+
+        Exception exception = assertThrows(UserNotFoundException.class,
+                () -> userAccountService.deleteUserById(userId));
+
+        String actualMessage = exception.getMessage();
+        assertEquals(actualMessage, "User not found. Please check and try again.");
+
+        verify(userAccountRepository, times(1))
+                .existsById(userId);
+        verify(userAccountRepository, times(0)).deleteById(userAccount.getId());
+    }
+
+
 
 }
