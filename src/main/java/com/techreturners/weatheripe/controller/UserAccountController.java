@@ -9,14 +9,16 @@ import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/v1/user")
+@RequestMapping(value = "/api/v1/user", consumes = MediaType.APPLICATION_JSON_VALUE)
 public class UserAccountController {
     @Autowired
     UserAccountService userAccountService;
@@ -29,7 +31,7 @@ public class UserAccountController {
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 
-    @RolesAllowed("ROLE_USER")
+    @PreAuthorize("hasRole('ROLE_USER')")
     @PatchMapping({"/updateRecipeBook"})
     public ResponseEntity<ResponseDTO> updateRecipeBook(@Valid @RequestBody RecipeBookRequestDTO recipeBookRequestDTO, @AuthenticationPrincipal Jwt jwt){
 
