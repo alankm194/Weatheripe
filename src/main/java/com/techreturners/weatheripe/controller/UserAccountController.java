@@ -20,7 +20,7 @@ import java.security.Principal;
 
 @Slf4j
 @RestController
-@RequestMapping(value = "/api/v1/user", consumes = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/v1/user" )
 public class UserAccountController {
     @Autowired
     UserAccountService userAccountService;
