@@ -7,5 +7,5 @@ public interface AuthService {
 
     SuccessfulLoginResponse login(LoginRequest loginRequest);
 
-
+    String extractUsernameFromToken(String token);
 }

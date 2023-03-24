@@ -9,4 +9,6 @@ import java.util.List;
 public interface RecipeBookRepository extends JpaRepository<RecipeBook, Long> {
 
     List<RecipeBook> findByUserId(UserAccount userId);
+
+    List<RecipeBook> findAllByRecipeIdIn(List<Long> recipeIds);
 }

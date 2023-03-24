@@ -16,4 +16,5 @@ public class RecipeDTO {
     String [] cuisineType;
     String [] mealType;
     String [] dishType;
+    String [] dietLabels;
 }

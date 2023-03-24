@@ -1,5 +1,7 @@
 package com.techreturners.weatheripe.recipe.service;
 
+import com.techreturners.weatheripe.exception.*;
+import com.techreturners.weatheripe.configuration.SecretConfiguration;
 import com.techreturners.weatheripe.exception.ExceptionMessages;
 import com.techreturners.weatheripe.exception.NoMatchingCriteriaException;
 import com.techreturners.weatheripe.weather.dto.RecipeQueryDTO;
@@ -18,33 +20,30 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Autowired
     private ExternalApiService externalApiService;
-//    @Autowired
-//    private JwtScretConfiguration externalApiService;
-
-    @Value("${recipe.api.url}")
-    private String RECIPE_API_URL;
-
-    @Value("${recipe.app.key}")
-    private String RECIPE_APP_KEY;
+    @Autowired
+    private SecretConfiguration secretConfiguration;
 
     @Value("${recipe.api.type}")
     private String API_TYPE;
 
-    @Value("${recipe.app.id}")
-    private String RECIPE_APP_ID;
 
     @Override
-    public ResponseDTO getRecipeByWeatherCondition(ResponseDTO weatherResponseDTO) throws NoMatchingCriteriaException {
+    public ResponseDTO getRecipeByWeatherCondition(ResponseDTO weatherResponseDTO) {
         RecipeQueryDTO recipeQueryDTO = (RecipeQueryDTO) weatherResponseDTO;
 
         StringBuilder query = new StringBuilder(recipeQueryDTO.getQuery());
-        query.append("&app_key=").append(RECIPE_APP_KEY);
-        query.append("&app_id=").append(RECIPE_APP_ID);
+        query.append("&app_key=").append(secretConfiguration.recipeAppKey());
+        query.append("&app_id=").append(secretConfiguration.recipeAppId());
         query.append("&type=").append(API_TYPE);
         log.info(query.toString());
         ExternalRequestDto externalRequestDto = new ExternalRequestDto(query.toString(), new RecipeResponseDTO());
-        RecipeResponseDTO recipeResponseDTO = (RecipeResponseDTO) externalApiService.getResourcesByUri(externalRequestDto);
+        RecipeResponseDTO recipeResponseDTO = null;
+        try {
+            recipeResponseDTO = (RecipeResponseDTO) externalApiService.getResourcesByUri(externalRequestDto);
 
+        } catch (ResourceNotFoundException e) {
+            throw new RecipeNotFoundException(ExceptionMessages.NO_MATCHING_FOOD_CRITERIA);
+        }
         if (recipeResponseDTO == null || recipeResponseDTO.getHits() == null || recipeResponseDTO.getHits().length == 0) {
             throw new NoMatchingCriteriaException(ExceptionMessages.NO_MATCHING_RECIPES_FOOD_CRITERIA);
         }

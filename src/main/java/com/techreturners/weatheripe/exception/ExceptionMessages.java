@@ -8,5 +8,7 @@ public interface ExceptionMessages {
     final String NO_MATCHING_RECIPES_FOOD_CRITERIA = "No recipes found for given criteria";
     final String USER_SESSION_NOT_FOUND = "User Session not found !";
     final String NO_RECIPE_FOUND = "There are no recipes saved ";
-    public final String WEATHER_NOT_FOUND = "Unable to find food type that match the weather of the specified location. Please check and try again.";
+    final String WEATHER_NOT_FOUND = "Unable to find food type that match the weather of the specified location. Please check and try again.";
+    final String USER_ACCOUNT_NOT_FOUND = "User not found. Please check and try again.";
+    final String RECIPE_NOT_BELONG_TO_USER = "Recipe not belong to user. Please check and try again.";
 }
