@@ -51,14 +51,17 @@ public class UserAccountServiceImpl implements UserAccountService {
 
     @Override
     public ResponseDTO updateRecipeBook(RecipeBookRequestDTO recipeBookRequestDTO, String sub) throws NoRecipeBookFoundException {
+        if (recipeBookRequestDTO.getRecipeBooks() == null || recipeBookRequestDTO.getRecipeBooks().length < 1) {
+            throw new NoRecipeBookFoundException(ExceptionMessages.NO_RECIPE_IDS);//no ids in requests
+        }
         List<Long> recipeIds = Arrays.stream(recipeBookRequestDTO.getRecipeBooks())
                 .map(RecipeBookDTO::getRecipeId).toList();
         if (recipeIds.isEmpty()) {
-            throw new NoRecipeBookFoundException("");//no ids in requests
+            throw new NoRecipeBookFoundException(ExceptionMessages.NO_RECIPE_IDS);//no ids in requests
         }
         List<RecipeBook> recipeBooks = recipeBookRepository.findAllByRecipeIdIn(recipeIds);
         if (recipeBooks.isEmpty()) {
-            throw new NoRecipeBookFoundException("");//invalid ids
+            throw new NoRecipeBookFoundException(ExceptionMessages.INVALID_RECIPE_IDS);//invalid ids
         }
         Map<Long, RecipeBook> recipeBooksById = recipeBooks.stream()
                 .collect(Collectors.toMap(RecipeBook::getRecipeId, Function.identity()));
