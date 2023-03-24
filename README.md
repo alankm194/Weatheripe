@@ -8,7 +8,7 @@ Java 17, Spring Boot 3.0.2
 ## UML Diagram
 1. DB Schema
 
-![DB Schema](Group2-Project-DB Schema New.drawio.png)
+![DB Schema](Group2-Project-DBSchema.drawio.png)
 
 2. Class Diagram
 
