@@ -1,6 +1,9 @@
 # Weatheripe API 
 ## Introduction
-Weatheripe provide a list of Rest API for users to query the recipe based on the weather at their locations.
+Sometimes we may have difficulties to decide what to cook for the meal. 
+So we introduced Weatheripe which provide a list of Rest API for users to query the recipe based on the weather at their locations.
+User can simply input the location. Then system will base on the location to check the weather and returns suitable recipe. 
+eg. If it is hot, Weatheripe would recommend recipes which can cool you down. If it is cold, Weatheripe would recommend recipes to warm you up.
 
 ## Technology
 Java 17, Spring Boot 3.0.2
@@ -52,6 +55,14 @@ mvn compile exec:java -Dexec.mainClass="com.techreturners.weatheripe.WeathipeApp
 ## Approaches:
 
 ## Future thoughts:
+Below are the functions to be implemented:
+1. Allow user saving dietary preferences and use it to search recipes, so that system can base on the dietary preference to recommended suitable recipes to users.
+2. Allow user to subscribe, so user can receive our recommend recipe by time by day with a sms
+3. Food diary
+4. Recommend recipe by location, based on the location, Weatheripe to recommend user the recipe that belongs to their location, so that user can buy ingredients easily. eg. If you are in UK, Weatheripe will recommend British food, to ensure that most ingredients you can buy are easily available in local supermarket and eliminate the headache to find the ingredients.
+5. Deployment to AWS cloud
+6. Add front end user interface
+7. Add CI/CD pipeline
 
 ## Reference:
 
