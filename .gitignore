@@ -27,7 +27,7 @@ target/
 .mvn/
 **/secret.yml
 **/secret.properties
-**/.key
+**/*.key
 
 # OSX
 .DS_Store
@@ -42,6 +42,4 @@ hs_err_pid*
 *.log.gz
 *.log-*.gz
 logs/
-/src/main/resources/rsa.private.key
-/src/main/resources/rsa.public.key
 /Weathipe.iml
