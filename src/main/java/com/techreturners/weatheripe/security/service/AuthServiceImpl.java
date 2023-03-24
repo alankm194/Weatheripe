@@ -11,6 +11,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.jwt.JwtClaimsSet;
+import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,7 @@ public class AuthServiceImpl implements AuthService {
     private final AuthenticationManager authenticationManager;
     private final PasswordEncoder encoder;
     private final JwtEncoder jwtEncoder;
+    private final JwtDecoder jwtDecoder;
 
     public SuccessfulLoginResponse login(LoginRequest loginRequest) throws BadCredentialsException{
 
@@ -54,5 +56,9 @@ public class AuthServiceImpl implements AuthService {
 
             var token = this.jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
             return SuccessfulLoginResponse.builder().username(user.getUsername()).token(token).build();
+    }
+
+    public String extractUsernameFromToken(String token){
+        return jwtDecoder.decode(token.substring("Bearer ".length())).getClaimAsString("sub");
     }
 }

@@ -1,5 +1,6 @@
 package com.techreturners.weatheripe.weather.service;
 
+import com.techreturners.weatheripe.configuration.SecretConfiguration;
 import com.techreturners.weatheripe.exception.*;
 import com.techreturners.weatheripe.model.RecipeBook;
 import com.techreturners.weatheripe.model.UserAccount;
@@ -34,6 +35,9 @@ public class WeatherServiceImpl implements WeatherService {
     private WebClient.Builder webClientBuilder;
 
     @Autowired
+    private SecretConfiguration secretConfiguration;
+
+    @Autowired
     private WeatherRepository weatherRepository;
 
     @Autowired
@@ -54,21 +58,12 @@ public class WeatherServiceImpl implements WeatherService {
     @Value("${weather.api.url}")
     private String WEATHER_API_URL;
 
-    @Value("${weather.api.key}")
-    private String WEATHER_API_KEY;
-
     @Value("${recipe.api.url}")
     private String RECIPE_API_URL;
 
-    @Value("${recipe.app.key}")
-    private String RECIPE_APP_KEY;
-
-    @Value("${recipe.app.id}")
-    private String RECIPE_APP_ID;
-
 
     public ResponseDTO getWeatherByLocation(String location){
-        String uri = MessageFormat.format(WEATHER_API_URL,WEATHER_API_KEY, location);
+        String uri = MessageFormat.format(WEATHER_API_URL, secretConfiguration.weatherApiKey(), location);
         log.info("*******URI:"+uri);
         ExternalRequestDto externalRequestDto = new ExternalRequestDto(uri,new WeatherApiDTO());
         WeatherApiDTO weatherApiObj;
@@ -88,7 +83,7 @@ public class WeatherServiceImpl implements WeatherService {
         if (weatherApiObj == null || weatherApiObj.getCurrentValues()==null)
             throw new WeatherNotFoundException(ExceptionMessages.WEATHER_NOT_FOUND);
 
-        String baseUrl = MessageFormat.format(RECIPE_API_URL,RECIPE_APP_KEY, RECIPE_APP_ID);
+        String baseUrl = MessageFormat.format(RECIPE_API_URL, secretConfiguration.recipeAppKey(), secretConfiguration.recipeAppId());
         StringBuilder stringBuilder = new StringBuilder(baseUrl);
         log.info("*******CurrentTemperature:"+weatherApiObj.getCurrentTemp());
         List<Weather> weathers = weatherRepository
