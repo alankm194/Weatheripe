@@ -35,9 +35,9 @@ public class UserAccountController {
 
     @PreAuthorize("hasRole('ROLE_USER')")
     @PatchMapping({"/updateRecipeBook"})
-    public ResponseEntity<ResponseDTO> updateRecipeBook(@Valid @RequestBody RecipeBookRequestDTO recipeBookRequestDTO, @AuthenticationPrincipal Jwt jwt){
+    public ResponseEntity<ResponseDTO> updateRecipeBook(@Valid @RequestBody RecipeBookRequestDTO recipeBookRequestDTO,  Principal principal){
 
-        ResponseDTO responseDTO = userAccountService.updateRecipeBook(recipeBookRequestDTO,jwt.getClaim("sub"));
+        ResponseDTO responseDTO = userAccountService.updateRecipeBook(recipeBookRequestDTO,principal.getName());
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 

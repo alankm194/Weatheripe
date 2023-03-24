@@ -2,6 +2,7 @@ package com.techreturners.weatheripe.controller;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.techreturners.weatheripe.exception.ErrorType;
 import com.techreturners.weatheripe.exception.ExceptionHandlerController;
 import com.techreturners.weatheripe.recipe.service.RecipeServiceImpl;
 import com.techreturners.weatheripe.user.UserAccountServiceImpl;
@@ -52,103 +53,77 @@ public class UserServiceControllerTest {
     }
 
 
-//    @Test
-//    public void testUpdateSingleRecipeBook() throws Exception {
-//        Principal mockPrincipal = mock(Principal.class);
-//        String username = "username";
-//        when(mockPrincipal.getName()).thenReturn(username);
-//
-//        RecipeBookDTO bookDTO1 = RecipeBookDTO.builder().recipeId(1L).rating(1d).isFavourite(true).build();
-//        RecipeBookRequestDTO recipeBookRequestDTO = RecipeBookRequestDTO.builder()
-//                .recipeBooks(new RecipeBookDTO[]{bookDTO1}).build();
-//
-//        UserRecipeBookResponseDTO userRecipeBookResponseDTO = new UserRecipeBookResponseDTO();
-//
-//        userRecipeBookResponseDTO.setUserRecipes(List.of(UserRecipeBookDTO.builder()
-//                .recipeBookId(1L)
-//                .rating(1d)
-//                .build()))
-//        ;
-//        when(mockUserAccountServiceImpl.updateRecipeBook(recipeBookRequestDTO, username)).thenReturn(userRecipeBookResponseDTO);
-//        this.mockMvcController.perform(
-//                        MockMvcRequestBuilders
-//                                .patch("/api/v1/user/updateRecipeBook")
-//                                .principal(mockPrincipal)
-//                                .content(mapper.writeValueAsString(recipeBookRequestDTO))
-//                                .contentType(MediaType.APPLICATION_JSON))
-//                .andExpect(MockMvcResultMatchers.status().isOk())
-//                .andExpect(jsonPath("$.userRecipes.[0].recipeBookId", Is.is(1)))
-//                .andExpect(jsonPath("$.userRecipes.[0].rating", Is.is(1)));
-//
-//
-//    }
-//
-//
-//    @Test
-//    public void testUpdateRecipeBookMultipleRecords() throws Exception {
-//
-//        Principal mockPrincipal = mock(Principal.class);
-//        String username = "username";
-//        when(mockPrincipal.getName()).thenReturn(username);
-//
-//        RecipeBookDTO bookDTO1 = RecipeBookDTO.builder().recipeId(1L).rating(1d).isFavourite(true).build();
-//        RecipeBookDTO bookDTO2 = RecipeBookDTO.builder().recipeId(2L).rating(2.5d).isFavourite(false).build();
-//        RecipeBookRequestDTO recipeBookRequestDTO = RecipeBookRequestDTO.builder()
-//                .recipeBooks(new RecipeBookDTO[]{bookDTO1, bookDTO2}).build();
-//
-//        UserRecipeBookResponseDTO userRecipeBookResponseDTO = new UserRecipeBookResponseDTO();
-//
-//        userRecipeBookResponseDTO.setUserRecipes(List.of(UserRecipeBookDTO.builder()
-//                .recipeBookId(1L)
-//                .rating(1d)
-//                .build()))
-//        ;
-//        when(mockUserAccountServiceImpl.updateRecipeBook(recipeBookRequestDTO, username)).thenReturn(userRecipeBookResponseDTO);
-//        this.mockMvcController.perform(
-//                        MockMvcRequestBuilders
-//                                .patch("/api/v1/user/updateRecipeBook")
-//                                .principal(mockPrincipal)
-//                                .content(mapper.writeValueAsString(recipeBookRequestDTO))
-//                                .accept(MediaType.APPLICATION_JSON))
-//                .andExpect(MockMvcResultMatchers.status().isOk())
-//                .andExpect(jsonPath("$.userRecipes.[0].recipeBookId", Is.is(1)))
-//                .andExpect(jsonPath("$.userRecipes.[0].rating", Is.is(1)))
-//                .andExpect(jsonPath("$.userRecipes.[1].recipeBookId", Is.is(2)))
-//                .andExpect(jsonPath("$.userRecipes.[1].rating", Is.is(2.5)));
-//
-//    }
-//
-//
-//    @Test
-//    public void testUpdateRecipeBookInvalidRecipeIds() throws Exception {
-//
-//        Principal mockPrincipal = mock(Principal.class);
-//        String username = "username";
-//        when(mockPrincipal.getName()).thenReturn(username);
-//
-//        RecipeBookDTO bookDTO1 = RecipeBookDTO.builder().recipeId(1L).rating(1d).isFavourite(true).build();
-//        RecipeBookDTO bookDTO2 = RecipeBookDTO.builder().recipeId(2L).rating(2.5d).isFavourite(false).build();
-//        RecipeBookRequestDTO recipeBookRequestDTO = RecipeBookRequestDTO.builder()
-//                .recipeBooks(new RecipeBookDTO[]{bookDTO1, bookDTO2}).build();
-//
-//        UserRecipeBookResponseDTO userRecipeBookResponseDTO = new UserRecipeBookResponseDTO();
-//
-//        userRecipeBookResponseDTO.setUserRecipes(List.of(UserRecipeBookDTO.builder()
-//                .recipeBookId(3L)
-//                .rating(1d)
-//                .build()))
-//        ;
-//        when(mockUserAccountServiceImpl.updateRecipeBook(recipeBookRequestDTO, username)).thenReturn(userRecipeBookResponseDTO);
-//        this.mockMvcController.perform(
-//                        MockMvcRequestBuilders
-//                                .patch("/api/v1/user/updateRecipeBook")
-//                                .principal(mockPrincipal)
-//                                .content(mapper.writeValueAsString(recipeBookRequestDTO))
-//                                .accept(MediaType.APPLICATION_JSON))
-//                .andExpect(MockMvcResultMatchers.status().isNotFound())
-//                .andExpect(jsonPath("$.error", Is.is("RECORD_NOT_FOUND")))
-//                .andExpect(jsonPath("$.message", Is.is("There are no recipes saved")));
-//
-//    }
+    @Test
+    public void testUpdateSingleRecipeBook() throws Exception {
+        Principal mockPrincipal = mock(Principal.class);
+        String username = "username";
+        when(mockPrincipal.getName()).thenReturn(username);
+
+        RecipeBookDTO bookDTO1 = RecipeBookDTO.builder().recipeId(1L).rating(1d).isFavourite(true).build();
+        RecipeBookRequestDTO recipeBookRequestDTO = RecipeBookRequestDTO.builder()
+                .recipeBooks(new RecipeBookDTO[]{bookDTO1}).build();
+
+        UserRecipeBookResponseDTO userRecipeBookResponseDTO = new UserRecipeBookResponseDTO();
+
+        userRecipeBookResponseDTO.setUserRecipes(List.of(UserRecipeBookDTO.builder()
+                .recipeBookId(1L)
+                .rating(1d)
+                .build()))
+        ;
+        when(mockUserAccountServiceImpl.updateRecipeBook(recipeBookRequestDTO, username)).thenReturn(userRecipeBookResponseDTO);
+        this.mockMvcController.perform(
+                        MockMvcRequestBuilders
+                                .patch("/api/v1/user/updateRecipeBook")
+                                .principal(mockPrincipal)
+                                .content(mapper.writeValueAsString(recipeBookRequestDTO))
+                                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(jsonPath("$.userRecipes.[0].recipeBookId", Is.is(1)))
+                .andExpect(jsonPath("$.userRecipes.[0].rating", Is.is(1.0)));
+
+
+    }
+
+
+    @Test
+    public void testUpdateRecipeBookMultipleRecords() throws Exception {
+
+        Principal mockPrincipal = mock(Principal.class);
+        String username = "username";
+        when(mockPrincipal.getName()).thenReturn(username);
+
+        RecipeBookDTO bookDTO1 = RecipeBookDTO.builder().recipeId(1L).rating(1d).isFavourite(true).build();
+        RecipeBookDTO bookDTO2 = RecipeBookDTO.builder().recipeId(2L).rating(2.5d).isFavourite(false).build();
+        RecipeBookRequestDTO recipeBookRequestDTO = RecipeBookRequestDTO.builder()
+                .recipeBooks(new RecipeBookDTO[]{bookDTO1, bookDTO2}).build();
+
+        UserRecipeBookResponseDTO userRecipeBookResponseDTO = new UserRecipeBookResponseDTO();
+
+        userRecipeBookResponseDTO.setUserRecipes(List.of(UserRecipeBookDTO.builder()
+                .recipeBookId(1L)
+                .rating(1d)
+                .build(),UserRecipeBookDTO.builder()
+                .recipeBookId(2L)
+                .rating(2.5d)
+                .build()));
+
+
+
+        when(mockUserAccountServiceImpl.updateRecipeBook(recipeBookRequestDTO, username)).thenReturn(userRecipeBookResponseDTO);
+        this.mockMvcController.perform(
+                        MockMvcRequestBuilders
+                                .patch("/api/v1/user/updateRecipeBook")
+                                .principal(mockPrincipal)
+                                .content(mapper.writeValueAsString(recipeBookRequestDTO))
+                                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(jsonPath("$.userRecipes.[0].recipeBookId", Is.is(1)))
+                .andExpect(jsonPath("$.userRecipes.[0].rating", Is.is(1.0)))
+                .andExpect(jsonPath("$.userRecipes.[1].recipeBookId", Is.is(2)))
+                .andExpect(jsonPath("$.userRecipes.[1].rating", Is.is(2.5)));
+
+    }
+
+
 
 }
