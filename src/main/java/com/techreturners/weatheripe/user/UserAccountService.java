@@ -22,4 +22,6 @@ public interface UserAccountService {
     void deleteUserByUsername(String username);
 
     void deleteRecipeBook(Long recipeBookId, String sub);
+
+    UserRecipeBookResponseDTO createUserRecipeBookResponseDTOs(List<RecipeBook> recipeBooks);
 }

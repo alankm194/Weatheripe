@@ -85,7 +85,7 @@ public class UserAccountServiceImpl implements UserAccountService {
     }
 
 
-    private UserRecipeBookResponseDTO createUserRecipeBookResponseDTOs(List<RecipeBook> recipeBooks){
+    public UserRecipeBookResponseDTO createUserRecipeBookResponseDTOs(List<RecipeBook> recipeBooks){
         List<UserRecipeBookDTO> recipeBookDTOList = new ArrayList<>();
         new UserRecipeBookDTO();
         recipeBooks.stream()

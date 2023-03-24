@@ -58,3 +58,26 @@ INSERT INTO public.food_for_weather (food_weather_id, dish_type, weather_id) VAL
 INSERT INTO public.food_for_weather (food_weather_id, dish_type, weather_id) VALUES (29,2,1);
 INSERT INTO public.food_for_weather (food_weather_id, dish_type, weather_id) VALUES (30,3,2);
 INSERT INTO public.food_for_weather (food_weather_id, dish_type, weather_id) VALUES (31,4,3);
+
+
+INSERT INTO public.cuisine_type(id, cuisine_type_label)VALUES (1, 'american');
+INSERT INTO public.cuisine_type(id, cuisine_type_label)VALUES (2, 'asian');
+INSERT INTO public.cuisine_type(id, cuisine_type_label)VALUES (3, 'british');
+INSERT INTO public.cuisine_type(id, cuisine_type_label)VALUES (4, 'caribbean');
+INSERT INTO public.cuisine_type(id, cuisine_type_label)VALUES (5, 'central europe');
+INSERT INTO public.cuisine_type(id, cuisine_type_label)VALUES (6, 'chinese');
+INSERT INTO public.cuisine_type(id, cuisine_type_label)VALUES (7, 'eastern europe');
+INSERT INTO public.cuisine_type(id, cuisine_type_label)VALUES (8, 'french');
+INSERT INTO public.cuisine_type(id, cuisine_type_label)VALUES (9, 'greek');
+INSERT INTO public.cuisine_type(id, cuisine_type_label)VALUES (10, 'indian');
+INSERT INTO public.cuisine_type(id, cuisine_type_label)VALUES (11, 'italian');
+INSERT INTO public.cuisine_type(id, cuisine_type_label)VALUES (12, 'japanese');
+INSERT INTO public.cuisine_type(id, cuisine_type_label)VALUES (13, 'korean');
+INSERT INTO public.cuisine_type(id, cuisine_type_label)VALUES (14, 'kosher');
+INSERT INTO public.cuisine_type(id, cuisine_type_label)VALUES (15, 'mediterranean');
+INSERT INTO public.cuisine_type(id, cuisine_type_label)VALUES (16, 'mexican');
+INSERT INTO public.cuisine_type(id, cuisine_type_label)VALUES (17, 'middle eastern');
+INSERT INTO public.cuisine_type(id, cuisine_type_label)VALUES (18, 'nordic');
+INSERT INTO public.cuisine_type(id, cuisine_type_label)VALUES (19, 'south american');
+INSERT INTO public.cuisine_type(id, cuisine_type_label)VALUES (20, 'south east asian');
+INSERT INTO public.cuisine_type(id, cuisine_type_label)VALUES (21, 'world');
