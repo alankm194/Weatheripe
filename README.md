@@ -1,8 +1,8 @@
 # Weatheripe API 
 ## Introduction
 Sometimes we may have difficulties to decide what to cook for the meal. 
-So we introduced Weatheripe which provide a list of Rest API for users to query the recipe based on the weather at their locations.
-User can simply input the location. Then system will base on the location to check the weather and returns suitable recipe. 
+So we introduced Weatheripe which provide a list of Rest APIs for users to query the recipes based on the weather at their locations.
+User can simply input the location. Then Weatheripe will base on the location to check the weather and returns suitable recipes. 
 eg. If it is hot, Weatheripe would recommend recipes which can cool you down. If it is cold, Weatheripe would recommend recipes to warm you up.
 
 ## Technology
@@ -49,10 +49,12 @@ mvn clean test
 ```
 mvn compile exec:java -Dexec.mainClass="com.techreturners.weatheripe.WeathipeApplication"
 ```
+API documentation can be found in [Swagger](http://localhost:8080/swagger-ui/index.html) after local server start up.
 
 ## Assumptions:
 
 ## Approaches:
+
 
 ## Future thoughts:
 Below are the functions to be implemented:
