@@ -1,6 +1,6 @@
 package com.techreturners.weatheripe.security.service;
 
-import com.techreturners.weatheripe.model.ERole;
+import com.techreturners.weatheripe.model.PermissionRole;
 import com.techreturners.weatheripe.model.UserAccount;
 import com.techreturners.weatheripe.repository.UserAccountRepository;
 import com.techreturners.weatheripe.request.SignupRequest;
@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService{
         UserAccount user = UserAccount.builder()
                 .userName(userSignUp.getUsername())
                 .email(userSignUp.getEmail())
-                .role(ERole.ROLE_USER)
+                .role(PermissionRole.USER)
                 .createdTimestamp(new Date(System.currentTimeMillis()))
                 .password(encoder.encode(userSignUp.getPassword()))
                 .isActive(true).build();

@@ -88,4 +88,12 @@ public class ExceptionHandlerController {
                 HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler({RecipeNotBelongToUserException.class})
+    public ResponseEntity<ErrorType> handleRecipeNotBelongToUserException(
+            RuntimeException ex) {
+        return new ResponseEntity<>(
+                new ErrorType(ex.getMessage(), "W0010", "RECORD_NOT_BELONG_TO_USER", "DB"),
+                HttpStatus.NOT_FOUND);
+    }
+
 }
