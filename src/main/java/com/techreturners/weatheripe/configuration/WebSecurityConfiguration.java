@@ -111,6 +111,7 @@ public class WebSecurityConfiguration {
                 .requestMatchers("/webjars/**").permitAll()
                 .requestMatchers("/swagger-ui/**").permitAll()
                 .requestMatchers("/actuator/**").permitAll()
+                .requestMatchers("/api/v1/dishtypes/**").permitAll()
                 .requestMatchers(toH2Console()).permitAll()
 
                 // Our public endpoints
