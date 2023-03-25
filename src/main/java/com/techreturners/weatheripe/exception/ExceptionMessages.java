@@ -13,4 +13,7 @@ public interface ExceptionMessages {
     final String NO_RECIPE_IDS = "No data found !" ;
     final String RECIPE_NOT_BELONG_TO_USER = "Recipe not belong to user. Please check and try again.";
     final String INVALID_API_KEY = "Invalid API key .Please contact the admin team ";
+
+    final String EMPTY_LOCATION_INPUT = "Input parameter -location is empty !";
+
 }
