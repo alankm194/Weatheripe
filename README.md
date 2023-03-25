@@ -55,6 +55,38 @@ API documentation can be found in [Swagger](http://localhost:8080/swagger-ui/ind
 
 ## Approaches:
 
+This Java Spring Boot API project uses the following approaches:
+
+### Architecture
+The project follows the Model-View-Controller (MVC) architecture pattern, which separates the application into three interconnected components: the model, the view, and the controller. This allows for a clean separation of concerns and makes the codebase easier to manage.
+
+### Frameworks and Libraries
+The project uses the following frameworks and libraries:
+
+- springframework.boot:3.0.2: A popular framework for building enterprise-level Java applications.
+- Hibernate: A powerful ORM tool for working with databases.
+- JPA: A Java Persistence API that provides a standard way to work with relational databases.
+- io.jsonwebtoken 0.11.5: A library for JSON Web Tokens (JWTs), which are used for secure authentication and authorization.
+- webflux: A reactive web framework for building non-blocking, event-driven applications.
+- com.c4-soft.springaddons 6.1.3: A library that provides additional features and utilities for Spring Boot applications.
+
+### Database
+The project uses Postgres as the deployment database and H2DB for testing and development purposes.
+
+### Testing
+The project uses the following testing frameworks and libraries:
+
+- Mockito: A mocking framework for Java that allows for easy testing of dependencies.
+- JUnit: A popular unit testing framework for Java that provides a simple and efficient way to test code.
+
+### Security
+The project uses Spring Security with JWT tokens and user role-based access control to secure the endpoints. This provides a robust and secure way to authenticate and authorize users of the API.
+
+### Deployment
+
+### Documentation
+
+
 
 ## Future thoughts:
 Below are the functions to be implemented:
