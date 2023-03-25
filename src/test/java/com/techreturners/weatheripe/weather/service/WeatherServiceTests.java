@@ -6,6 +6,7 @@ import com.techreturners.weatheripe.configuration.SecretConfiguration;
 import com.techreturners.weatheripe.exception.recipe.NoMatchingFoodException;
 import com.techreturners.weatheripe.exception.weather.NoMatchingWeatherException;
 import com.techreturners.weatheripe.exception.weather.WeatherNotFoundException;
+import com.techreturners.weatheripe.model.recipe.CuisineType;
 import com.techreturners.weatheripe.weather.dto.RecipeQueryDTO;
 import com.techreturners.weatheripe.model.recipe.DishType;
 import com.techreturners.weatheripe.model.FoodForWeather;
@@ -58,7 +59,7 @@ public class WeatherServiceTests {
 
         when(secretConfiguration.recipeAppId()).thenReturn("dummyAppId");
         when(secretConfiguration.recipeAppKey()).thenReturn("dummyAppKey");
-        String query = "https://api.edamam.com/api/recipes/v2?app_key=dummyAppKey&app_id=dummyAppId&type=any&dishType=salad";
+        String query = "https://api.edamam.com/api/recipes/v2?app_key=dummyAppKey&app_id=dummyAppId&type=any&dishType=salad&cuisineType=british";
 
         // To read the json file to form the weatherApiObj
         Resource resource = new ClassPathResource("/good_weather_response.json");
@@ -82,7 +83,7 @@ public class WeatherServiceTests {
 
         List<FoodForWeather> foodForWeathers = new ArrayList<>();
         foodForWeathers.add(new FoodForWeather(1L, weather1, null, null,
-                null, new DishType(1L, "salad"), null));
+                null, new DishType(1L, "salad"), new CuisineType(1L, "british")));
         when(mockFoodForWeatherRepository.findByWeatherIdIn(weathers)).thenReturn(foodForWeathers);
 
         RecipeQueryDTO recipeQueryDTO = (RecipeQueryDTO) weatherServiceImpl.buildExternalRecipeAPIQuery(weatherApiObj);
@@ -95,7 +96,7 @@ public class WeatherServiceTests {
 
     @Test
     public void testBuildExternalRecipeAPIQueryThrowExceptionInGettingExternalResponse() throws Exception {
-        String query = "https://api.edamam.com/api/recipes/v2?app_key=dummyAppKey&app_id=dummyAppId&type=any&dishType=salad";
+        String query = "https://api.edamam.com/api/recipes/v2?app_key=dummyAppKey&app_id=dummyAppId&type=any&dishType=salad&cuisineType=british";
 
         // To read the json file to form the weatherApiObj
         Resource resource = new ClassPathResource("/bad_weather_response.json");
@@ -114,7 +115,7 @@ public class WeatherServiceTests {
 
     @Test
     public void testBuildExternalRecipeAPIQueryThrowExceptionInFindWeatherModel() throws Exception {
-        String query = "https://api.edamam.com/api/recipes/v2?app_key=dummyAppKey&app_id=dummyAppId&type=any&dishType=salad";
+        String query = "https://api.edamam.com/api/recipes/v2?app_key=dummyAppKey&app_id=dummyAppId&type=any&dishType=salad&cuisineType=british";
 
         // To read the json file to form the weatherApiObj
         Resource resource = new ClassPathResource("/good_weather_response.json");
@@ -136,7 +137,7 @@ public class WeatherServiceTests {
 
     @Test
     public void testBuildExternalRecipeAPIQueryThrowExceptionInFindFoodTypeModel() throws Exception {
-        String query = "https://api.edamam.com/api/recipes/v2?app_key=dummyAppKey&app_id=dummyAppId&type=any&dishType=salad";
+        String query = "https://api.edamam.com/api/recipes/v2?app_key=dummyAppKey&app_id=dummyAppId&type=any&dishType=salad&cuisineType=british";
 
         // To read the json file to form the weatherApiObj
         Resource resource = new ClassPathResource("/good_weather_response.json");

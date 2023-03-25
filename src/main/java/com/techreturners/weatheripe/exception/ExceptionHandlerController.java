@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 
 
-
 @RestControllerAdvice(annotations = RestController.class)
 public class ExceptionHandlerController {
 
@@ -132,4 +131,12 @@ public class ExceptionHandlerController {
 
     }
 
+    @ExceptionHandler({InvalidApiKeyException.class})
+    public ResponseEntity<ErrorResponseDTO> handleInvalidApiKeyException(
+            RuntimeException ex) {
+
+        return new ResponseEntity<>(
+                new ErrorResponseDTO(ex.getMessage(), "W0014", "INVALID_API_KEY", "EXT"),
+                HttpStatus.NOT_FOUND);
+    }
 }

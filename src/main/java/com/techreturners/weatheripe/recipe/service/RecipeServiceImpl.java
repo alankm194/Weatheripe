@@ -44,6 +44,8 @@ public class RecipeServiceImpl implements RecipeService {
 
         } catch (ResourceNotFoundException e) {
             throw new RecipeNotFoundException(ExceptionMessages.NO_MATCHING_FOOD_CRITERIA);
+        } catch (InvalidApiKeyException e) {
+            throw new RecipeNotFoundException(ExceptionMessages.INVALID_API_KEY);
         }
         if (recipeResponseDTO == null || recipeResponseDTO.getHits() == null || recipeResponseDTO.getHits().length == 0) {
             throw new NoMatchingCriteriaException(ExceptionMessages.NO_MATCHING_RECIPES_FOOD_CRITERIA);

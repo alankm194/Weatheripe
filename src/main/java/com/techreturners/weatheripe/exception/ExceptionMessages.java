@@ -12,4 +12,5 @@ public interface ExceptionMessages {
     final String INVALID_RECIPE_IDS = "Requested recipe ids are not found system . Please check and try again.";
     final String NO_RECIPE_IDS = "No data found !" ;
     final String RECIPE_NOT_BELONG_TO_USER = "Recipe not belong to user. Please check and try again.";
+    final String INVALID_API_KEY = "Invalid API key .Please contact the admin team ";
 }
