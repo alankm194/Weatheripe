@@ -18,11 +18,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 
 
-
-@Hidden
 @RestControllerAdvice(annotations = RestController.class)
 public class ExceptionHandlerController {
-
 
 
     @ExceptionHandler({WeatherNotFoundException.class})
@@ -80,6 +77,7 @@ public class ExceptionHandlerController {
                 new ErrorResponseDTO(ex.getMessage(), "W0007", "RECORD_NOT_FOUND", "EXT"),
                 HttpStatus.NOT_FOUND);
     }
+
     @ExceptionHandler({NoRecipeBookFoundException.class})
     public ResponseEntity<ErrorResponseDTO> handleNoRecipeBookFoundException(
             RuntimeException ex) {
@@ -106,11 +104,12 @@ public class ExceptionHandlerController {
 
     @ExceptionHandler({AccessDeniedException.class, AuthenticationException.class})
     public ResponseEntity<ErrorResponseDTO> handleInvalidJWTBearerToken(
-            RuntimeException  ex) {
+            RuntimeException ex) {
         return new ResponseEntity<>(
                 new ErrorResponseDTO(ex.getMessage(), "W0011", "INVALID_ACCESS_TOKEN", "SC"),
                 HttpStatus.UNAUTHORIZED);
     }
+
     @ExceptionHandler({ResourceNotFoundException.class})
     public ResponseEntity<ErrorResponseDTO> handleResourceNotFoundException(
             RuntimeException ex) {
@@ -123,25 +122,24 @@ public class ExceptionHandlerController {
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     public ResponseEntity<ErrorResponseDTO> handleLoginResourceAlreadyExistsException(LoginResourceAlreadyExistsException ex, WebRequest request) {
         return new ResponseEntity<>(
-               new ErrorResponseDTO(ex.getMessage(),"W0012", "REGISTER_DETAILS_INVALID", "REGISTER"),
-        HttpStatus.NOT_FOUND);
+                new ErrorResponseDTO(ex.getMessage(), "W0012", "REGISTER_DETAILS_INVALID", "REGISTER"),
+                HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(value = {BadCredentialsException.class})
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     public ResponseEntity<ErrorResponseDTO> handleResourceAlreadyExistsException(BadCredentialsException ex, WebRequest request) {
         return new ResponseEntity<>(new ErrorResponseDTO(ex.getMessage(), "W0013", "BAD_CREDENTIALS", "LOGIN"),
-        HttpStatus.NOT_FOUND);
+                HttpStatus.NOT_FOUND);
 
     }
 
     @ExceptionHandler({InvalidApiKeyException.class})
     public ResponseEntity<ErrorResponseDTO> handleInvalidApiKeyException(
             RuntimeException ex) {
-
         return new ResponseEntity<>(
                 new ErrorResponseDTO(ex.getMessage(), "W0014", "INVALID_API_KEY", "EXT"),
-                HttpStatus.NOT_FOUND);
+                HttpStatus.NETWORK_AUTHENTICATION_REQUIRED);
     }
 
     @ExceptionHandler(value = {MethodArgumentNotValidException.class})
@@ -153,5 +151,14 @@ public class ExceptionHandlerController {
         }
         return new ResponseEntity<>(new ErrorResponseDTO(errorResp, "W0015", "DETAILS_INVALID", "AUTH"),
                 HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler({EmptyInputParameterException.class})
+    public ResponseEntity<ErrorResponseDTO> handleEmptyInputParameterException(
+            RuntimeException ex) {
+
+        return new ResponseEntity<>(
+                new ErrorResponseDTO(ex.getMessage(), "W0016", "INVALID_INPUT", "EXT"),
+                HttpStatus.PRECONDITION_FAILED);
     }
 }
