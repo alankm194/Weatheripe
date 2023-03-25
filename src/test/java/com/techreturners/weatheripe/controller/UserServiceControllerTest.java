@@ -75,7 +75,7 @@ public class UserServiceControllerTest {
         when(mockUserAccountServiceImpl.updateRecipeBook(recipeBookRequestDTO, username)).thenReturn(userRecipeBookResponseDTO);
         this.mockMvcController.perform(
                         MockMvcRequestBuilders
-                                .patch("/api/v1/user/updateRecipeBook")
+                                .patch("/api/v1/user/recipeBook")
                                 .principal(mockPrincipal)
                                 .content(mapper.writeValueAsString(recipeBookRequestDTO))
                                 .contentType(MediaType.APPLICATION_JSON))
@@ -114,7 +114,7 @@ public class UserServiceControllerTest {
         when(mockUserAccountServiceImpl.updateRecipeBook(recipeBookRequestDTO, username)).thenReturn(userRecipeBookResponseDTO);
         this.mockMvcController.perform(
                         MockMvcRequestBuilders
-                                .patch("/api/v1/user/updateRecipeBook")
+                                .patch("/api/v1/user/recipeBook")
                                 .principal(mockPrincipal)
                                 .content(mapper.writeValueAsString(recipeBookRequestDTO))
                                 .contentType(MediaType.APPLICATION_JSON))
