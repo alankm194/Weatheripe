@@ -9,11 +9,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
+
 
 
 @RestControllerAdvice(annotations = RestController.class)
@@ -138,5 +140,16 @@ public class ExceptionHandlerController {
         return new ResponseEntity<>(
                 new ErrorResponseDTO(ex.getMessage(), "W0014", "INVALID_API_KEY", "EXT"),
                 HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(value = {MethodArgumentNotValidException.class})
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
+    public ResponseEntity<ErrorResponseDTO> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex, WebRequest request) {
+        String errorResp = "Invalid arguments used during registration";
+        if (ex.getErrorCount() > 0) {
+            errorResp = ex.getAllErrors().get(0).getDefaultMessage();
+        }
+        return new ResponseEntity<>(new ErrorResponseDTO(errorResp, "W0015", "DETAILS_INVALID", "AUTH"),
+                HttpStatus.BAD_REQUEST);
     }
 }

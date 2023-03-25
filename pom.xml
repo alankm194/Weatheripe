@@ -62,8 +62,14 @@
         </dependency>
         <dependency>
             <groupId>org.springdoc</groupId>
-            <artifactId>springdoc-openapi-security</artifactId>
-            <version>1.6.15</version>
+            <artifactId>springdoc-openapi-starter-common</artifactId>
+            <version>2.0.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-api</artifactId>
+            <version>2.0.4</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
