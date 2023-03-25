@@ -96,4 +96,12 @@ public class ExceptionHandlerController {
                 HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler({InvalidApiKeyException.class})
+    public ResponseEntity<ErrorType> handleInvalidApiKeyException(
+            RuntimeException ex) {
+        return new ResponseEntity<>(
+                new ErrorType(ex.getMessage(), "W0011", "INVALID_API_KEY", "EXT"),
+                HttpStatus.NOT_FOUND);
+    }
+
 }

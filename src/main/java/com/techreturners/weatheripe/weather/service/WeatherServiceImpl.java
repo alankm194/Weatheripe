@@ -133,6 +133,7 @@ public class WeatherServiceImpl implements WeatherService {
                                 .healthType(StringUtils.join(hit.getRecipe().getHealthLabels(), ","))
                                 .dietType(StringUtils.join(hit.getRecipe().getDietLabels(), ","))
                                 .userId(account.get())
+                                .is_favourite(Boolean.FALSE)
                                 .timestamp(java.time.LocalDateTime.now())
                                 .build()
                 )

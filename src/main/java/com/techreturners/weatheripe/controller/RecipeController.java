@@ -36,13 +36,6 @@ public class RecipeController {
     }
 
 
-//    @GetMapping({"/recipe"})
-//    public ResponseEntity<ResponseDTO> getRecipe() {
-//        RecipeQueryDTO weatherResponseDTO = new RecipeQueryDTO("https://api.edamam.com/api/recipes/v2?dishType=pancake&dishType=pasta&dishType=maincourse");
-//         return new ResponseEntity<>(recipeService.getRecipeByWeatherCondition(weatherResponseDTO), HttpStatus.OK);
-//    }
-
-
     @GetMapping({"/user/{location}"})
     @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<ResponseDTO> getWeatherByLocationForUser(@PathVariable String location, Principal principal ) {
