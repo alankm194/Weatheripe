@@ -27,7 +27,7 @@ target/
 .mvn/
 **/secret.yml
 **/secret.properties
-**/.key
+**/*.key
 
 # OSX
 .DS_Store

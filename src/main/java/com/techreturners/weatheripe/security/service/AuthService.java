@@ -1,11 +1,11 @@
 package com.techreturners.weatheripe.security.service;
 
-import com.techreturners.weatheripe.request.LoginRequest;
-import com.techreturners.weatheripe.response.SuccessfulLoginResponse;
+import com.techreturners.weatheripe.security.dto.LoginRequestDTO;
+import com.techreturners.weatheripe.security.dto.SuccessfulLoginDTO;
 
 public interface AuthService {
 
-    SuccessfulLoginResponse login(LoginRequest loginRequest);
+    SuccessfulLoginDTO login(LoginRequestDTO loginRequestDTO);
 
     String extractUsernameFromToken(String token);
 }

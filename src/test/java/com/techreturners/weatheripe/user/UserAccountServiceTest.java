@@ -1,13 +1,14 @@
 package com.techreturners.weatheripe.user;
 
 import com.techreturners.weatheripe.exception.ExceptionMessages;
-import com.techreturners.weatheripe.exception.NoRecipeBookFoundException;
-import com.techreturners.weatheripe.exception.RecipeNotBelongToUserException;
-import com.techreturners.weatheripe.exception.UserNotFoundException;
-import com.techreturners.weatheripe.model.RecipeBook;
-import com.techreturners.weatheripe.model.UserAccount;
+import com.techreturners.weatheripe.exception.recipe.NoRecipeBookFoundException;
+import com.techreturners.weatheripe.exception.recipe.RecipeNotBelongToUserException;
+import com.techreturners.weatheripe.exception.userauthentication.UserNotFoundException;
+import com.techreturners.weatheripe.model.recipe.RecipeBook;
+import com.techreturners.weatheripe.model.user.UserAccount;
 import com.techreturners.weatheripe.repository.RecipeBookRepository;
 import com.techreturners.weatheripe.repository.UserAccountRepository;
+import com.techreturners.weatheripe.user.service.UserAccountServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
