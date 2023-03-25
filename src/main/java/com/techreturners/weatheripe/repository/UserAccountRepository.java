@@ -1,6 +1,6 @@
 package com.techreturners.weatheripe.repository;
 
-import com.techreturners.weatheripe.model.UserAccount;
+import com.techreturners.weatheripe.model.user.UserAccount;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

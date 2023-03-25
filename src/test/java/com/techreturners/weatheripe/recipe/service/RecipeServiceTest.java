@@ -1,37 +1,15 @@
 package com.techreturners.weatheripe.recipe.service;
 
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.techreturners.weatheripe.configuration.SecretConfiguration;
-import com.techreturners.weatheripe.exception.ExceptionMessages;
-import com.techreturners.weatheripe.exception.NoMatchingCriteriaException;
-import com.techreturners.weatheripe.exception.RecipeNotFoundException;
-import com.techreturners.weatheripe.exception.ResourceNotFoundException;
-import com.techreturners.weatheripe.external.dto.ExternalRequestDto;
 import com.techreturners.weatheripe.external.service.ExternalApiServiceImpl;
-import com.techreturners.weatheripe.recipe.dto.RecipeResponseDTO;
-import com.techreturners.weatheripe.weather.dto.RecipeQueryDTO;
-import com.techreturners.weatheripe.weather.dto.WeatherApiDTO;
-import org.checkerframework.checker.nullness.qual.AssertNonNullIfNonNull;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.api.function.Executable;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
-import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.web.reactive.function.client.WebClient;
-
-import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.when;
 
 
 @DataJpaTest

@@ -1,8 +1,8 @@
 package com.techreturners.weatheripe.security.service;
 
-import com.techreturners.weatheripe.request.LoginRequest;
-import com.techreturners.weatheripe.response.SuccessfulLoginResponse;
-import com.techreturners.weatheripe.security.UserDetailsImpl;
+import com.techreturners.weatheripe.security.dto.LoginRequestDTO;
+import com.techreturners.weatheripe.security.dto.SuccessfulLoginDTO;
+import com.techreturners.weatheripe.security.user.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.security.authentication.AuthenticationManager;
@@ -29,11 +29,11 @@ public class AuthServiceImpl implements AuthService {
     private final JwtEncoder jwtEncoder;
     private final JwtDecoder jwtDecoder;
 
-    public SuccessfulLoginResponse login(LoginRequest loginRequest) throws BadCredentialsException{
+    public SuccessfulLoginDTO login(LoginRequestDTO loginRequestDTO) throws BadCredentialsException{
 
             var authentication =
                     authenticationManager.authenticate(
-                            new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+                            new UsernamePasswordAuthenticationToken(loginRequestDTO.getUsername(), loginRequestDTO.getPassword()));
 
             var user = (UserDetailsImpl) authentication.getPrincipal();
 
@@ -55,7 +55,7 @@ public class AuthServiceImpl implements AuthService {
                             .build();
 
             var token = this.jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
-            return SuccessfulLoginResponse.builder().username(user.getUsername()).token(token).build();
+            return SuccessfulLoginDTO.builder().username(user.getUsername()).token(token).build();
     }
 
     public String extractUsernameFromToken(String token){

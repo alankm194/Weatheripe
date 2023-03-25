@@ -1,11 +1,11 @@
 package com.techreturners.weatheripe.service;
 
-import com.techreturners.weatheripe.model.UserAccount;
+import com.techreturners.weatheripe.model.user.UserAccount;
 import com.techreturners.weatheripe.repository.UserAccountRepository;
-import com.techreturners.weatheripe.request.SignupRequest;
-import com.techreturners.weatheripe.response.exception.EmailAlreadyExistsException;
-import com.techreturners.weatheripe.response.exception.UsernameAlreadyExistsException;
-import com.techreturners.weatheripe.security.service.UserServiceImpl;
+import com.techreturners.weatheripe.security.dto.SignupRequestDTO;
+import com.techreturners.weatheripe.exception.userauthentication.EmailAlreadyExistsException;
+import com.techreturners.weatheripe.exception.userauthentication.UsernameAlreadyExistsException;
+import com.techreturners.weatheripe.user.service.UserServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,7 +30,7 @@ public class UserServiceTest {
 
     private UserAccount expectedUser;
 
-    SignupRequest newUserReq;
+    SignupRequestDTO newUserReq;
     @BeforeEach
     public void init() {
         expectedUser = UserAccount.builder().userName("john")
@@ -38,7 +38,7 @@ public class UserServiceTest {
                 .password("fakerpassword")
                 .build();
 
-        newUserReq = SignupRequest.builder().username(expectedUser.getUserName())
+        newUserReq = SignupRequestDTO.builder().username(expectedUser.getUserName())
                 .email(expectedUser.getEmail())
                 .password(expectedUser.getPassword())
                 .build();

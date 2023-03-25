@@ -1,8 +1,8 @@
 package com.techreturners.weatheripe.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.techreturners.weatheripe.request.LoginRequest;
-import com.techreturners.weatheripe.request.SignupRequest;
+import com.techreturners.weatheripe.security.dto.LoginRequestDTO;
+import com.techreturners.weatheripe.security.dto.SignupRequestDTO;
 
 import org.junit.jupiter.api.Test;
 
@@ -33,7 +33,7 @@ public class AuthControllerTest {
     @Test
     void testRegisterAndLoginToGetJWTToken() throws Exception {
 
-        SignupRequest request = SignupRequest.builder()
+        SignupRequestDTO request = SignupRequestDTO.builder()
                 .email("johnny@email.com")
                 .username("johnny")
                 .password("fakerpassword")
@@ -48,7 +48,7 @@ public class AuthControllerTest {
                 .andExpect(jsonPath("$.message", is("User registered successfully!")) )
                 .andReturn();
 
-        LoginRequest loginRequest= LoginRequest.builder()
+        LoginRequestDTO loginRequestDTO = LoginRequestDTO.builder()
                 .username(request.getUsername())
                 .password(request.getPassword())
                 .build();
@@ -57,10 +57,10 @@ public class AuthControllerTest {
                 .perform(
                         MockMvcRequestBuilders.post("/api/v1/auth/signin")
                                 .contentType(MediaType.APPLICATION_JSON)
-                                .content(objectMapper.writeValueAsString(loginRequest)))
+                                .content(objectMapper.writeValueAsString(loginRequestDTO)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.token", notNullValue()))
-                .andExpect(jsonPath("$.username", is(loginRequest.getUsername())) )
+                .andExpect(jsonPath("$.username", is(loginRequestDTO.getUsername())) )
                 .andExpect(jsonPath("$.type", is("Bearer")) )
                 .andReturn();
     }

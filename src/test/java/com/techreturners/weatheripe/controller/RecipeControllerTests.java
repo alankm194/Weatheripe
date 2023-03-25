@@ -1,13 +1,11 @@
 package com.techreturners.weatheripe.controller;
 
-import com.c4_soft.springaddons.security.oauth2.test.annotations.OpenIdClaims;
-import com.c4_soft.springaddons.security.oauth2.test.annotations.WithMockJwtAuth;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.techreturners.weatheripe.exception.ExceptionHandlerController;
 import com.techreturners.weatheripe.external.dto.ResponseDTO;
 import com.techreturners.weatheripe.recipe.dto.RecipeResponseDTO;
 import com.techreturners.weatheripe.recipe.service.RecipeServiceImpl;
-import com.techreturners.weatheripe.user.UserAccountServiceImpl;
+import com.techreturners.weatheripe.user.service.UserAccountServiceImpl;
 import com.techreturners.weatheripe.user.dto.UserRecipeBookDTO;
 import com.techreturners.weatheripe.user.dto.UserRecipeBookResponseDTO;
 import com.techreturners.weatheripe.weather.dto.RecipeQueryDTO;
