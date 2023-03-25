@@ -39,7 +39,7 @@ public class UserAccountController {
     }
 
     @PreAuthorize("hasRole('ROLE_USER')")
-    @DeleteMapping({"/deleteRecipeBook/{recipeBookId}"})
+    @DeleteMapping({"/recipeBook/{recipeBookId}"})
     public ResponseEntity<UserMessageDTO> deleteRecipeBook(@PathVariable Long recipeBookId, Principal principal){
 
         userAccountService.deleteRecipeBook(recipeBookId,principal.getName());
@@ -47,14 +47,14 @@ public class UserAccountController {
     }
 
     @PreAuthorize("hasRole('ROLE_USER')")
-    @DeleteMapping("/unregister")
+    @DeleteMapping
     public ResponseEntity<UserMessageDTO> unregisterUser(Principal principal) {
         userAccountService.deleteUserByUsername(principal.getName());
         return ResponseEntity.ok(new UserMessageDTO("User unregistered successfully!"));
     }
 
     @PreAuthorize("hasRole('ROLE_USER')")
-    @DeleteMapping("/unregister/{userId}")
+    @DeleteMapping("/{userId}")
     public ResponseEntity<UserMessageDTO> unregisterUser(@PathVariable Long userId) {
         userAccountService.deleteUserById(userId);
         return ResponseEntity.ok(new UserMessageDTO("User unregistered successfully!"));
