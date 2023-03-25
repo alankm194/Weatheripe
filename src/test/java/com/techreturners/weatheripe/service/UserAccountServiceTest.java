@@ -169,7 +169,7 @@ public class UserAccountServiceTest {
 
         Long recipeBookId = 1L;
 
-        doThrow(new UserNotFoundException(ExceptionMessages.USER_ACCOUNT_NOT_FOUND))
+        doThrow(new UserSessionNotFoundException(ExceptionMessages.USER_SESSION_NOT_FOUND))
                 .when(userAccountRepository).findByUserName(username);
 
         RecipeBook recipeBook = RecipeBook.builder()
@@ -177,11 +177,11 @@ public class UserAccountServiceTest {
                 .recipeId(recipeBookId)
                 .build();
 
-        Exception exception = assertThrows(UserNotFoundException.class,
+        Exception exception = assertThrows(UserSessionNotFoundException.class,
                 () -> userAccountService.deleteRecipeBook(recipeBookId, username));
 
         String actualMessage = exception.getMessage();
-        assertEquals(actualMessage, "User not found. Please check and try again.");
+        assertEquals(actualMessage, ExceptionMessages.USER_SESSION_NOT_FOUND);
 
 
         verify(userAccountRepository, times(1))
@@ -216,7 +216,7 @@ public class UserAccountServiceTest {
                 () -> userAccountService.deleteRecipeBook(recipeBookId, username));
 
         String actualMessage = exception.getMessage();
-        assertEquals(actualMessage, "There are no recipes saved ");
+        assertEquals(actualMessage, ExceptionMessages.NO_RECIPE_FOUND);
 
 
         verify(userAccountRepository, times(1))
@@ -259,7 +259,7 @@ public class UserAccountServiceTest {
                 () -> userAccountService.deleteRecipeBook(recipeBookId, username));
 
         String actualMessage = exception.getMessage();
-        assertEquals(actualMessage, "Recipe not belong to user. Please check and try again.");
+        assertEquals(actualMessage, ExceptionMessages.RECIPE_NOT_BELONG_TO_USER);
 
         verify(userAccountRepository, times(1))
                 .findByUserName(username);
@@ -297,14 +297,14 @@ public class UserAccountServiceTest {
                 .email("1234@gmail.com")
                 .build();
 
-        doThrow(new UserNotFoundException(ExceptionMessages.USER_ACCOUNT_NOT_FOUND))
+        doThrow(new UserSessionNotFoundException(ExceptionMessages.USER_SESSION_NOT_FOUND))
                 .when(userAccountRepository).findByUserName(username);
 
-        Exception exception = assertThrows(UserNotFoundException.class,
+        Exception exception = assertThrows(UserSessionNotFoundException.class,
                 () -> userAccountService.deleteUserByUsername(username));
 
         String actualMessage = exception.getMessage();
-        assertEquals(actualMessage, "User not found. Please check and try again.");
+        assertEquals(actualMessage, ExceptionMessages.USER_SESSION_NOT_FOUND);
 
         verify(userAccountRepository, times(1))
                 .findByUserName(username);
@@ -350,7 +350,7 @@ public class UserAccountServiceTest {
                 () -> userAccountService.deleteUserById(userId));
 
         String actualMessage = exception.getMessage();
-        assertEquals(actualMessage, "User not found. Please check and try again.");
+        assertEquals(actualMessage, ExceptionMessages.USER_ACCOUNT_NOT_FOUND);
 
         verify(userAccountRepository, times(1))
                 .existsById(userId);

@@ -80,7 +80,7 @@ public class UserAccountControllerTest {
         String username = "username";
         when(mockPrincipal.getName()).thenReturn(username);
 
-        doThrow(new UserNotFoundException(ExceptionMessages.USER_SESSION_NOT_FOUND))
+        doThrow(new UserSessionNotFoundException(ExceptionMessages.USER_SESSION_NOT_FOUND))
                 .when(mockUserAccountServiceImpl).deleteRecipeBook(recipeBookId, username);
 
         this.mockMvcController.perform(
@@ -90,7 +90,7 @@ public class UserAccountControllerTest {
                                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().is4xxClientError())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.message")
-                        .value("User Session not found !"));
+                        .value(ExceptionMessages.USER_SESSION_NOT_FOUND));
 
         verify(mockUserAccountServiceImpl, times(1)).deleteRecipeBook(recipeBookId,username);
     }
@@ -114,7 +114,7 @@ public class UserAccountControllerTest {
                                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().is4xxClientError())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.message")
-                        .value("There are no recipes saved "));
+                        .value(ExceptionMessages.NO_RECIPE_FOUND));
 
         verify(mockUserAccountServiceImpl, times(1)).deleteRecipeBook(recipeBookId,username);
     }
@@ -138,7 +138,7 @@ public class UserAccountControllerTest {
                                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().is4xxClientError())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.message")
-                        .value("Recipe not belong to user. Please check and try again."));
+                        .value(ExceptionMessages.RECIPE_NOT_BELONG_TO_USER));
 
         verify(mockUserAccountServiceImpl, times(1)).deleteRecipeBook(recipeBookId,username);
     }
@@ -175,7 +175,7 @@ public class UserAccountControllerTest {
         String username = "username";
         when(mockPrincipal.getName()).thenReturn(username);
 
-        doThrow(new UserNotFoundException(ExceptionMessages.USER_ACCOUNT_NOT_FOUND))
+        doThrow(new UserSessionNotFoundException(ExceptionMessages.USER_SESSION_NOT_FOUND))
                 .when(mockUserAccountServiceImpl).deleteUserByUsername(username);
 
         this.mockMvcController.perform(
@@ -185,7 +185,7 @@ public class UserAccountControllerTest {
                                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().is4xxClientError())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.message")
-                        .value("User not found. Please check and try again."));
+                        .value(ExceptionMessages.USER_SESSION_NOT_FOUND));
 
         verify(mockUserAccountServiceImpl, times(1)).deleteUserByUsername(username);
     }
@@ -216,7 +216,7 @@ public class UserAccountControllerTest {
         String token = "";
         Long userId = 1L;
 
-        doThrow(new UserNotFoundException(ExceptionMessages.USER_ACCOUNT_NOT_FOUND))
+        doThrow(new UserSessionNotFoundException(ExceptionMessages.USER_SESSION_NOT_FOUND))
                 .when(mockUserAccountServiceImpl).deleteUserById(userId);
 
         this.mockMvcController.perform(
@@ -225,7 +225,7 @@ public class UserAccountControllerTest {
                                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().is4xxClientError())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.message")
-                        .value("User not found. Please check and try again."));
+                        .value(ExceptionMessages.USER_SESSION_NOT_FOUND));
 
         verify(mockUserAccountServiceImpl, times(1)).deleteUserById(userId);
     }
