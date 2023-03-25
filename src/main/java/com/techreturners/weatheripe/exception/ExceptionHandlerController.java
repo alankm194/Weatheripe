@@ -4,6 +4,7 @@ import com.techreturners.weatheripe.exception.recipe.*;
 import com.techreturners.weatheripe.exception.userauthentication.*;
 import com.techreturners.weatheripe.exception.weather.NoMatchingWeatherException;
 import com.techreturners.weatheripe.exception.weather.WeatherNotFoundException;
+import io.swagger.v3.oas.annotations.Hidden;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
@@ -18,6 +19,7 @@ import org.springframework.web.context.request.WebRequest;
 
 
 
+@Hidden
 @RestControllerAdvice(annotations = RestController.class)
 public class ExceptionHandlerController {
 
@@ -118,32 +120,28 @@ public class ExceptionHandlerController {
     }
 
     @ExceptionHandler(value = {EmailAlreadyExistsException.class, UsernameAlreadyExistsException.class})
-    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     public ResponseEntity<ErrorResponseDTO> handleLoginResourceAlreadyExistsException(LoginResourceAlreadyExistsException ex, WebRequest request) {
         return new ResponseEntity<>(
                new ErrorResponseDTO(ex.getMessage(),"W0012", "REGISTER_DETAILS_INVALID", "REGISTER"),
-        HttpStatus.NOT_FOUND);
+        HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(value = {BadCredentialsException.class})
-    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     public ResponseEntity<ErrorResponseDTO> handleResourceAlreadyExistsException(BadCredentialsException ex, WebRequest request) {
         return new ResponseEntity<>(new ErrorResponseDTO(ex.getMessage(), "W0013", "BAD_CREDENTIALS", "LOGIN"),
-        HttpStatus.NOT_FOUND);
+        HttpStatus.UNAUTHORIZED);
 
     }
 
     @ExceptionHandler({InvalidApiKeyException.class})
     public ResponseEntity<ErrorResponseDTO> handleInvalidApiKeyException(
             RuntimeException ex) {
-
         return new ResponseEntity<>(
                 new ErrorResponseDTO(ex.getMessage(), "W0014", "INVALID_API_KEY", "EXT"),
                 HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(value = {MethodArgumentNotValidException.class})
-    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     public ResponseEntity<ErrorResponseDTO> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex, WebRequest request) {
         String errorResp = "Invalid arguments used during registration";
         if (ex.getErrorCount() > 0) {
