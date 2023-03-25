@@ -44,7 +44,7 @@ public class AuthControllerTest {
                         MockMvcRequestBuilders.post("/api/v1/auth/signup")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(objectMapper.writeValueAsString(request)))
-                .andExpect(status().isOk())
+                .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.message", is("User registered successfully!")) )
                 .andReturn();
 
