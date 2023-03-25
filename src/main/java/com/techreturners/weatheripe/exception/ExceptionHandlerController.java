@@ -4,6 +4,7 @@ import com.techreturners.weatheripe.exception.recipe.*;
 import com.techreturners.weatheripe.exception.userauthentication.*;
 import com.techreturners.weatheripe.exception.weather.NoMatchingWeatherException;
 import com.techreturners.weatheripe.exception.weather.WeatherNotFoundException;
+import io.swagger.v3.oas.annotations.Hidden;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
@@ -17,6 +18,7 @@ import org.springframework.web.context.request.WebRequest;
 
 
 
+@Hidden
 @RestControllerAdvice(annotations = RestController.class)
 public class ExceptionHandlerController {
 
