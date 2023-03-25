@@ -7,6 +7,8 @@ import com.techreturners.weatheripe.user.service.UserService;
 import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -39,6 +41,6 @@ public class AuthController {
     @PostMapping("/signup")
     public ResponseEntity<UserMessageDTO> registerUser(@Valid @RequestBody SignupRequestDTO signUpRequestDTO) {
         userService.create(signUpRequestDTO);
-        return ResponseEntity.ok(new UserMessageDTO("User registered successfully!"));
+        return ResponseEntity.status(HttpStatus.CREATED).body(new UserMessageDTO("User registered successfully!"));
     }
 }

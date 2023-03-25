@@ -90,7 +90,7 @@ public class UserAccountServiceImpl implements UserAccountService {
     }
 
 
-    private UserRecipeBookResponseDTO createUserRecipeBookResponseDTOs(List<RecipeBook> recipeBooks){
+    public UserRecipeBookResponseDTO createUserRecipeBookResponseDTOs(List<RecipeBook> recipeBooks){
         List<UserRecipeBookDTO> recipeBookDTOList = new ArrayList<>();
         new UserRecipeBookDTO();
         recipeBooks.stream()
@@ -113,7 +113,7 @@ public class UserAccountServiceImpl implements UserAccountService {
 
     public void deleteRecipeBook(Long recipeBookId, String username){
         UserAccount userAccount = userAccountRepository.findByUserName(username)
-                .orElseThrow(() -> new UserNotFoundException(ExceptionMessages.USER_SESSION_NOT_FOUND));
+                .orElseThrow(() -> new UserSessionNotFoundException(ExceptionMessages.USER_SESSION_NOT_FOUND));
 
         Optional<RecipeBook> recipeBookOptional = recipeBookRepository.findById(recipeBookId);
 
@@ -139,7 +139,7 @@ public class UserAccountServiceImpl implements UserAccountService {
         log.debug("******deleteUserByUsername("+username+"):");
 
         UserAccount userAccount = userAccountRepository.findByUserName(username)
-                .orElseThrow(() -> new UserNotFoundException(ExceptionMessages.USER_ACCOUNT_NOT_FOUND));
+                .orElseThrow(() -> new UserSessionNotFoundException(ExceptionMessages.USER_SESSION_NOT_FOUND));
         userAccountRepository.deleteById(userAccount.getId());
     }
 }
