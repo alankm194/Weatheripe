@@ -1,6 +1,6 @@
 package com.techreturners.weatheripe.dish;
 
-import com.techreturners.weatheripe.model.DishType;
+import com.techreturners.weatheripe.model.recipe.DishType;
 import com.techreturners.weatheripe.repository.DishTypeRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

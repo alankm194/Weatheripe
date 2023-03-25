@@ -3,7 +3,7 @@ package com.techreturners.weatheripe.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.techreturners.weatheripe.dish.DishServiceImpl;
 import com.techreturners.weatheripe.exception.ExceptionHandlerController;
-import com.techreturners.weatheripe.model.DishType;
+import com.techreturners.weatheripe.model.recipe.DishType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

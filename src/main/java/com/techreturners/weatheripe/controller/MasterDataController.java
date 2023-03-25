@@ -1,7 +1,7 @@
 package com.techreturners.weatheripe.controller;
 
 import com.techreturners.weatheripe.dish.DishService;
-import com.techreturners.weatheripe.model.DishType;
+import com.techreturners.weatheripe.model.recipe.DishType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
