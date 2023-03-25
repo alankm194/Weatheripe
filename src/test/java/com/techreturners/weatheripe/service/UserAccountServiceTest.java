@@ -1,14 +1,18 @@
 package com.techreturners.weatheripe.service;
 
-import com.techreturners.weatheripe.exception.*;
-import com.techreturners.weatheripe.model.RecipeBook;
-import com.techreturners.weatheripe.model.UserAccount;
+import com.techreturners.weatheripe.exception.ExceptionMessages;
+import com.techreturners.weatheripe.exception.recipe.NoRecipeBookFoundException;
+import com.techreturners.weatheripe.exception.recipe.RecipeNotBelongToUserException;
+import com.techreturners.weatheripe.exception.userauthentication.UserNotFoundException;
+import com.techreturners.weatheripe.exception.userauthentication.UserSessionNotFoundException;
+import com.techreturners.weatheripe.model.recipe.RecipeBook;
+import com.techreturners.weatheripe.model.user.UserAccount;
 import com.techreturners.weatheripe.repository.RecipeBookRepository;
 import com.techreturners.weatheripe.repository.UserAccountRepository;
-import com.techreturners.weatheripe.user.UserAccountServiceImpl;
 import com.techreturners.weatheripe.user.dto.RecipeBookDTO;
 import com.techreturners.weatheripe.user.dto.RecipeBookRequestDTO;
 import com.techreturners.weatheripe.user.dto.UserRecipeBookResponseDTO;
+import com.techreturners.weatheripe.user.service.UserAccountServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -35,31 +39,31 @@ public class UserAccountServiceTest {
     UserAccountServiceImpl userAccountService;
 
     @Test
-    public void testUpdateRecipeBookEmptyRequest(){
+    public void testUpdateRecipeBookEmptyRequest() {
         NoRecipeBookFoundException thrown = Assertions.assertThrows(NoRecipeBookFoundException.class, () ->
-                userAccountService.updateRecipeBook(new RecipeBookRequestDTO(),"username")
+                userAccountService.updateRecipeBook(new RecipeBookRequestDTO(), "username")
         );
-        assertEquals("No data found !" ,thrown.getMessage());
+        assertEquals("No data found !", thrown.getMessage());
 
     }
 
     @Test
-    public void testUpdateRecipeBookInvalidRecipeIds(){
-        when(recipeBookRepository.findAllByRecipeIdIn(new ArrayList<Long> ())).thenReturn(new ArrayList<RecipeBook> ());
+    public void testUpdateRecipeBookInvalidRecipeIds() {
+        when(recipeBookRepository.findAllByRecipeIdIn(new ArrayList<Long>())).thenReturn(new ArrayList<RecipeBook>());
         RecipeBookDTO bookDTO1 = RecipeBookDTO.builder().recipeId(1L).rating(1d).isFavourite(true).build();
         RecipeBookDTO bookDTO2 = RecipeBookDTO.builder().recipeId(2L).rating(2.5d).isFavourite(false).build();
         RecipeBookRequestDTO recipeBookRequestDTO = RecipeBookRequestDTO.builder()
                 .recipeBooks(new RecipeBookDTO[]{bookDTO1, bookDTO2}).build();
 
         NoRecipeBookFoundException thrown = Assertions.assertThrows(NoRecipeBookFoundException.class, () ->
-                userAccountService.updateRecipeBook(recipeBookRequestDTO ,"username")
+                userAccountService.updateRecipeBook(recipeBookRequestDTO, "username")
         );
-        assertEquals("Requested recipe ids are not found system . Please check and try again." ,thrown.getMessage());
+        assertEquals("Requested recipe ids are not found system . Please check and try again.", thrown.getMessage());
 
     }
 
     @Test
-    public void testUpdateRecipeBook(){
+    public void testUpdateRecipeBook() {
 
         RecipeBookDTO bookDTO1 = RecipeBookDTO.builder().recipeId(1L).rating(1d).isFavourite(true).build();
         RecipeBookRequestDTO recipeBookRequestDTO = RecipeBookRequestDTO.builder()
@@ -82,8 +86,8 @@ public class UserAccountServiceTest {
                 .build();
 
 
-        when(recipeBookRepository.findAllByRecipeIdIn(new ArrayList<Long> ())).thenReturn( List.of(recipeBook));
-        when(recipeBookRepository.saveAllAndFlush(List.of(recipeBook))).thenReturn( List.of(recipeBook));
+        when(recipeBookRepository.findAllByRecipeIdIn(new ArrayList<Long>())).thenReturn(List.of(recipeBook));
+        when(recipeBookRepository.saveAllAndFlush(List.of(recipeBook))).thenReturn(List.of(recipeBook));
 //        verify(recipeBookRepository, times(1)).saveAllAndFlush(List.of(recipeBook));
         assertEquals(bookDTO1.getIsFavourite(), recipeBook.getIs_favourite());
         assertEquals(bookDTO1.getRating(), recipeBook.getRating());
@@ -91,8 +95,8 @@ public class UserAccountServiceTest {
     }
 
     @Test
-    public void testGetUserRecipeBooks(){
-        UserAccount  userAccount = UserAccount.builder().userName("user")
+    public void testGetUserRecipeBooks() {
+        UserAccount userAccount = UserAccount.builder().userName("user")
                 .email("abc@xyz.com")
                 .password("340875##%4*/")
                 .build();
@@ -114,19 +118,20 @@ public class UserAccountServiceTest {
                 .recipeId(1L)
                 .build();
         when(recipeBookRepository.findByUserId(userAccount)).thenReturn(List.of(recipeBook));
-        UserRecipeBookResponseDTO responseDTO =  userAccountService.createUserRecipeBookResponseDTOs(List.of(recipeBook));
+        UserRecipeBookResponseDTO responseDTO = userAccountService.createUserRecipeBookResponseDTOs(List.of(recipeBook));
 
-        assertEquals(1,responseDTO.getUserRecipes().size());
+        assertEquals(1, responseDTO.getUserRecipes().size());
     }
 
     @Test
-    public void testGetUserRecipeBooksNoUser(){
+    public void testGetUserRecipeBooksNoUser() {
         UserSessionNotFoundException thrown = Assertions.assertThrows(UserSessionNotFoundException.class, () ->
                 userAccountService.getUserRecipeBooks(null)
         );
-        assertEquals("User Session not found !" ,thrown.getMessage());
+        assertEquals("User Session not found !", thrown.getMessage());
 
     }
+
     @Test
     public void testDeleteRecipeBookReturnSuccess() throws Exception {
         String username = "";

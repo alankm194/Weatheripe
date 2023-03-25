@@ -3,11 +3,10 @@ package com.techreturners.weatheripe.controller;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.techreturners.weatheripe.exception.ExceptionHandlerController;
-import com.techreturners.weatheripe.exception.ExceptionMessages;
-import com.techreturners.weatheripe.exception.NoRecipeFoundException;
-import com.techreturners.weatheripe.exception.UserSessionNotFoundException;
-import com.techreturners.weatheripe.user.UserAccountServiceImpl;
+import com.techreturners.weatheripe.exception.*;
+import com.techreturners.weatheripe.exception.recipe.NoRecipeFoundException;
+import com.techreturners.weatheripe.exception.userauthentication.UserSessionNotFoundException;
+import com.techreturners.weatheripe.user.service.UserAccountServiceImpl;
 import com.techreturners.weatheripe.user.dto.RecipeBookDTO;
 import com.techreturners.weatheripe.user.dto.RecipeBookRequestDTO;
 import com.techreturners.weatheripe.user.dto.UserRecipeBookDTO;
@@ -32,6 +31,7 @@ import java.security.Principal;
 import java.util.List;
 
 import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 @AutoConfigureMockMvc

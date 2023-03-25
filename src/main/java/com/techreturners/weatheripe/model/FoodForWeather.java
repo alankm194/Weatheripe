@@ -1,5 +1,7 @@
 package com.techreturners.weatheripe.model;
 
+import com.techreturners.weatheripe.model.recipe.*;
+import com.techreturners.weatheripe.model.weather.Weather;
 import jakarta.persistence.*;
 
 import lombok.AllArgsConstructor;

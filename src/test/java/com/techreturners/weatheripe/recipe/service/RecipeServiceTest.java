@@ -1,9 +1,7 @@
 package com.techreturners.weatheripe.recipe.service;
 
-
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.techreturners.weatheripe.configuration.SecretConfiguration;
 import com.techreturners.weatheripe.exception.ExceptionMessages;
 import com.techreturners.weatheripe.exception.InvalidApiKeyException;
 import com.techreturners.weatheripe.external.dto.ExternalRequestDto;
@@ -22,7 +20,6 @@ import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
-
 
 @DataJpaTest
 public class RecipeServiceTest {

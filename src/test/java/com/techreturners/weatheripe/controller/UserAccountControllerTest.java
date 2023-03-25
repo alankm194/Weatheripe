@@ -2,7 +2,11 @@ package com.techreturners.weatheripe.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.techreturners.weatheripe.exception.*;
-import com.techreturners.weatheripe.user.UserAccountServiceImpl;
+import com.techreturners.weatheripe.exception.recipe.NoRecipeBookFoundException;
+import com.techreturners.weatheripe.exception.recipe.RecipeNotBelongToUserException;
+import com.techreturners.weatheripe.exception.userauthentication.UserNotFoundException;
+import com.techreturners.weatheripe.exception.userauthentication.UserSessionNotFoundException;
+import com.techreturners.weatheripe.user.service.UserAccountServiceImpl;
 import com.techreturners.weatheripe.weather.service.WeatherServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -61,7 +65,7 @@ public class UserAccountControllerTest {
 
         this.mockMvcController.perform(
                         MockMvcRequestBuilders
-                                .delete("/api/v1/user/recipeBook/" + recipeBookId)
+                                .delete("/api/v1/user/deleteRecipeBook/" + recipeBookId)
                                 .principal(mockPrincipal)
                                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
@@ -85,7 +89,7 @@ public class UserAccountControllerTest {
 
         this.mockMvcController.perform(
                         MockMvcRequestBuilders
-                                .delete("/api/v1/user/recipeBook/" + recipeBookId)
+                                .delete("/api/v1/user/deleteRecipeBook/" + recipeBookId)
                                 .principal(mockPrincipal)
                                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().is4xxClientError())
@@ -109,7 +113,7 @@ public class UserAccountControllerTest {
 
         this.mockMvcController.perform(
                         MockMvcRequestBuilders
-                                .delete("/api/v1/user/recipeBook/" + recipeBookId)
+                                .delete("/api/v1/user/deleteRecipeBook/" + recipeBookId)
                                 .principal(mockPrincipal)
                                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().is4xxClientError())
@@ -133,7 +137,7 @@ public class UserAccountControllerTest {
 
         this.mockMvcController.perform(
                         MockMvcRequestBuilders
-                                .delete("/api/v1/user/recipeBook/" + recipeBookId)
+                                .delete("/api/v1/user/deleteRecipeBook/" + recipeBookId)
                                 .principal(mockPrincipal)
                                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().is4xxClientError())
@@ -156,7 +160,7 @@ public class UserAccountControllerTest {
 
         this.mockMvcController.perform(
                         MockMvcRequestBuilders
-                                .delete("/api/v1/user")
+                                .delete("/api/v1/user/unregister/")
                                 .principal(mockPrincipal)
                                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
@@ -180,7 +184,7 @@ public class UserAccountControllerTest {
 
         this.mockMvcController.perform(
                         MockMvcRequestBuilders
-                                .delete("/api/v1/user")
+                                .delete("/api/v1/user/unregister")
                                 .principal(mockPrincipal)
                                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().is4xxClientError())
@@ -200,7 +204,7 @@ public class UserAccountControllerTest {
 
         this.mockMvcController.perform(
                         MockMvcRequestBuilders
-                                .delete("/api/v1/user/"+userId)
+                                .delete("/api/v1/user/unregister/"+userId)
 //                                .principal(mockPrincipal)
                                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
@@ -221,7 +225,7 @@ public class UserAccountControllerTest {
 
         this.mockMvcController.perform(
                         MockMvcRequestBuilders
-                                .delete("/api/v1/user/"+userId)
+                                .delete("/api/v1/user/unregister/"+userId)
                                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().is4xxClientError())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.message")

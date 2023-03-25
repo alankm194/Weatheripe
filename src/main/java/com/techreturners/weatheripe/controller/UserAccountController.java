@@ -1,8 +1,8 @@
 package com.techreturners.weatheripe.controller;
 
 import com.techreturners.weatheripe.external.dto.ResponseDTO;
-import com.techreturners.weatheripe.response.MessageResponse;
-import com.techreturners.weatheripe.user.UserAccountService;
+import com.techreturners.weatheripe.user.dto.UserMessageDTO;
+import com.techreturners.weatheripe.user.service.UserAccountService;
 import com.techreturners.weatheripe.user.dto.RecipeBookRequestDTO;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.validation.Valid;
@@ -39,25 +39,25 @@ public class UserAccountController {
     }
 
     @PreAuthorize("hasRole('ROLE_USER')")
-    @DeleteMapping({"/recipeBook/{recipeBookId}"})
-    public ResponseEntity<MessageResponse> deleteRecipeBook(@PathVariable Long recipeBookId,Principal principal){
+    @DeleteMapping({"/deleteRecipeBook/{recipeBookId}"})
+    public ResponseEntity<UserMessageDTO> deleteRecipeBook(@PathVariable Long recipeBookId, Principal principal){
 
         userAccountService.deleteRecipeBook(recipeBookId,principal.getName());
-        return ResponseEntity.ok(new MessageResponse("User recipe deleted successfully!"));
+        return ResponseEntity.ok(new UserMessageDTO("User recipe deleted successfully!"));
     }
 
     @PreAuthorize("hasRole('ROLE_USER')")
-    @DeleteMapping
-    public ResponseEntity<MessageResponse> unregisterUser(Principal principal) {
+    @DeleteMapping("/unregister")
+    public ResponseEntity<UserMessageDTO> unregisterUser(Principal principal) {
         userAccountService.deleteUserByUsername(principal.getName());
-        return ResponseEntity.ok(new MessageResponse("User unregistered successfully!"));
+        return ResponseEntity.ok(new UserMessageDTO("User unregistered successfully!"));
     }
 
     @PreAuthorize("hasRole('ROLE_USER')")
-    @DeleteMapping("/{userId}")
-    public ResponseEntity<MessageResponse> unregisterUser(@PathVariable Long userId) {
+    @DeleteMapping("/unregister/{userId}")
+    public ResponseEntity<UserMessageDTO> unregisterUser(@PathVariable Long userId) {
         userAccountService.deleteUserById(userId);
-        return ResponseEntity.ok(new MessageResponse("User unregistered successfully!"));
+        return ResponseEntity.ok(new UserMessageDTO("User unregistered successfully!"));
     }
 
 }

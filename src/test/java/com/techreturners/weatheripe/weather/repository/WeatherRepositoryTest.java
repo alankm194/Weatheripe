@@ -1,7 +1,6 @@
 package com.techreturners.weatheripe.weather.repository;
-
-import com.techreturners.weatheripe.model.Weather;
 import com.techreturners.weatheripe.repository.WeatherRepository;
+import com.techreturners.weatheripe.model.weather.Weather;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;

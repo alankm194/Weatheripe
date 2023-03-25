@@ -1,9 +1,9 @@
 package com.techreturners.weatheripe.controller;
 
-import com.techreturners.weatheripe.request.LoginRequest;
-import com.techreturners.weatheripe.request.SignupRequest;
+import com.techreturners.weatheripe.security.dto.LoginRequestDTO;
+import com.techreturners.weatheripe.security.dto.SignupRequestDTO;
 import com.techreturners.weatheripe.security.service.AuthService;
-import com.techreturners.weatheripe.security.service.UserService;
+import com.techreturners.weatheripe.user.service.UserService;
 import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.techreturners.weatheripe.response.SuccessfulLoginResponse;
-import com.techreturners.weatheripe.response.MessageResponse;
+import com.techreturners.weatheripe.security.dto.SuccessfulLoginDTO;
+import com.techreturners.weatheripe.user.dto.UserMessageDTO;
 
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -32,13 +32,13 @@ public class AuthController {
 
 
     @PostMapping("/signin")
-    public ResponseEntity<SuccessfulLoginResponse> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
-        return ResponseEntity.ok(authService.login(loginRequest));
+    public ResponseEntity<SuccessfulLoginDTO> authenticateUser(@Valid @RequestBody LoginRequestDTO loginRequestDTO) {
+        return ResponseEntity.ok(authService.login(loginRequestDTO));
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<MessageResponse> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
-        userService.create(signUpRequest);
-        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+    public ResponseEntity<UserMessageDTO> registerUser(@Valid @RequestBody SignupRequestDTO signUpRequestDTO) {
+        userService.create(signUpRequestDTO);
+        return ResponseEntity.ok(new UserMessageDTO("User registered successfully!"));
     }
 }
