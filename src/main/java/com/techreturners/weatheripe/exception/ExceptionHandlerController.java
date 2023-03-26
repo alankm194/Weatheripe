@@ -18,8 +18,11 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 
 
+
+@Hidden
 @RestControllerAdvice(annotations = RestController.class)
 public class ExceptionHandlerController {
+
 
 
     @ExceptionHandler({WeatherNotFoundException.class})
@@ -122,21 +125,22 @@ public class ExceptionHandlerController {
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     public ResponseEntity<ErrorResponseDTO> handleLoginResourceAlreadyExistsException(LoginResourceAlreadyExistsException ex, WebRequest request) {
         return new ResponseEntity<>(
-                new ErrorResponseDTO(ex.getMessage(), "W0012", "REGISTER_DETAILS_INVALID", "REGISTER"),
-                HttpStatus.NOT_FOUND);
+               new ErrorResponseDTO(ex.getMessage(),"W0012", "REGISTER_DETAILS_INVALID", "REGISTER"),
+        HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(value = {BadCredentialsException.class})
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     public ResponseEntity<ErrorResponseDTO> handleResourceAlreadyExistsException(BadCredentialsException ex, WebRequest request) {
         return new ResponseEntity<>(new ErrorResponseDTO(ex.getMessage(), "W0013", "BAD_CREDENTIALS", "LOGIN"),
-                HttpStatus.NOT_FOUND);
+        HttpStatus.UNAUTHORIZED);
 
     }
 
     @ExceptionHandler({InvalidApiKeyException.class})
     public ResponseEntity<ErrorResponseDTO> handleInvalidApiKeyException(
             RuntimeException ex) {
+
         return new ResponseEntity<>(
                 new ErrorResponseDTO(ex.getMessage(), "W0014", "INVALID_API_KEY", "EXT"),
                 HttpStatus.NETWORK_AUTHENTICATION_REQUIRED);

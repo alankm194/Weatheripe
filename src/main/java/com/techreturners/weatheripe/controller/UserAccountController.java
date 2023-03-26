@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -28,7 +29,7 @@ public class UserAccountController {
     @Autowired
     UserAccountService userAccountService;
 
-    @Operation(summary = "User retrieve his/her recipe books after login")
+    @Operation(summary = "User retrieve his/her recipe books after login", security = @SecurityRequirement(name = "bearerAuth"))
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "User retrieve recipe books successfully",
                     content = { @Content(mediaType = "application/json",
@@ -48,7 +49,7 @@ public class UserAccountController {
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 
-    @Operation(summary = "User update recipe books' rating after login")
+    @Operation(summary = "User update recipe books' rating after login", security = @SecurityRequirement(name = "bearerAuth"))
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "User update recipe book successfully",
                     content = { @Content(mediaType = "application/json",
@@ -68,7 +69,7 @@ public class UserAccountController {
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 
-    @Operation(summary = "User delete recipe book by id after login")
+    @Operation(summary = "User delete recipe book by id after login", security = @SecurityRequirement(name = "bearerAuth"))
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "User delete recipe books successfully",
                     content = { @Content(mediaType = "application/json",
@@ -91,7 +92,8 @@ public class UserAccountController {
         return ResponseEntity.ok(new UserMessageDTO("User recipe deleted successfully!"));
     }
 
-    @Operation(summary = "User unregister him/herself after login")
+
+    @Operation(summary = "User unregister him/herself after login", security = @SecurityRequirement(name = "bearerAuth"))
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "User unregister successfully",
                     content = { @Content(mediaType = "application/json",
@@ -107,7 +109,7 @@ public class UserAccountController {
         return ResponseEntity.ok(new UserMessageDTO("User unregistered successfully!"));
     }
 
-    @Operation(summary = "Unregister user (without login)")
+    @Operation(summary = "Unregister user (without login)", security = @SecurityRequirement(name = "bearerAuth"))
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "User unregister successfully",
                     content = { @Content(mediaType = "application/json",
