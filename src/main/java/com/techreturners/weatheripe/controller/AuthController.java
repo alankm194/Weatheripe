@@ -39,10 +39,10 @@ public class AuthController {
             @ApiResponse(responseCode = "200", description = "User Signed in successfully",
                     content = { @Content(mediaType = "application/json",
                             schema = @Schema(implementation = SuccessfulLoginDTO.class)) }),
-            @ApiResponse(responseCode = "400", description = "Invalid details supplied supplied",
+            @ApiResponse(responseCode = "400", description = "Invalid or malformed request body",
                     content = @Content(mediaType = "application/json",
                     schema = @Schema(implementation = ErrorResponseDTO.class))),
-            @ApiResponse(responseCode = "404", description = "User not found",
+            @ApiResponse(responseCode = "401", description = "User not found",
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(implementation = ErrorResponseDTO.class)))
     })
@@ -56,7 +56,7 @@ public class AuthController {
             @ApiResponse(responseCode = "200", description = "User registered successfully",
                     content = { @Content(mediaType = "application/json",
                             schema = @Schema(implementation = SuccessfulLoginDTO.class)) }),
-            @ApiResponse(responseCode = "400", description = "Incorrect or invalid user details supplied",
+            @ApiResponse(responseCode = "400", description = "Invalid or malformed request body",
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(implementation = ErrorResponseDTO.class)))
     })
