@@ -138,7 +138,10 @@ Below are the functions to be implemented:
 2. Allow user to subscribe, so user can receive our recommend recipe by time by day with a sms
 3. Food diary
 4. Recommend recipe by location, based on the location, Weatheripe to recommend user the recipe that belongs to their location, so that user can buy ingredients easily. eg. If you are in UK, Weatheripe will recommend British food, to ensure that most ingredients you can buy are easily available in local supermarket and eliminate the headache to find the ingredients.
-5. Deployment to AWS cloud
+5. Deployment to AWS cloud 
+   1. Deployment to a container host such as AWS Elastic Container Service
+   2. Using AWS RDS to host a Postgres database
+   3. Accessing the service using Amazon Alexa
 6. Add front end user interface
 7. Add CI/CD pipeline
 
