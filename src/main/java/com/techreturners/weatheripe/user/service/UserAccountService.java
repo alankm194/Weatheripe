@@ -17,7 +17,6 @@ public interface UserAccountService {
 
     ResponseDTO updateRecipeBook(RecipeBookRequestDTO recipeBookRequestDTO, String sub) throws NoRecipeBookFoundException;
 
-    void deleteUserById(Long userId);
 
     void deleteUserByUsername(String username);
 
