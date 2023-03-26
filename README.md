@@ -11,11 +11,11 @@ Java 17, Spring Boot 3.0.2
 ## UML Diagram
 1. DB Schema
 
-![DB Schema](Group2-Project-DBSchema.drawio.png)
+![DB Schema](Weatheripe-DBSchema.jpg)
 
 2. Class Diagram
 
-![Class diagram](Group2-Project-ClassDiagram.drawio.png)
+![Class diagram](Weatheripe-ClassDiagram.drawio.png)
 
 ## Key Features
 
@@ -38,7 +38,7 @@ Registered user can enjoy the below features:
 
 ### Use case diagram
 
-![Use case diagram](Group2-Project-UseCase-Simplified.drawio.png)
+![Use case diagram](Weatheripe-HighLevel-usecase.jpg)
 
 ## How to run unit test
 ```
@@ -55,7 +55,7 @@ to generate your own keys you can run into the commands below into your terminal
 ```
 openssl genpkey -algorithm RSA -out rsa.private.key -pkeyopt rsa_keygen_bits:2048
 
-openssl rsa -pubout -in rsa.private.key -out rsa.private.key
+openssl rsa -pubout -in rsa.private.key -out rsa.public.key
 ```
 
 For testing and development you can store these keys in as files with the same name in 
