@@ -129,12 +129,6 @@ public class UserAccountServiceImpl implements UserAccountService {
         recipeBookRepository.delete(recipeBookOptional.get());
     }
 
-    public void deleteUserById(Long id) {
-        if (!userAccountRepository.existsById(id))
-            throw new UserNotFoundException(ExceptionMessages.USER_ACCOUNT_NOT_FOUND);
-        userAccountRepository.deleteById(id);
-    }
-
     public void deleteUserByUsername(String username){
         log.debug("******deleteUserByUsername("+username+"):");
 

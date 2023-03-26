@@ -108,21 +108,4 @@ public class UserAccountController {
         userAccountService.deleteUserByUsername(principal.getName());
         return ResponseEntity.ok(new UserMessageDTO("User unregistered successfully!"));
     }
-
-    @Operation(summary = "Unregister user (without login)", security = @SecurityRequirement(name = "bearerAuth"))
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "User unregister successfully",
-                    content = { @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = UserMessageDTO.class)) }),
-            @ApiResponse(responseCode = "404", description = "User not found",
-                    content = @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = ErrorResponseDTO.class)))
-    })
-    @PreAuthorize("hasRole('ROLE_USER')")
-    @DeleteMapping("/{userId}")
-    public ResponseEntity<UserMessageDTO> unregisterUser(@PathVariable Long userId) {
-        userAccountService.deleteUserById(userId);
-        return ResponseEntity.ok(new UserMessageDTO("User unregistered successfully!"));
-    }
-
 }

@@ -3,7 +3,6 @@ package com.techreturners.weatheripe.service;
 import com.techreturners.weatheripe.exception.ExceptionMessages;
 import com.techreturners.weatheripe.exception.recipe.NoRecipeBookFoundException;
 import com.techreturners.weatheripe.exception.recipe.RecipeNotBelongToUserException;
-import com.techreturners.weatheripe.exception.userauthentication.UserNotFoundException;
 import com.techreturners.weatheripe.exception.userauthentication.UserSessionNotFoundException;
 import com.techreturners.weatheripe.model.recipe.RecipeBook;
 import com.techreturners.weatheripe.model.user.UserAccount;
@@ -316,51 +315,6 @@ public class UserAccountServiceTest {
         verify(userAccountRepository, times(0)).deleteById(userAccount.getId());
     }
 
-
-    @Test
-    public void testDeleteUserByIdReturnSuccess() throws Exception {
-        String username = "";
-        Long userId = 1L;
-        UserAccount userAccount = UserAccount.builder()
-                .id(userId)
-                .userName(username)
-                .password("12345678")
-                .email("1234@gmail.com")
-                .build();
-
-        when(userAccountRepository.existsById(userId)).thenReturn(true);
-        doNothing().when(userAccountRepository).deleteById(userAccount.getId());
-
-        userAccountService.deleteUserById(userId);
-
-        verify(userAccountRepository, times(1))
-                .existsById(userId);
-        verify(userAccountRepository, times(1)).deleteById(userAccount.getId());
-    }
-
-    @Test
-    public void testDeleteUserByIdReturnFailOnUserAccountNotFound() throws Exception {
-        String username = "";
-        Long userId = 1L;
-        UserAccount userAccount = UserAccount.builder()
-                .id(userId)
-                .userName(username)
-                .password("12345678")
-                .email("1234@gmail.com")
-                .build();
-
-        when(userAccountRepository.existsById(userId)).thenReturn(false);
-
-        Exception exception = assertThrows(UserNotFoundException.class,
-                () -> userAccountService.deleteUserById(userId));
-
-        String actualMessage = exception.getMessage();
-        assertEquals(actualMessage, ExceptionMessages.USER_ACCOUNT_NOT_FOUND);
-
-        verify(userAccountRepository, times(1))
-                .existsById(userId);
-        verify(userAccountRepository, times(0)).deleteById(userAccount.getId());
-    }
 
 
 }
