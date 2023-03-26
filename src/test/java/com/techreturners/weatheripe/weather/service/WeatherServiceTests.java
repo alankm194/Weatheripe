@@ -6,6 +6,7 @@ import com.techreturners.weatheripe.configuration.SecretConfiguration;
 import com.techreturners.weatheripe.exception.recipe.NoMatchingFoodException;
 import com.techreturners.weatheripe.exception.weather.NoMatchingWeatherException;
 import com.techreturners.weatheripe.exception.weather.WeatherNotFoundException;
+import com.techreturners.weatheripe.external.service.ExternalApiServiceImpl;
 import com.techreturners.weatheripe.model.recipe.CuisineType;
 import com.techreturners.weatheripe.weather.dto.RecipeQueryDTO;
 import com.techreturners.weatheripe.model.recipe.DishType;
@@ -45,14 +46,50 @@ public class WeatherServiceTests {
     @InjectMocks
     private WeatherServiceImpl weatherServiceImpl;
 
+    @Mock
+    private ExternalApiServiceImpl mockExternalApiService;
+
     @BeforeEach
     public void init() {
+        when(secretConfiguration.weatherApiKey()).thenReturn("dummyApiKey");
         when(secretConfiguration.recipeAppId()).thenReturn("dummyAppId");
         when(secretConfiguration.recipeAppKey()).thenReturn("dummyAppKey");
         ReflectionTestUtils.setField(weatherServiceImpl,
                 "RECIPE_API_URL", "https://api.edamam.com/api/recipes/v2?app_key={0}&app_id={1}&type=any");
+        ReflectionTestUtils.setField(weatherServiceImpl,
+                "WEATHER_API_URL", "https://api.tomorrow.io/v4/weather/forecast?apikey={0}&location={1}");
     }
 
+    @Test
+    public void testGetWeatherByLocationSuccess() throws Exception {
+        String location = "London";
+
+        Resource resource = new ClassPathResource("/good_weather_response.json");
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        WeatherApiDTO weatherApiObj = objectMapper.readValue(resource.getInputStream(), WeatherApiDTO.class);
+
+        when(mockExternalApiService.getResourcesByUri(any())).thenReturn(weatherApiObj);
+
+        assertEquals(
+                ((WeatherApiDTO)weatherServiceImpl.getWeatherByLocation(location)).getCurrentTemp(), 9.67);
+
+    }
+
+    @Test
+    public void testGetWeatherByLocationFail() throws Exception {
+        String location = "London";
+
+        Resource resource = new ClassPathResource("/bad_weather_response.json");
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        WeatherApiDTO weatherApiObj = objectMapper.readValue(resource.getInputStream(), WeatherApiDTO.class);
+
+        when(mockExternalApiService.getResourcesByUri(any())).thenReturn(weatherApiObj);
+
+        Exception exception = assertThrows(WeatherNotFoundException.class,
+                () -> weatherServiceImpl.buildExternalRecipeAPIQuery(weatherApiObj));
+    }
 
     @Test
     public void testBuildExternalRecipeAPIQueryReturnQueryString() throws Exception {

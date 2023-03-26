@@ -67,6 +67,9 @@ public class WeatherServiceImpl implements WeatherService {
 
 
     public ResponseDTO getWeatherByLocation(String location){
+        if(location == null || location.isEmpty()){
+            throw new EmptyInputParameterException(ExceptionMessages.EMPTY_LOCATION_INPUT);
+        }
         String uri = MessageFormat.format(WEATHER_API_URL, secretConfiguration.weatherApiKey(), location);
         log.info("*******URI:"+uri);
         ExternalRequestDto externalRequestDto = new ExternalRequestDto(uri,new WeatherApiDTO());

@@ -52,6 +52,12 @@ mvn compile exec:java -Dexec.mainClass="com.techreturners.weatheripe.WeathipeApp
 API documentation can be found in [Swagger](http://localhost:8080/swagger-ui/index.html) after local server start up.
 
 ## Assumptions:
+- All APIs that this project depends on, including the Tomorrow.io weather API and the Edamam recipe API, are up and running and accessible.
+- All API keys used in the project to access the Tomorrow.io and Edamam APIs are valid and authorized to access those APIs.
+- All locations passed to the API are mapped to a corresponding temperature value in the target API.
+- The location input parameter passed to the API must be either a city, a postal code, or latitude and longitude coordinates in the format "latitude,longitude".
+- The temperature values returned by the API are in Celsius.
+- All recipe parameters passed to the Edamam API are valid and conform to the expected recipe search criteria.
 
 ## Approaches:
 
@@ -63,12 +69,12 @@ The project follows the Model-View-Controller (MVC) architecture pattern, which 
 ### Frameworks and Libraries
 The project uses the following frameworks and libraries:
 
-- springframework.boot:3.0.2: A popular framework for building enterprise-level Java applications.
+- Spring Boot: version 3.0.2 of this popular framework for building enterprise-level Java applications is used to provide a powerful and flexible foundation for the project.
 - Hibernate: A powerful ORM tool for working with databases.
 - JPA: A Java Persistence API that provides a standard way to work with relational databases.
-- io.jsonwebtoken 0.11.5: A library for JSON Web Tokens (JWTs), which are used for secure authentication and authorization.
-- webflux: A reactive web framework for building non-blocking, event-driven applications.
-- com.c4-soft.springaddons 6.1.3: A library that provides additional features and utilities for Spring Boot applications.
+- io.jsonwebtoken: version 0.11.5 of this library is used for secure authentication and authorization via JSON Web Tokens (JWTs).
+- WebFlux: the reactive web framework for building non-blocking, event-driven applications is used to enable high-concurrency processing of web requests with minimal overhead.
+- com.c4-soft.springaddons: version 6.1.3 of this library provides additional features and utilities for Spring Boot applications, such as simplified configuration of beans and templates.
 
 ### Database
 The project uses Postgres as the deployment database and H2DB for testing and development purposes.
@@ -82,10 +88,8 @@ The project uses the following testing frameworks and libraries:
 ### Security
 The project uses Spring Security with JWT tokens and user role-based access control to secure the endpoints. This provides a robust and secure way to authenticate and authorize users of the API.
 
-### Deployment
-
 ### Documentation
-
+The Swagger documentation for this project can be accessed by navigating to the [Swagger](http://localhost:8080/swagger-ui/index.html) endpoint once the application is running.
 
 
 ## Future thoughts:
