@@ -46,6 +46,43 @@ mvn clean test
 ```
 
 ## How to run the program
+
+### Setup
+
+To run the application it requires a RSA private key in PKCS #8 format and a RSA public key. 
+
+to generate your own keys you can run into the commands below into your terminal
+```
+openssl genpkey -algorithm RSA -out rsa.private.key -pkeyopt rsa_keygen_bits:2048
+
+openssl rsa -pubout -in rsa.private.key -out rsa.private.key
+```
+
+For testing and development you can store these keys in as files with the same name in 
+```
+src/main/resources
+```
+
+For running in production the RSA keys can be set using environment variables using the below environment variables
+
+```
+JWT_PRIVATE_KEY 
+
+JWT_PUBLIC_KEY
+```
+
+You must have the following environment variables set
+
+```
+SECRETKEY_RECIPEAPPKEY: Edamam Recipe API key
+SECRETKEY_RECIPEAPPID: Edamam Recipe App ID
+SECRETKEY_WEATHERAPIKEY= Tomorrow.io Weather API key
+```
+
+### running
+
+The application can be run using the command below.
+
 ```
 mvn compile exec:java -Dexec.mainClass="com.techreturners.weatheripe.WeathipeApplication"
 ```
@@ -75,6 +112,7 @@ The project uses the following frameworks and libraries:
 - io.jsonwebtoken: version 0.11.5 of this library is used for secure authentication and authorization via JSON Web Tokens (JWTs).
 - WebFlux: the reactive web framework for building non-blocking, event-driven applications is used to enable high-concurrency processing of web requests with minimal overhead.
 - com.c4-soft.springaddons: version 6.1.3 of this library provides additional features and utilities for Spring Boot applications, such as simplified configuration of beans and templates.
+- Spring Docs: a framework that works with spring boot to provide OpenAPI and Swagger for API documentation.
 
 ### Database
 The project uses Postgres as the deployment database and H2DB for testing and development purposes.
@@ -84,6 +122,8 @@ The project uses the following testing frameworks and libraries:
 
 - Mockito: A mocking framework for Java that allows for easy testing of dependencies.
 - JUnit: A popular unit testing framework for Java that provides a simple and efficient way to test code.
+
+The project uses GitHub Actions to run tests for any pull requests to master. 
 
 ### Security
 The project uses Spring Security with JWT tokens and user role-based access control to secure the endpoints. This provides a robust and secure way to authenticate and authorize users of the API.
