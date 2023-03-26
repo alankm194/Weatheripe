@@ -109,10 +109,10 @@ The project uses the following frameworks and libraries:
 - Spring Boot: version 3.0.2 of this popular framework for building enterprise-level Java applications is used to provide a powerful and flexible foundation for the project.
 - Hibernate: A powerful ORM tool for working with databases.
 - JPA: A Java Persistence API that provides a standard way to work with relational databases.
-- io.jsonwebtoken: version 0.11.5 of this library is used for secure authentication and authorization via JSON Web Tokens (JWTs).
 - WebFlux: the reactive web framework for building non-blocking, event-driven applications is used to enable high-concurrency processing of web requests with minimal overhead.
 - com.c4-soft.springaddons: version 6.1.3 of this library provides additional features and utilities for Spring Boot applications, such as simplified configuration of beans and templates.
 - Spring Docs: a framework that works with spring boot to provide OpenAPI and Swagger for API documentation.
+- Spring security: provides authentication and authorisation and the OAuth2 protocol to provide JSON web token for encryption and decryption
 
 ### Database
 The project uses Postgres as the deployment database and H2DB for testing and development purposes.
