@@ -1,7 +1,5 @@
 package com.techreturners.weatheripe.user.dto;
 
-import com.techreturners.weatheripe.external.dto.ResponseDTO;
-import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,4 +21,5 @@ public class UserRecipeBookDTO {
     String cuisineType;
     double calories;
     double rating;
+    boolean isFavourite;
 }
