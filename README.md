@@ -76,7 +76,21 @@ You must have the following environment variables set
 ```
 SECRETKEY_RECIPEAPPKEY: Edamam Recipe API key
 SECRETKEY_RECIPEAPPID: Edamam Recipe App ID
-SECRETKEY_WEATHERAPIKEY= Tomorrow.io Weather API key
+SECRETKEY_WEATHERAPIKEY: Tomorrow.io Weather API key
+```
+
+Alternatively for easier secrets management for development purposes. A secret.properties file can be created inside 
+
+```
+src/main/resources
+```
+
+with the format 
+
+```
+secretkey.recipeAppKey=Edamam Recipe API key
+secretKey.weatherApiKey=Edamam Recipe App ID
+secretkey.recipeAppId=Tomorrow.io Weather API key
 ```
 
 ### running
