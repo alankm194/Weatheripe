@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 
 @Hidden
 @RestControllerAdvice(annotations = RestController.class)
-public class ExceptionHandlerController {
+public class  ExceptionHandlerController{
 
 
     @ExceptionHandler({WeatherNotFoundException.class})

@@ -106,6 +106,7 @@ public class UserAccountServiceImpl implements UserAccountService {
                                 .rating(recipeBook.getRating())
                                 .dietType(recipeBook.getDietType())
                                 .calories(recipeBook.getCalories())
+                                .isFavourite(recipeBook.getIs_favourite())
                                 .build())
                 .forEach(recipeBookDTOList::add);
         return new UserRecipeBookResponseDTO(recipeBookDTOList);
