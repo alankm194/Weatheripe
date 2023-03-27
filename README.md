@@ -11,11 +11,11 @@ Java 17, Spring Boot 3.0.2
 ## UML Diagram
 1. DB Schema
 
-![DB Schema](Group2-Project-DBSchema.drawio.png)
+![DB Schema](Weatheripe-DBSchema.jpg)
 
 2. Class Diagram
 
-![Class diagram](Group2-Project-ClassDiagram.drawio.png)
+![Class diagram](Weatheripe-ClassDiagram.drawio.png)
 
 ## Key Features
 
@@ -38,7 +38,7 @@ Registered user can enjoy the below features:
 
 ### Use case diagram
 
-![Use case diagram](Group2-Project-UseCase-Simplified.drawio.png)
+![Use case diagram](Weatheripe-HighLevel-usecase.jpg)
 
 ## How to run unit test
 ```
@@ -55,7 +55,7 @@ to generate your own keys you can run into the commands below into your terminal
 ```
 openssl genpkey -algorithm RSA -out rsa.private.key -pkeyopt rsa_keygen_bits:2048
 
-openssl rsa -pubout -in rsa.private.key -out rsa.private.key
+openssl rsa -pubout -in rsa.private.key -out rsa.public.key
 ```
 
 For testing and development you can store these keys in as files with the same name in 
@@ -138,7 +138,10 @@ Below are the functions to be implemented:
 2. Allow user to subscribe, so user can receive our recommend recipe by time by day with a sms
 3. Food diary
 4. Recommend recipe by location, based on the location, Weatheripe to recommend user the recipe that belongs to their location, so that user can buy ingredients easily. eg. If you are in UK, Weatheripe will recommend British food, to ensure that most ingredients you can buy are easily available in local supermarket and eliminate the headache to find the ingredients.
-5. Deployment to AWS cloud
+5. Deployment to AWS cloud 
+   1. Deployment to a container host such as AWS Elastic Container Service
+   2. Using AWS RDS to host a Postgres database
+   3. Accessing the service using Amazon Alexa
 6. Add front end user interface
 7. Add CI/CD pipeline
 

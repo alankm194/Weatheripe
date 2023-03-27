@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -17,12 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Hidden
 @RestControllerAdvice(annotations = RestController.class)
 public class ExceptionHandlerController {
-
 
 
     @ExceptionHandler({WeatherNotFoundException.class})
@@ -149,11 +151,12 @@ public class ExceptionHandlerController {
     @ExceptionHandler(value = {MethodArgumentNotValidException.class})
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     public ResponseEntity<ErrorResponseDTO> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex, WebRequest request) {
-        String errorResp = "Invalid arguments used during registration";
-        if (ex.getErrorCount() > 0) {
-            errorResp = ex.getAllErrors().get(0).getDefaultMessage();
-        }
-        return new ResponseEntity<>(new ErrorResponseDTO(errorResp, "W0015", "DETAILS_INVALID", "AUTH"),
+        List<FieldError> field = ex.getBindingResult().getFieldErrors();
+        String errorList = field.stream()
+                .map(e -> String.format("%s %s", e.getField(), e.getDefaultMessage()))
+                .collect(Collectors.joining("; "));
+
+        return new ResponseEntity<>(new ErrorResponseDTO(errorList, "W0015", "DETAILS_INVALID", "AUTH"),
                 HttpStatus.BAD_REQUEST);
     }
 

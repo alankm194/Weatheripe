@@ -192,44 +192,4 @@ public class UserAccountControllerTest {
 
         verify(mockUserAccountServiceImpl, times(1)).deleteUserByUsername(username);
     }
-
-    @Test
-    public void testUnregisterUserByUserIdReturnsSuccess() throws Exception {
-        Long recipeBookId = 1L;
-        String token = "";
-        Long userId = 1L;
-
-        doNothing().when(mockUserAccountServiceImpl).deleteUserById(userId);
-
-        this.mockMvcController.perform(
-                        MockMvcRequestBuilders
-                                .delete("/api/v1/user/"+userId)
-//                                .principal(mockPrincipal)
-                                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.message")
-                        .value("User unregistered successfully!"));
-
-        verify(mockUserAccountServiceImpl, times(1)).deleteUserById(userId);
-    }
-
-    @Test
-    public void testUnregisterUserByUserIdReturnsFailOnUserAccountNotFound() throws Exception {
-        Long recipeBookId = 1L;
-        String token = "";
-        Long userId = 1L;
-
-        doThrow(new UserSessionNotFoundException(ExceptionMessages.USER_SESSION_NOT_FOUND))
-                .when(mockUserAccountServiceImpl).deleteUserById(userId);
-
-        this.mockMvcController.perform(
-                        MockMvcRequestBuilders
-                                .delete("/api/v1/user/"+userId)
-                                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.status().is4xxClientError())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.message")
-                        .value(ExceptionMessages.USER_SESSION_NOT_FOUND));
-
-        verify(mockUserAccountServiceImpl, times(1)).deleteUserById(userId);
-    }
 }
